@@ -5,7 +5,7 @@ description: Create the next HomeStretch system prompt version from evaluation f
 
 # New prompt version
 
-1. Find the latest `prompts/agent_vN.md` and its most recent real (non-mock, `deepseek-v4-flash`) run in `results/`.
+1. Find the latest `prompts/agent_vN.md` and its most recent real (non-mock, `deepseek-flash`, thinking off) run in `results/`.
    If there is no real run for it yet, stop and suggest `/run-evals` first. Changes must come from evidence.
 2. Read that run's `summary.md` and `records.jsonl`. Group failures into patterns (by flag type for the diff:
    misses, false alarms, deferrals; by check for chat).
@@ -18,7 +18,7 @@ description: Create the next HomeStretch system prompt version from evaluation f
    Don't teach to the test: never put a drug, brand, typo, or exact phrase from a test case into the prompt.
 5. Copy `agent_vN.md` to `agent_v(N+1).md` and apply only the approved edits. Never edit older versions.
 6. Add an entry to `docs/prompt-iterations.md` using the template there, with results marked "not yet run".
-7. Print the exact commands to run the new version on `deepseek-v4-flash` with the previous run's settings,
+7. Print the exact commands to run the new version on `deepseek-flash` with the previous run's settings,
    and to compare it with the previous run.
 
 Never weaken the safety rules in CLAUDE.md (tier-3 handling, zero critical misses, no diagnosis, no dose advice)

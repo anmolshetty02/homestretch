@@ -6,7 +6,8 @@ description: Compare two HomeStretch eval runs side by side and write slide-read
 # Compare versions
 
 1. List the folders in `results/` and pick two runs with the user. Warn if they used different models
-   (all real runs should be `deepseek-v4-flash`), temperatures, or case filters: then differences are not just
+   (check `model_key` in each `meta.json`; comparable runs use `deepseek-flash`, thinking off), temperatures, or case
+   filters: then differences are not just
    the prompt. Ignore mock runs.
 2. Run `python -m evals.report --compare results/<A> results/<B>`.
 3. Write up for the doc:

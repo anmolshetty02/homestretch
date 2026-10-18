@@ -40,7 +40,7 @@ questions from the diff and the care plan only.
 - **Prompt versions are immutable.** Never edit `prompts/agent_vN.md` after it has been run.
   To change the prompt, create the next version (see `/new-prompt-version`).
 - **Every prompt version gets an entry** in `docs/prompt-iterations.md` before it is run.
-- **API calls cost money.** Use `--provider mock` unless the user explicitly says to call DeepSeek.
+- **API calls cost money.** Use `--model mock` unless the user explicitly says to call DeepSeek (local Ollama models are free but still ask).
 - **Synthetic data only.** Never add real patient data to fixtures, cases, or prompts.
 - **Never read `.env`.** The API key lives there.
 - **Never open, read, or summarize `evals/blind/`** (the held-out test set), or the records of `_blind` runs,
@@ -59,28 +59,35 @@ away for tone or brevity, reject the change.
 ## Layout
 
 ```
-prompts/          agent_v0.md (naive baseline), agent_v1.md (structured)
-prompts/stretch/  voice-agent prompts (agent_v0, agent_v1, critic_v1), kept unchanged; not part of the MVP
+prompts/          Prompt B: agent_v0.md (naive baseline), agent_v1.md (structured), later versions. Phase 3 adds extract_vN.md (Prompt A)
+prompts/stretch/  voice-agent prompts (agent_v0, agent_v1, critic_v1), kept unchanged; not part of the assignment scope
 fixtures/         p001.json  synthetic patient: care plan, and the known-correct cabinet diff used in chat cases
 evals/cases/      YAML test cases: cabinet_diff (13 cabinets with known flags) and chat (med questions, red flags, scope)
-evals/            run.py (runner), checks.py (scoring, incl. flag-level), report.py (summaries, comparisons), providers.py
-results/          one folder per run: records.jsonl, summary.md, summary.json (.cache/ is ignored)
+evals/blind/      held-out cases, loaded only with --blind. Do not open (see Hard rules)
+evals/            run.py (runner, cost guard, spend log), checks.py (scoring, readability), report.py (summaries,
+                  compare, leaderboard), providers.py (registry-driven), models.yaml (model registry and prices)
+results/          one folder per run: records.jsonl, summary.md, summary.json, meta.json; spend.csv (every paid run)
 docs/             prompt-iterations.md (the iteration log), decisions.md (scope and settings changes), assignment2-outline.md
 ```
 
 ## Commands
 
 ```bash
-python -m evals.run --version v1 --provider mock                                          # dry run, no API calls
-python -m evals.run --version v1 --provider custom --model deepseek-v4-flash              # real run
-python -m evals.run --version v1 --provider custom --repeats 3 --category cabinet_diff    # stability
-python -m evals.run --version v1 --provider custom --repeats 3 --category red_flag --temperature 0.7
+python -m evals.run --version v1 --model mock                          # dry run, no API calls
+python -m evals.run --version v1 --model deepseek-flash                # real run: the default setup (thinking off)
+python -m evals.run --version v1 --model deepseek-pro --max-cost 1     # Pro needs a higher cost limit for a full run
+python -m evals.run --version v1 --model ollama-qwen3-8b               # local, needs the Ollama server (see README)
+python -m evals.run --version v1 --repeats 3 --category red_flag --temperature 0.7   # stability
+python -m evals.run --version v1 --blind                               # held-out set, only when the user asks
 python -m evals.report --compare results/<runA> results/<runB>
-python -m evals.checks                                                                    # flag-scoring self-test
+python -m evals.report --leaderboard results/<run> results/<run> ...   # gates, cost, latency; cheapest passing on top
+python -m evals.checks && python -m evals.providers                    # self-tests
 ```
 
-`--provider custom` reads `CUSTOM_BASE_URL` (`https://api.deepseek.com`) and `CUSTOM_API_KEY` from `.env`.
-A full run costs about 3–10 cents; check https://api-docs.deepseek.com/quick_start/pricing for current prices.
+Model keys, prices, and thinking settings live in `evals/models.yaml`. DeepSeek reads `DEEPSEEK_API_KEY` from `.env`.
+Every run prints a cost estimate first and aborts above `--max-cost` (default $0.50); paid runs append a row to
+`results/spend.csv`. A full run on `deepseek-flash` costs about 3–10 cents (v1 measured $0.033 with DeepSeek's prompt
+cache warm); Pro costs about 4 times as much. Prices: https://api-docs.deepseek.com/quick_start/pricing.
 
 ## How prompts are rendered
 
@@ -93,6 +100,8 @@ known-correct diff. The agent must reply with one JSON object: `mode`, `analysis
 
 Flag scoring: expected flags are matched on (label, plan_ref), or (label, cabinet_ref) for `not_on_list`.
 `pharmacist_check` on the same item counts as deferred (a warning); a deferred `stopped_still_present` is still critical.
+Per-item expectations (`label: pharmacist_check`, or an `accept:` list for debatable labels) are matched on the cabinet item.
+The dose-advice regex ignores words that also appear in the caregiver's own message (quoting them back).
 
 ## Personal preferences
 

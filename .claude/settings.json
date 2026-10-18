@@ -17,7 +17,10 @@
       "Read(./.env)",
       "Read(./.env.*)",
       "Bash(cat .env*)",
-      "Read(./evals/blind/**)"
+      "Read(./evals/blind/**)",
+      "Bash(cat evals/blind*)",
+      "Bash(grep * evals/blind*)",
+      "Bash(head evals/blind*)"
     ]
   }
 }

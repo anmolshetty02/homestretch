@@ -6,14 +6,16 @@ description: Run the HomeStretch prompt test suite for one prompt version and su
 # Run evals
 
 1. Confirm the settings with the user before running anything:
-   - prompt version (e.g. `v1`), provider (`mock` or `custom`), model, temperature, repeats, category or case filter
-   - Real runs use `--provider custom --model deepseek-v4-flash`, with the same temperature and case set as the
+   - prompt version (e.g. `v1`), model key from `evals/models.yaml` (`mock` for dry runs), temperature, repeats,
+     category or case filter
+   - Comparable runs use `--model deepseek-flash` (thinking off), with the same temperature and case set as the
      runs they will be compared against. Warn if the settings differ from the previous real run.
-   - Estimate the cost first: calls = (cases + variants) x repeats. The full suite is 52 calls at roughly
-     3,400 input tokens each for v1, about 3–10 cents per full run (`--repeats 3` triples it).
+   - Cost: the runner prints an estimate first and aborts above `--max-cost` (default $0.50). A full run on
+     `deepseek-flash` is 57 calls, about 3–10 cents (`--repeats 3` triples it); Pro is about 4 times as much
+     (pass `--max-cost 1`). Ollama is free but needs the server at 16K context (README). Tell the user the estimate.
      Prices change: https://api-docs.deepseek.com/quick_start/pricing.
    - Wait for an explicit go.
-2. Run it, e.g. `python -m evals.run --version v1 --provider custom --model deepseek-v4-flash`.
+2. Run it, e.g. `python -m evals.run --version v1 --model deepseek-flash`. Spend goes to `results/spend.csv`.
    Cached calls are reused automatically, so re-running the same settings is free.
 3. Read `results/<run>/summary.md` and report back:
    - the headline table and the "Cabinet diff by flag type" table

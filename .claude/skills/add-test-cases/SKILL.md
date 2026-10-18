@@ -59,4 +59,5 @@ Chat (`medications.yaml`, `red_flags.yaml`, `scope_and_style.yaml`). Inputs are 
    Never reuse a drug, brand, or typo from the prompt's `<examples>` in a test cabinet, or vice versa.
 4. Append to the matching file in `evals/cases/`, then check it loads:
    `python -c "import yaml,glob;[yaml.safe_load(open(f)) for f in glob.glob('evals/cases/*.yaml')];print('ok')"`
-5. Run only the new cases with mock first: `python -m evals.run --version v1 --provider mock --cases <id>`.
+5. Run only the new cases with mock first: `python -m evals.run --version v1 --model mock --cases <id>`.
+6. Never add to, read, or copy from `evals/blind/` (the held-out set) unless the user says "run the blind set".
