@@ -1,0 +1,25 @@
+{
+  "version": "v3",
+  "model": "deepseek-flash",
+  "temperature": 0.7,
+  "repeats": 3,
+  "category": "cabinet_diff",
+  "cases": null,
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "stab",
+  "max_cost": 0.5,
+  "blind": false,
+  "model_key": "deepseek-flash",
+  "provider": "deepseek",
+  "model_id": "deepseek-flash",
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "temperature_ignored": false,
+  "num_ctx": null,
+  "server_context": null
+}

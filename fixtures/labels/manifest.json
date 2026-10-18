@@ -1,0 +1,718 @@
+{
+ "labels": [
+  {
+   "label": "label-01",
+   "style": "clean",
+   "path": "fixtures/labels/label-01_clean.png",
+   "truth": {
+    "name": "Metoprolol Tartrate",
+    "strength": "25 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-01",
+   "style": "blur",
+   "path": "fixtures/labels/label-01_blur.png",
+   "truth": {
+    "name": "Metoprolol Tartrate",
+    "strength": "25 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-01",
+   "style": "tilt",
+   "path": "fixtures/labels/label-01_tilt.png",
+   "truth": {
+    "name": "Metoprolol Tartrate",
+    "strength": "25 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-02",
+   "style": "clean",
+   "path": "fixtures/labels/label-02_clean.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-02",
+   "style": "blur",
+   "path": "fixtures/labels/label-02_blur.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-02",
+   "style": "tilt",
+   "path": "fixtures/labels/label-02_tilt.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-03",
+   "style": "clean",
+   "path": "fixtures/labels/label-03_clean.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-03",
+   "style": "blur",
+   "path": "fixtures/labels/label-03_blur.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-03",
+   "style": "tilt",
+   "path": "fixtures/labels/label-03_tilt.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-04",
+   "style": "clean",
+   "path": "fixtures/labels/label-04_clean.png",
+   "truth": {
+    "name": "Zestril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-04",
+   "style": "blur",
+   "path": "fixtures/labels/label-04_blur.png",
+   "truth": {
+    "name": "Zestril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-04",
+   "style": "tilt",
+   "path": "fixtures/labels/label-04_tilt.png",
+   "truth": {
+    "name": "Zestril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-05",
+   "style": "clean",
+   "path": "fixtures/labels/label-05_clean.png",
+   "truth": {
+    "name": "Advil (ibuprofen)",
+    "strength": "200 mg",
+    "directions": "Take 1 to 2 tablets every 4 to 6 hours as needed for pain"
+   }
+  },
+  {
+   "label": "label-05",
+   "style": "blur",
+   "path": "fixtures/labels/label-05_blur.png",
+   "truth": {
+    "name": "Advil (ibuprofen)",
+    "strength": "200 mg",
+    "directions": "Take 1 to 2 tablets every 4 to 6 hours as needed for pain"
+   }
+  },
+  {
+   "label": "label-05",
+   "style": "tilt",
+   "path": "fixtures/labels/label-05_tilt.png",
+   "truth": {
+    "name": "Advil (ibuprofen)",
+    "strength": "200 mg",
+    "directions": "Take 1 to 2 tablets every 4 to 6 hours as needed for pain"
+   }
+  },
+  {
+   "label": "label-06",
+   "style": "clean",
+   "path": "fixtures/labels/label-06_clean.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily, 8 AM and 2 PM"
+   }
+  },
+  {
+   "label": "label-06",
+   "style": "blur",
+   "path": "fixtures/labels/label-06_blur.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily, 8 AM and 2 PM"
+   }
+  },
+  {
+   "label": "label-06",
+   "style": "tilt",
+   "path": "fixtures/labels/label-06_tilt.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily, 8 AM and 2 PM"
+   }
+  },
+  {
+   "label": "label-07",
+   "style": "clean",
+   "path": "fixtures/labels/label-07_clean.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-07",
+   "style": "blur",
+   "path": "fixtures/labels/label-07_blur.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-07",
+   "style": "tilt",
+   "path": "fixtures/labels/label-07_tilt.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-08",
+   "style": "clean",
+   "path": "fixtures/labels/label-08_clean.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-08",
+   "style": "blur",
+   "path": "fixtures/labels/label-08_blur.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-08",
+   "style": "tilt",
+   "path": "fixtures/labels/label-08_tilt.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "Take 1 tablet by mouth once daily in the morning"
+   }
+  },
+  {
+   "label": "label-09",
+   "style": "clean",
+   "path": "fixtures/labels/label-09_clean.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-09",
+   "style": "blur",
+   "path": "fixtures/labels/label-09_blur.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-09",
+   "style": "tilt",
+   "path": "fixtures/labels/label-09_tilt.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-10",
+   "style": "clean",
+   "path": "fixtures/labels/label-10_clean.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-10",
+   "style": "blur",
+   "path": "fixtures/labels/label-10_blur.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-10",
+   "style": "tilt",
+   "path": "fixtures/labels/label-10_tilt.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take 1 tablet by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-11",
+   "style": "clean",
+   "path": "fixtures/labels/label-11_clean.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 2 tablets by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-11",
+   "style": "blur",
+   "path": "fixtures/labels/label-11_blur.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 2 tablets by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-11",
+   "style": "tilt",
+   "path": "fixtures/labels/label-11_tilt.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "20 mg",
+    "directions": "Take 2 tablets by mouth twice daily"
+   }
+  },
+  {
+   "label": "label-12",
+   "style": "clean",
+   "path": "fixtures/labels/label-12_clean.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-12",
+   "style": "blur",
+   "path": "fixtures/labels/label-12_blur.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-12",
+   "style": "tilt",
+   "path": "fixtures/labels/label-12_tilt.png",
+   "truth": {
+    "name": "Toprol XL",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-13",
+   "style": "clean",
+   "path": "fixtures/labels/label-13_clean.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-13",
+   "style": "blur",
+   "path": "fixtures/labels/label-13_blur.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-13",
+   "style": "tilt",
+   "path": "fixtures/labels/label-13_tilt.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "20 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-14",
+   "style": "clean",
+   "path": "fixtures/labels/label-14_clean.png",
+   "truth": {
+    "name": "METOPROLOL TART",
+    "strength": "25MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-14",
+   "style": "blur",
+   "path": "fixtures/labels/label-14_blur.png",
+   "truth": {
+    "name": "METOPROLOL TART",
+    "strength": "25MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-14",
+   "style": "tilt",
+   "path": "fixtures/labels/label-14_tilt.png",
+   "truth": {
+    "name": "METOPROLOL TART",
+    "strength": "25MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-15",
+   "style": "clean",
+   "path": "fixtures/labels/label-15_clean.png",
+   "truth": {
+    "name": "METOPROLOL SUCC ER",
+    "strength": "50MG TB24",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-15",
+   "style": "blur",
+   "path": "fixtures/labels/label-15_blur.png",
+   "truth": {
+    "name": "METOPROLOL SUCC ER",
+    "strength": "50MG TB24",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-15",
+   "style": "tilt",
+   "path": "fixtures/labels/label-15_tilt.png",
+   "truth": {
+    "name": "METOPROLOL SUCC ER",
+    "strength": "50MG TB24",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-16",
+   "style": "clean",
+   "path": "fixtures/labels/label-16_clean.png",
+   "truth": {
+    "name": "FUROSEMIDE",
+    "strength": "40MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-16",
+   "style": "blur",
+   "path": "fixtures/labels/label-16_blur.png",
+   "truth": {
+    "name": "FUROSEMIDE",
+    "strength": "40MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-16",
+   "style": "tilt",
+   "path": "fixtures/labels/label-16_tilt.png",
+   "truth": {
+    "name": "FUROSEMIDE",
+    "strength": "40MG TAB",
+    "directions": "1 TAB PO BID"
+   }
+  },
+  {
+   "label": "label-17",
+   "style": "clean",
+   "path": "fixtures/labels/label-17_clean.png",
+   "truth": {
+    "name": "LISINOPRIL",
+    "strength": "10MG TAB",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-17",
+   "style": "blur",
+   "path": "fixtures/labels/label-17_blur.png",
+   "truth": {
+    "name": "LISINOPRIL",
+    "strength": "10MG TAB",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-17",
+   "style": "tilt",
+   "path": "fixtures/labels/label-17_tilt.png",
+   "truth": {
+    "name": "LISINOPRIL",
+    "strength": "10MG TAB",
+    "directions": "1 TAB PO QAM"
+   }
+  },
+  {
+   "label": "label-18",
+   "style": "clean",
+   "path": "fixtures/labels/label-18_clean.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take one tablet at 8 AM and one tablet at 2 PM"
+   }
+  },
+  {
+   "label": "label-18",
+   "style": "blur",
+   "path": "fixtures/labels/label-18_blur.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take one tablet at 8 AM and one tablet at 2 PM"
+   }
+  },
+  {
+   "label": "label-18",
+   "style": "tilt",
+   "path": "fixtures/labels/label-18_tilt.png",
+   "truth": {
+    "name": "Furosemide",
+    "strength": "40 mg",
+    "directions": "Take one tablet at 8 AM and one tablet at 2 PM"
+   }
+  },
+  {
+   "label": "label-19",
+   "style": "clean",
+   "path": "fixtures/labels/label-19_clean.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet every morning"
+   }
+  },
+  {
+   "label": "label-19",
+   "style": "blur",
+   "path": "fixtures/labels/label-19_blur.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet every morning"
+   }
+  },
+  {
+   "label": "label-19",
+   "style": "tilt",
+   "path": "fixtures/labels/label-19_tilt.png",
+   "truth": {
+    "name": "Metoprolol Succinate ER",
+    "strength": "50 mg",
+    "directions": "Take 1 tablet every morning"
+   }
+  },
+  {
+   "label": "label-20",
+   "style": "clean",
+   "path": "fixtures/labels/label-20_clean.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "One tab every AM"
+   }
+  },
+  {
+   "label": "label-20",
+   "style": "blur",
+   "path": "fixtures/labels/label-20_blur.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "One tab every AM"
+   }
+  },
+  {
+   "label": "label-20",
+   "style": "tilt",
+   "path": "fixtures/labels/label-20_tilt.png",
+   "truth": {
+    "name": "Lisinopril",
+    "strength": "10 mg",
+    "directions": "One tab every AM"
+   }
+  },
+  {
+   "label": "label-21",
+   "style": "clean",
+   "path": "fixtures/labels/label-21_clean.png",
+   "truth": {
+    "name": "Senna",
+    "strength": "8.6 mg",
+    "directions": "Take 2 tablets at bedtime as needed for constipation"
+   }
+  },
+  {
+   "label": "label-21",
+   "style": "blur",
+   "path": "fixtures/labels/label-21_blur.png",
+   "truth": {
+    "name": "Senna",
+    "strength": "8.6 mg",
+    "directions": "Take 2 tablets at bedtime as needed for constipation"
+   }
+  },
+  {
+   "label": "label-21",
+   "style": "tilt",
+   "path": "fixtures/labels/label-21_tilt.png",
+   "truth": {
+    "name": "Senna",
+    "strength": "8.6 mg",
+    "directions": "Take 2 tablets at bedtime as needed for constipation"
+   }
+  },
+  {
+   "label": "label-22",
+   "style": "clean",
+   "path": "fixtures/labels/label-22_clean.png",
+   "truth": {
+    "name": "Zestoretic",
+    "strength": "10 mg-12.5 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-22",
+   "style": "blur",
+   "path": "fixtures/labels/label-22_blur.png",
+   "truth": {
+    "name": "Zestoretic",
+    "strength": "10 mg-12.5 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  },
+  {
+   "label": "label-22",
+   "style": "tilt",
+   "path": "fixtures/labels/label-22_tilt.png",
+   "truth": {
+    "name": "Zestoretic",
+    "strength": "10 mg-12.5 mg",
+    "directions": "Take 1 tablet by mouth once daily"
+   }
+  }
+ ],
+ "cabinets": {
+  "dx-01": {
+   "cab-1": "label-01",
+   "cab-2": "label-02",
+   "cab-3": "label-03",
+   "cab-4": "label-04"
+  },
+  "dx-02": {
+   "cab-1": "label-01",
+   "cab-2": "label-02",
+   "cab-3": "label-03",
+   "cab-4": "label-04",
+   "cab-5": "label-05"
+  },
+  "dx-03": {
+   "cab-1": "label-06",
+   "cab-2": "label-07",
+   "cab-3": "label-08"
+  },
+  "dx-04": {
+   "cab-1": "label-09",
+   "cab-2": "label-01",
+   "cab-3": "label-10",
+   "cab-4": "label-03"
+  },
+  "dx-05": {
+   "cab-1": "label-11",
+   "cab-2": "label-12",
+   "cab-3": "label-13"
+  },
+  "dx-06": {
+   "cab-1": "label-14",
+   "cab-2": "label-15",
+   "cab-3": "label-16",
+   "cab-4": "label-17"
+  },
+  "dx-07": {
+   "cab-1": "label-10",
+   "cab-2": "label-12",
+   "cab-3": "label-03"
+  },
+  "dx-08": {
+   "cab-1": "label-18",
+   "cab-2": "label-19",
+   "cab-3": "label-20",
+   "cab-4": "label-21"
+  },
+  "dx-09": {
+   "cab-1": "label-10",
+   "cab-2": "label-12",
+   "cab-3": "label-03",
+   "cab-4": "label-22"
+  }
+ }
+}

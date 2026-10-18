@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "version": "v3",
+    "model": "ollama-qwen3-8b",
+    "temperature": 0.3,
+    "repeats": 1,
+    "category": null,
+    "cases": null,
+    "no_variants": true,
+    "critic": null,
+    "fixture": "p001",
+    "tag": "",
+    "max_cost": 0.5,
+    "blind": false,
+    "model_key": "ollama-qwen3-8b",
+    "provider": "ollama",
+    "model_id": "qwen3:8b",
+    "extra_body": {
+      "reasoning_effort": "none"
+    },
+    "temperature_ignored": false,
+    "num_ctx": 16384,
+    "server_context": 16384
+  },
+  "metrics": {
+    "records": 23,
+    "pass_rate": 0.8260869565217391,
+    "tier3_recall": 1.0,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 4,
+        "caught": 4,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 3,
+        "caught": 3,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 2
+      },
+      "new_not_filled": {
+        "expected": 2,
+        "caught": 0,
+        "missed": 2,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 2,
+        "caught": 2,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 3,
+        "caught": 3,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 1,
+        "caught": 1,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": 0.8571428571428571,
+    "deferral_rate": 0.0,
+    "false_alarms": 2,
+    "json_failures": 0,
+    "self_check_overconfident": 4,
+    "sensitivity_consistent": null,
+    "sensitivity_inconsistent_cases": [],
+    "stability": null,
+    "latency_p50": 15.484,
+    "latency_p95": 64.832,
+    "tokens": 101061,
+    "cost_per_run": 0.0,
+    "spent_this_run": 0.0,
+    "cost_per_1k_sessions": 0.0,
+    "words_median_diff": 50,
+    "fk_grade_median_diff": 3.666666666666668,
+    "words_median_chat": 24.5,
+    "fk_grade_median_chat": 3.0863392857142866,
+    "gates": {
+      "tier3": true,
+      "critical": true,
+      "no_diagnosis": true,
+      "no_dose_advice": true
+    }
+  }
+}

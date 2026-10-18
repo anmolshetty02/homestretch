@@ -61,6 +61,144 @@ they are labeled **flash-thinking** below (see `docs/decisions.md`).
 - **Known overlap:** v1's example uses hydrochlorothiazide, which is inside dx-09's Zestoretic (see test set changes).
 - **Decision:** keep. Base for Phase 2.
 
+### v2: example swap (test-overlap fix only)
+- **Changed:** `<examples>` only. Mr. Okafor's stopped medicine changed from hydrochlorothiazide to spironolactone
+  (3 lines: the plan line, the cabinet item with its photo typo "Hydrochlorothiazlde" → "Splronolactone", same
+  l-for-i error type, and the diff example's analysis, flag detail, and reply). No other change.
+- **Why:** hydrochlorothiazide is inside dx-09's Zestoretic, so v1's example overlapped a test cabinet (logged under
+  test set changes, 2026-10-18). This is its own listed change so later results are not credited to it by mistake.
+  Spironolactone, Aldactone, and "Splronolactone" appear in no case or fixture (scanned `evals/cases/`, `fixtures/`,
+  `prompts/`; `evals/blind/` not scanned by rule). p002 (v4) must not use spironolactone either.
+- **Tuning dimension:** none (test hygiene)
+- **Hypothesis:** no change anywhere, including dx-09 (v1 already passed dx-09 with `not_on_list`). If dx-09 or
+  anything else changes, the example drug was influencing the model, and the write-up should say so.
+- **Results:** `v2_deepseek-flash_t0.3_1018-1652` vs `v1_deepseek-flash_t0.3_1018-1640_rescored`: pass 100% → 100%,
+  tier-3 100%, 0 critical misses, diff recall 100%, 0 false alarms, sensitivity 93% → 100%, $3.23 → $3.09 per 1,000
+  sessions, reply words 117/78 → 118/78, FK grade 4.8/5.8 → 4.7/6.1. dx-09 with `--repeats 3` (`*_dx09rep`):
+  Zestoretic labeled `not_on_list` in 3/3 repeats on both v1 and v2.
+- **Fixed / broke:** none / none.
+- **Decision:** keep. The overlap did not influence results; v2 is the clean base for v3.
+
+### v3: reply tone and detail
+- **Changed:** `<output_format>`, the "reply" bullet only. Was: "Plain, warm, everyday words. Short sentences. A
+  numbered list is fine in diff mode." Now: lead with the action; diff mode one line per problem under 25 words,
+  then one sentence naming the fine bottles; chat 2 to 4 sentences under 60 words unless a warning sign needs more;
+  words a 12-year-old knows, medical words explained, sentences under 15 words; no greeting, sign-off, or names the
+  caregiver didn't give; keep every citation, safety step, and who to call.
+- **Why:** v2 replies median 118 words (diff) and 78 (chat), FK grade 4.7 / 6.1; earlier runs showed greetings and an
+  unprompted "Hi Maria". The caregiver may read on a phone while worried.
+- **Tuning dimension:** tone and level of detail
+- **Hypothesis:** shorter replies and a lower chat grade; no safety gate worse. Risk: dropped citations
+  (`must_cite`), dropped "pharmacy" (`must_include`), or a warning cut for length.
+- **Results:** `v3_deepseek-flash_t0.3_1018-1655` vs `v2_deepseek-flash_t0.3_1018-1652`: pass 100% → 100%, tier-3 100%,
+  0 critical misses, diff recall 100%, 0 false alarms, sensitivity 100% → 93% (mq-02: knee-pain variants gave tier
+  null vs 0; all passed), p50 2.0 s → 1.8 s, $3.09 → $2.63 per 1,000 sessions, **reply words 118/78 → 67/50**
+  (diff / chat, −43% / −36%), **FK grade 4.7/6.1 → 3.7/4.4**. Read by hand: 911 replies still lead with "Call 911 now",
+  rf-07 keeps every contact and the 911 escalation, dose questions still refuse and send to the pharmacy.
+  One flaw: dx-01 says "I found 5 things" but lists 4 lines (it merged the two duplicate flags).
+- **Fixed / broke:** none / none.
+- **Decision:** keep. **v3 is the final Prompt B.**
+
+---
+
+## Ablations (Prompt B v3)
+
+Each ablation removes one component from v3 and changes nothing else. They measure what each technique contributes;
+they are not candidates for the final prompt.
+
+### v3-noexamples
+- **Changed:** `<examples>` block removed (both worked examples).
+- **Question:** do the few-shot examples drive JSON format, flag format, normalization, or tone?
+- **Results:** `v3-noexamples_deepseek-flash_t0.3_1018-1727` vs `v3_deepseek-flash_t0.3_1018-1655`: pass 100% → 100%,
+  0 critical, diff recall 100%, 0 false alarms, valid JSON and flag ids in every reply; fixed / broke none.
+  Replies longer and harder to read: words 67/50 → 76/53, FK grade 3.7/4.4 → 4.8/5.0 (diff / chat); inline [id]
+  citations in 57/57 → 55/57 replies. Prompt input median 4,120 → 3,122 tokens; $2.63 → $2.52 per 1,000 sessions.
+- **Reading:** on this model the examples mostly shape style (length, plainness, citing), not correctness.
+
+### v3-noselfcheck
+- **Changed:** self-criticism removed: diff-mode step 4 (re-check every label against both lists), the `self_check`
+  output field and its "fix before writing reply" rule, and `self_check` in the two example replies. Steps renumbered.
+- **Question:** does the explicit re-check and self-check reduce false alarms, misses, or safety errors?
+- **Results:** `v3-noselfcheck_deepseek-flash_t0.3_1018-1729` vs `v3_deepseek-flash_t0.3_1018-1655`: pass 100% → 100%,
+  0 critical, diff recall 100%, 0 false alarms; fixed / broke none; sensitivity 93% → 100% (mq-02 tier noise).
+  Output median 227 → 162 tokens; p50 1.77 s → 1.67 s; $2.63 → $2.32 per 1,000 sessions (−12%); words 67/50 → 70/46.
+- **Reading:** no measurable benefit on this suite with deepseek-flash: the suite saturates (v1 onward pass 100%), so it
+  cannot show what the self-check protects against. We keep it in the final prompt as a safety net; removing it is a
+  12% cost saving to revisit with a harder test set or a weaker model (v0 vs v1 shows structure matters a lot there).
+
+---
+
+## Prompt A: label extraction (OCR route)
+
+Pipeline: synthetic label image (`python -m evals.render_labels`: 22 unique bottles from the base cabinets x 3 styles:
+clean, blur = low-resolution and out of focus, tilt = rotated, blurred, low contrast) → Tesseract 5.5.1 (`--psm 6`) →
+`deepseek-flash` with `prompts/extract_vN.md` → `{name, strength, directions}`. Each field scored correct, unreadable
+(safe: someone checks the bottle), or wrong. Raw OCR alone had all 3 fields intact on 22/22 clean, 7/22 blur, 1/22 tilt.
+End to end: dx-01, dx-02, dx-06 rebuilt from their blur labels → Prompt B v3 → flag scoring.
+
+| Prompt A | Run | All 3 correct | Wrong name | Wrong strength number | Wrong directions | Unreadable fields | E2E (3 cabinets) | Cost (66 labels) |
+|---|---|---|---|---|---|---|---|---|
+| v0 naive | `extract_v0_deepseek-flash_t0.3_1018-1707` | 41/66 | 4 | 11 | 14 | 0 | 3/3 pass | $0.0050 |
+| v1 structured | `extract_v1_deepseek-flash_t0.3_1018-1709` | 50/66 | 0 | 8 (6 are 10 mg read as 40 mg) | 5 | 7 | 3/3 pass | $0.0092 |
+| v2 garbled-unit rule | `extract_v2_deepseek-flash_t0.3_1018-1711` | 36/66 | 0 | 2 (1 is 10 → 40 mg) | 5 | 36 | 3/3 pass (dx-06 warn) | $0.0083 |
+
+("Wrong strength number" also counts 2 labels whose "50MG TB24" lost the "TB24" form suffix: 2 of v1's 8, 1 of v2's 2.)
+
+### extract v0: naive baseline
+- **Changed:** n/a. One sentence: extract name, strength, directions as JSON.
+- **Results:** see table. Copies OCR garbage ("Lisinoptl"), drops brand words ("Advil (ibuprofen)" → "ibuprofen"), never says unreadable.
+- **Decision:** baseline only.
+
+### extract v1: structured
+- **Changed:** rebuilt with `<role>` (a wrong name is worse than "unreadable"), `<input>` (what OCR text contains and its
+  error types), `<workflow>` (ignore pharmacy lines; fix a character only when exactly one real medicine fits; never
+  guess; "unreadable" per field), `<output_format>` (adds `unreadable_fields`, `ocr_fixes`), 2 examples on a label in
+  no test (pravastatin), one of them unreadable.
+- **Tuning dimension:** structure and constraints
+- **Results:** wrong names 4 → 0; all-correct 41 → 50; but 6 tilted labels where Tesseract printed "40 m9" for
+  "10 mg" were "repaired" to "40 mg": a wrong dose, as dangerous as a wrong name.
+- **Decision:** keep structure; fix the strength repair.
+
+### extract v2: garbled-unit rule (final Prompt A)
+- **Changed:** `<workflow>` step 3 only: if the unit next to a number is garbled ("m9", "rng", "mo"), the digits were
+  probably misread too, so set strength (or directions, for times) to "unreadable" instead of repairing.
+- **Why:** `extract_v1_…1709`, labels 03, 04, 08, 20, 22 (tilt): OCR "40 m9" → "40 mg", truth 10 mg.
+- **Tuning dimension:** constraints
+- **Results:** wrong dose numbers 6 → 1 (label-17: OCR printed a clean "40MG TAB", nothing to detect); wrong names
+  stay 0; unreadable fields 7 → 36 (29 on tilted labels), so all-correct falls 50 → 36. New wrong: label-11 blur
+  "twice daily" → "once daily".
+- **Decision:** keep. Safety over completeness: an "unreadable" field asks someone to check the bottle; a wrong dose
+  silently changes the diff. **v2 is the final Prompt A.** Remaining risk: a digit misread with no garbled
+  neighbors (label-17) cannot be caught from OCR text; the vision route is the next step.
+
+---
+
+## Phase 4: model comparison (Prompt B v3)
+
+| Run | Model | Gates | Pass rate | Diff recall | Cost per run | Cost per 1,000 sessions | p50 latency |
+|---|---|---|---|---|---|---|---|
+| `v3_deepseek-flash_t0.3_1018-1655` | deepseek-flash | ✓ all | 100% | 100% | $0.027 | $2.63 | 1.8 s |
+| `v3_deepseek-flash-think_t-_1018-1700` | deepseek-flash-think | ✓ all | 98% | 100% | $0.059 | $5.74 | 3.1 s |
+| `v3_deepseek-pro_t0.3_1018-1658` | deepseek-pro | ✓ all | 100% | 100% | $0.097 | $9.17 | 2.5 s |
+| `v3_ollama-qwen3-8b_t0.3_1018-1658` | ollama-qwen3-8b (local, `--no-variants`, 23 inputs) | ✓ all | 83% | 86% | $0 | $0 | 15.5 s |
+
+- Flash-think's one failure: sc-02 paraphrase left out the empty `flags` key (format, not safety).
+- qwen3 (warm-up call not counted, context 16,384): 10 of 23 calls over the 30-second limit (max 82 s); 4 diff errors
+  (2 missed `new_not_filled`, 2 `dose_changed` false alarms). Fails the latency rule, and its diff quality is lower.
+- **Decision:** `deepseek-flash` with thinking off: the cheapest setup that passes every gate within the latency limit.
+  Pro costs 3.5x for no measured gain; thinking costs 2.2x, is slower, and had a format slip.
+
+## Phase 5: stability (Prompt B v3, deepseek-flash, thinking off, --repeats 3)
+
+| Temperature | Category | Run | Replies | Pass rate | Stability | Tier-3 recall | Critical misses | Diff recall |
+|---|---|---|---|---|---|---|---|---|
+| 0.0 | red_flag | `v3_deepseek-flash_t0.0_1018-1712_stab` | 69 | 100% | 100% | 100% | n/a | n/a |
+| 0.0 | cabinet_diff | `v3_deepseek-flash_t0.0_1018-1714_stab` | 39 | 100% | 100% | n/a | 0 | 100% |
+| 0.7 | red_flag | `v3_deepseek-flash_t0.7_1018-1716_stab` | 69 | 100% | 100% | 100% | n/a | n/a |
+| 0.7 | cabinet_diff | `v3_deepseek-flash_t0.7_1018-1718_stab` | 39 | 100% | 100% | n/a | 0 | 100% |
+
+Stability = same tier, mode, and verdict across the 3 repeats of every input. Prompt A stability was not run (next step).
+
 ---
 
 ## Test set and checker changes
@@ -95,7 +233,7 @@ Changes to the evals themselves, not the prompt. Runs before and after a change 
 |---|---|---|---|
 | 2 | v2: example swap | replace hydrochlorothiazide in the Okafor example with a drug in no test; logged as its own change | Does the example overlap affect dx-09 (and anything else)? |
 | 2 | v3: tone and detail | shorter, plainer `reply` (target from v1's 117 / 78 words, FK 4.8 / 5.8) | Can replies get clearer for a caregiver without losing grounding, safety, or urgency order? |
-| 2 | v4: cost layout | move `<context>` (patient data) to the end; measure with a second synthetic patient (`fixtures/p002.json`) | How much of the prompt hits DeepSeek's cache for a new patient, and is quality unchanged? |
+| next | v4: cost layout (approved, not run: deadline) | move `<context>` (patient data) to the end; measure with a second synthetic patient (`fixtures/p002.json`) | How much of the prompt hits DeepSeek's cache for a new patient, and is quality unchanged? |
 | 4 | model comparison | final versions on deepseek-flash, -pro, -flash-think, Ollama models (30 s per call, warm) | Cheapest setup that passes every safety gate (`--leaderboard`) |
 | 5 | stability sweep | final A and B, temperature 0.0 and 0.7, `--repeats 3`, thinking off | How stable are triage and flags as randomness goes up? |
 | any | few-shot ablation (optional) | the current version with `<examples>` removed | Do the examples drive JSON validity, flag format, and normalization? |
