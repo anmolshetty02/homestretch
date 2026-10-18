@@ -125,10 +125,10 @@ def log_spend(run_dir, args, entry, records, est):
     return row
 
 
-def load_cases(category=None, case_ids=None, blind=False):
+def load_cases(category=None, case_ids=None, suite="cases"):
     cases = []
-    # evals/blind/ is a held-out set: only loaded with --blind, never by normal runs
-    for f in sorted(glob.glob(str(ROOT / "evals" / ("blind" if blind else "cases") / "*.yaml"))):
+    # evals/blind/ and evals/heldout/ are separate sets: only loaded with --suite, never by normal runs
+    for f in sorted(glob.glob(str(ROOT / "evals" / suite / "*.yaml"))):
         cases.extend(yaml.safe_load(Path(f).read_text()) or [])
     if category:
         cases = [c for c in cases if c["category"] == category]
@@ -151,6 +151,7 @@ def main():
     ap.add_argument("--tag", default="", help="label added to the run folder name")
     ap.add_argument("--max-cost", type=float, default=0.50, help="abort if the estimated USD cost is higher")
     ap.add_argument("--blind", action="store_true", help="run the held-out cases in evals/blind/ instead of evals/cases/")
+    ap.add_argument("--suite", default="cases", help="case folder under evals/: cases (default), heldout (Synthea patients), blind")
     args = ap.parse_args()
 
     load_env()
@@ -158,16 +159,24 @@ def main():
     provider = get_provider(args.model)
     template = (ROOT / "prompts" / f"agent_{args.version}.md").read_text()
     critic_template = (ROOT / "prompts" / f"{args.critic}.md").read_text() if args.critic else None
-    fixture = json.loads((ROOT / "fixtures" / f"{args.fixture}.json").read_text())
-    fixture_ids = collect_ids(fixture)
-    cases = load_cases(args.category, args.cases, args.blind)
+    if args.blind:
+        args.suite = "blind"
+    fixtures = {}
+
+    def fixture_for(case):  # a case can name its own patient (Synthea cases do); otherwise --fixture
+        name = case.get("fixture", args.fixture)
+        if name not in fixtures:
+            fx = json.loads((ROOT / "fixtures" / f"{name}.json").read_text())
+            fixtures[name] = (fx, collect_ids(fx))
+        return fixtures[name]
+    cases = load_cases(args.category, args.cases, args.suite)
     if not cases:
-        raise SystemExit("No cases matched." + (" evals/blind/ is empty or has no matching cases." if args.blind else ""))
+        raise SystemExit(f"No cases matched in evals/{args.suite}/.")
 
     # Plan every call first, so the cost guard runs before anything is spent.
     jobs = []
     for case in cases:
-        system = render(template, fixture, case)
+        system = render(template, fixture_for(case)[0], case)
         # diff cases send the cabinet (what the vision step would produce) as JSON
         inputs = [("base", json.dumps(case["cabinet"]) if "cabinet" in case else case["input"])]
         if not args.no_variants:
@@ -184,7 +193,7 @@ def main():
     temp_label = "-" if entry.get("temperature_ignored") else args.temperature
     stamp = dt.datetime.now().strftime("%m%d-%H%M")
     name = f"{args.version}{'+' + args.critic if args.critic else ''}_{args.model}_t{temp_label}_{stamp}"
-    run_dir = ROOT / "results" / (name + ("_blind" if args.blind else "") + (f"_{args.tag}" if args.tag else ""))
+    run_dir = ROOT / "results" / (name + ("" if args.suite == "cases" else f"_{args.suite}") + (f"_{args.tag}" if args.tag else ""))
     run_dir.mkdir(parents=True, exist_ok=True)
     meta = {**vars(args), "model_key": args.model, "provider": entry["provider"], "model_id": entry.get("model"),
             "extra_body": entry.get("extra_body"), "temperature_ignored": bool(entry.get("temperature_ignored")),
@@ -205,7 +214,7 @@ def main():
                 reply, err = parse_reply(raw)
                 critic_info = None
                 if critic_template and reply is not None:
-                    c_msgs = [{"role": "system", "content": render(critic_template, fixture, case)},
+                    c_msgs = [{"role": "system", "content": render(critic_template, fixture_for(case)[0], case)},
                               {"role": "user", "content": json.dumps({"caller_said": text, "assistant_reply": reply})}]
                     c_raw, c_lat, _, _ = cached_call(provider, entry, c_msgs, 0.0, rep)
                     c_obj, _ = parse_reply(c_raw)
@@ -215,7 +224,7 @@ def main():
                         reply = c_obj["revised"]
                     else:
                         critic_info = {"verdict": (c_obj or {}).get("verdict", "unparsed")}
-                checks = run_checks(reply, case, fixture_ids, text)
+                checks = run_checks(reply, case, fixture_for(case)[1], text)
                 record = {
                     "case": case["id"], "category": case["category"], "variant": kind, "repeat": rep,
                     "expect": case.get("expect", {}),
