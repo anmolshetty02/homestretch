@@ -2,25 +2,35 @@
 
 ## Goal
 
-Submit assignment 2: a structured document with the full final prompt, its components explained, the techniques
-used, sensitivity and stability results, every iteration with what changed and why, and real input/output examples.
-Steps to get there:
+Submit assignment 2: a structured document covering every prompt in the app (full final prompts, components
+explained, techniques used), sensitivity and stability results, every iteration with what changed and why, real
+input/output examples, a model comparison, and cost optimization. Scope changed on 2026-10-18 per the TA; see
+`docs/decisions.md`. Order:
 
-1. Real runs on `deepseek-v4-flash` with the same settings throughout: v0, then v1, then compare.
-2. At least one more version (v2) driven by v1's actual failures, plus one tuning pass on reply tone or detail if the data supports it.
-3. Stability: the final version on `red_flag` and `cabinet_diff` with `--repeats 3`, at temperature 0.0 and 0.7.
-4. Write the document from `docs/assignment2-outline.md`, using only numbers from real result folders.
+1. **Phase 1, model registry:** `evals/models.yaml`, a `--max-cost` guard, `results/spend.csv`, `report.py --leaderboard`.
+   Re-baseline Prompt B v0 and v1 on `deepseek-flash`, thinking off.
+2. **Phase 2, Prompt B:** v2 and v3 driven by real failures, on `deepseek-flash`, thinking off, temperature 0.3.
+3. **Phase 3, Prompt A:** label image → cabinet JSON by two routes: (a) Tesseract OCR → DeepSeek with
+   `prompts/extract_vN.md`; (b) a local Ollama vision model. Field-level and end-to-end scoring. Iterate on route (a) first.
+4. **Phase 4, model comparison:** DeepSeek Flash vs Pro vs Flash-thinking, plus local Ollama models that answer within
+   30 seconds per call. Decision rule: the cheapest setup that passes every safety gate.
+5. **Phase 5, stability:** final Prompt B and Prompt A at temperature 0.0 and 0.7, `--repeats 3`, thinking off.
+6. **Write-up** from `docs/assignment2-outline.md`, using only numbers from real result folders.
 
-Scope is the MVP: cabinet diff plus text chat, nothing else. Voice is a stretch goal (`prompts/stretch/`).
+**Prompt A** = `prompts/extract_vN.md` (label image or OCR text → cabinet JSON).
+**Prompt B** = `prompts/agent_vN.md` (cabinet diff + caregiver chat).
+
+In scope: Prompts A and B, their evals, the model comparison, cost. Out of scope: any app or UI work, real photos of
+anyone's medicines (synthetic label images only), and voice (stretch, `prompts/stretch/`).
 
 ## What this is
 
 HomeStretch helps a family caregiver through the first 30 days after a parent's hospital discharge.
 Its core is the cabinet diff: compare the discharge med list with the bottles actually at home and explain
-what does not match. This repo is the system-prompt phase (Building AI Applications, assignment 2): design, test,
-and iterate one system prompt for a text chat assistant that (a) runs the cabinet diff from a cabinet list
-(JSON, what a vision step would produce; vision itself is out of scope) and (b) answers the caregiver's
-follow-up questions from the diff and the care plan only.
+what does not match. This repo is the prompt phase (Building AI Applications, assignment 2): design, test, and
+iterate the app's prompts. Prompt A reads medicine bottle labels into cabinet JSON. Prompt B is a text chat
+assistant that (a) runs the cabinet diff from that cabinet JSON and (b) answers the caregiver's follow-up
+questions from the diff and the care plan only.
 
 ## Hard rules (always)
 
@@ -50,10 +60,10 @@ away for tone or brevity, reject the change.
 prompts/          agent_v0.md (naive baseline), agent_v1.md (structured)
 prompts/stretch/  voice-agent prompts (agent_v0, agent_v1, critic_v1), kept unchanged; not part of the MVP
 fixtures/         p001.json  synthetic patient: care plan, and the known-correct cabinet diff used in chat cases
-evals/cases/      YAML test cases: cabinet_diff (8 cabinets with known flags) and chat (med questions, red flags, scope)
+evals/cases/      YAML test cases: cabinet_diff (13 cabinets with known flags) and chat (med questions, red flags, scope)
 evals/            run.py (runner), checks.py (scoring, incl. flag-level), report.py (summaries, comparisons), providers.py
 results/          one folder per run: records.jsonl, summary.md, summary.json (.cache/ is ignored)
-docs/             prompt-iterations.md (the iteration log), assignment2-outline.md
+docs/             prompt-iterations.md (the iteration log), decisions.md (scope and settings changes), assignment2-outline.md
 ```
 
 ## Commands
