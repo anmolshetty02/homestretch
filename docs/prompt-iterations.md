@@ -61,6 +61,20 @@ they are labeled **flash-thinking** below (see `docs/decisions.md`).
 - **Known overlap:** v1's example uses hydrochlorothiazide, which is inside dx-09's Zestoretic (see test set changes).
 - **Decision:** keep. Base for Phase 2.
 
+### v2: example swap (test-overlap fix only)
+- **Changed:** `<examples>` only. Mr. Okafor's stopped medicine changed from hydrochlorothiazide to spironolactone
+  (3 lines: the plan line, the cabinet item with its photo typo "Hydrochlorothiazlde" → "Splronolactone", same
+  l-for-i error type, and the diff example's analysis, flag detail, and reply). No other change.
+- **Why:** hydrochlorothiazide is inside dx-09's Zestoretic, so v1's example overlapped a test cabinet (logged under
+  test set changes, 2026-10-18). This is its own listed change so later results are not credited to it by mistake.
+  Spironolactone, Aldactone, and "Splronolactone" appear in no case or fixture (scanned `evals/cases/`, `fixtures/`,
+  `prompts/`; `evals/blind/` not scanned by rule). p002 (v4) must not use spironolactone either.
+- **Tuning dimension:** none (test hygiene)
+- **Hypothesis:** no change anywhere, including dx-09 (v1 already passed dx-09 with `not_on_list`). If dx-09 or
+  anything else changes, the example drug was influencing the model, and the write-up should say so.
+- **Results:** _not yet run_
+- **Decision:** _pending_
+
 ---
 
 ## Test set and checker changes

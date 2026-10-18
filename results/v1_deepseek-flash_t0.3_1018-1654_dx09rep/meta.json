@@ -1,0 +1,27 @@
+{
+  "version": "v1",
+  "model": "deepseek-flash",
+  "temperature": 0.3,
+  "repeats": 3,
+  "category": null,
+  "cases": [
+    "dx-09"
+  ],
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "dx09rep",
+  "max_cost": 0.5,
+  "blind": false,
+  "model_key": "deepseek-flash",
+  "provider": "deepseek",
+  "model_id": "deepseek-flash",
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "temperature_ignored": false,
+  "num_ctx": null,
+  "server_context": null
+}
