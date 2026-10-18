@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(python -m evals.run --provider mock *)",
-      "Bash(python -m evals.run * --provider mock *)",
+      "Bash(python -m evals.run --model mock *)",
+      "Bash(python -m evals.run * --model mock *)",
       "Bash(python -m evals.report *)",
       "Bash(ls *)",
       "Read(./prompts/**)",
@@ -16,7 +16,11 @@
       "Bash(git *)",
       "Read(./.env)",
       "Read(./.env.*)",
-      "Bash(cat .env*)"
+      "Bash(cat .env*)",
+      "Read(./evals/blind/**)",
+      "Bash(cat evals/blind*)",
+      "Bash(grep * evals/blind*)",
+      "Bash(head evals/blind*)"
     ]
   }
 }

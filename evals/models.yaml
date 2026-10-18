@@ -1,0 +1,60 @@
+# Model registry. `--model <key>` picks one entry; the provider block supplies base URL, key, and timeout.
+# Prices: USD per 1M tokens at PEAK rates (an upper bound; DeepSeek off-peak is half).
+#   Check https://api-docs.deepseek.com/quick_start/pricing
+# DeepSeek model ids are from GET https://api.deepseek.com/models (2026-10-18).
+# DeepSeek thinking is ON by default and ignores temperature, so every entry sets it explicitly.
+# Ollama: the OpenAI-compatible API cannot set context size per request. num_ctx is the context the server must
+#   provide (OLLAMA_CONTEXT_LENGTH or the app's context setting); run.py checks it and aborts if the server is lower.
+
+providers:
+  mock:       {}
+  deepseek:   {base_url: "https://api.deepseek.com",       key_env: DEEPSEEK_API_KEY}
+  ollama:     {base_url: "http://localhost:11434/v1",      key_env: null, timeout: 180}  # first call loads the model
+  groq:       {base_url: "https://api.groq.com/openai/v1", key_env: GROQ_API_KEY}
+  openrouter: {base_url: "https://openrouter.ai/api/v1",   key_env: OPENROUTER_API_KEY}
+
+models:
+  mock:
+    provider: mock
+    price: free
+
+  deepseek-flash:
+    provider: deepseek
+    model: deepseek-flash
+    extra_body: {thinking: {type: disabled}}
+    price: {input_hit: 0.006, input_miss: 0.30, output: 1.20}
+    est_output_tokens: 800
+  deepseek-flash-think:
+    provider: deepseek
+    model: deepseek-flash
+    extra_body: {thinking: {type: enabled}}
+    temperature_ignored: true
+    price: {input_hit: 0.006, input_miss: 0.30, output: 1.20}
+    est_output_tokens: 1500
+  deepseek-pro:
+    provider: deepseek
+    model: deepseek-v4-pro
+    extra_body: {thinking: {type: disabled}}
+    price: {input_hit: 0.044, input_miss: 1.32, output: 3.96}
+    est_output_tokens: 800
+
+  ollama-llama3-8b:
+    provider: ollama
+    model: "llama3:latest"
+    num_ctx: 8192            # the model's own maximum; it cannot go higher
+    price: free
+  ollama-qwen3-8b:
+    provider: ollama
+    model: "qwen3:8b"
+    extra_body: {reasoning_effort: none}   # qwen3 thinks by default; "none" turns it off on Ollama's OpenAI API
+    num_ctx: 16384
+    price: free
+
+  groq-llama-3.3-70b:
+    enabled: false           # add GROQ_API_KEY to .env, then set prices
+    provider: groq
+    model: llama-3.3-70b-versatile
+  openrouter-example:
+    enabled: false           # add OPENROUTER_API_KEY to .env, then set model and prices
+    provider: openrouter
+    model: "<set when key added>"

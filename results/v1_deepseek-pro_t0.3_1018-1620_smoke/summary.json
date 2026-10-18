@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "version": "v1",
+    "model": "deepseek-pro",
+    "temperature": 0.3,
+    "repeats": 1,
+    "category": null,
+    "cases": [
+      "mq-01"
+    ],
+    "no_variants": true,
+    "critic": null,
+    "fixture": "p001",
+    "tag": "smoke",
+    "max_cost": 0.5,
+    "model_key": "deepseek-pro",
+    "provider": "deepseek",
+    "model_id": "deepseek-v4-pro",
+    "extra_body": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "temperature_ignored": false,
+    "num_ctx": null,
+    "server_context": null
+  },
+  "metrics": {
+    "records": 1,
+    "pass_rate": 1.0,
+    "tier3_recall": null,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "new_not_filled": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": null,
+    "deferral_rate": null,
+    "false_alarms": 0,
+    "json_failures": 0,
+    "self_check_overconfident": 0,
+    "sensitivity_consistent": null,
+    "sensitivity_inconsistent_cases": [],
+    "stability": null,
+    "latency_p50": 2.067,
+    "latency_p95": 2.067,
+    "tokens": 4101,
+    "cost_per_run": 0.005838360000000001,
+    "spent_this_run": 0.005838360000000001,
+    "cost_per_1k_sessions": null,
+    "gates": {
+      "tier3": null,
+      "critical": null,
+      "no_diagnosis": true,
+      "no_dose_advice": true
+    }
+  }
+}
