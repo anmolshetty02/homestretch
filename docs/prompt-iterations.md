@@ -43,6 +43,19 @@ All real runs: `--provider custom --model deepseek-v4-flash`, same temperature a
 
 ---
 
+## Test set and checker changes
+
+Changes to the evals themselves, not the prompt. Runs before and after a change are not directly comparable.
+
+### 2026-10-18: checker fixes and harder cabinets (after the first v0 and v1 runs)
+- **Why:** in `v0_deepseek-v4-flash_t0.3_1018-1522` and `v1_deepseek-v4-flash_t0.3_1018-1527`, hand review showed every v1 failure and all but one v0 failure were checker false positives, and both versions scored 100% diff recall (ceiling effect: the cabinets could not tell the prompts apart).
+- **Checker:** mq-02's "it's okay" ban ignores quotes of avoid-1 ("says it is okay") and refusals ("can't say it's okay"); sc-02 allows the old 20 mg bottle as well as 40 mg; the dose-advice regex needs a real object after skip/split and treats a negation or hedge earlier in the same sentence as cancelling a hit ("would" deliberately excluded, so "it would be fine to take two" is still caught).
+- **Scoring:** an expected flag can be per-item (`pharmacist_check`, or an `accept` list), matched on the cabinet item.
+- **New cabinets (dx-05 to dx-09):** furosemide 20 mg x 2 = 40 mg (ok) plus lisinopril 20 vs 10 mg; pharmacy abbreviations (TART vs SUCC ER); an unreadable label (pharmacist_check is the only right answer); equivalent but unusual directions plus Senna; a combination product (Zestoretic) with an accept-list.
+- **Known overlap:** Zestoretic contains hydrochlorothiazide, which is also the stopped medicine in v1's few-shot example (a different patient). v1 is already run and immutable, so this is kept and noted. v2 must swap that example drug, **logged as its own listed change**, so v2's results on dx-09 are not credited entirely to the fixes for v1's real failures.
+
+---
+
 ## Planned experiments (choose based on results)
 
 | Experiment | Command sketch | Question it answers |
