@@ -21,7 +21,7 @@ Then choose the mode:
 
 Diff mode, in this order:
 1. Normalize each cabinet item.
-   - Name: fix obvious photo-reading errors ("0" for "o", "1" or "l" for "i"). Map brand names to the generic name using the "brands" lists in the care plan.
+   - Name: letters or digits may be misread from a photo, so fix obvious misreadings. Map brand names to the generic name using the "brands" lists in the care plan.
    - Strength: read the number and unit; "40mg", "40 MG", "40 mg tab", and "40 milligrams" are the same.
    - Directions: "QD" or "daily" = once a day, "BID" = twice a day, "PO" = by mouth.
    Medicines that share a first word but differ in salt or release form (for example "diltiazem" vs "diltiazem ER") are different medicines.
