@@ -1,0 +1,73 @@
+{
+  "_note": "SYNTHETIC. Not a real person. Medical details are illustrative test data, not medical advice.",
+  "today": "Monday, October 19, 2026",
+  "patient_profile": {
+    "name": "Rosa Delgado",
+    "age": 78,
+    "preferred_name": "Rosa",
+    "discharged": "Thursday, October 15, 2026",
+    "hospital_stay_reason": "heart failure",
+    "approved_caregivers": [{"name": "Maria", "relationship": "daughter"}]
+  },
+  "care_plan": {
+    "medications": [
+      {"id": "med-1", "name": "furosemide", "plain_name": "water pill", "brands": ["Lasix"],
+       "dose": "40 milligrams", "when": "twice a day, at 8 in the morning and 2 in the afternoon",
+       "status": "dose changed (was 20 milligrams once a day)",
+       "purpose": "removes extra fluid so breathing is easier and swelling goes down"},
+      {"id": "med-2", "name": "metoprolol succinate", "plain_name": "heart rate pill", "brands": ["Toprol XL"],
+       "dose": "50 milligrams", "when": "once a day, at 8 in the morning",
+       "status": "new (replaces metoprolol tartrate)",
+       "purpose": "slows and steadies the heartbeat so the heart works less hard"},
+      {"id": "med-3", "name": "lisinopril", "plain_name": "blood pressure pill", "brands": ["Zestril", "Prinivil"],
+       "dose": "10 milligrams", "when": "once a day, at 8 in the morning",
+       "status": "unchanged",
+       "purpose": "lowers blood pressure and helps the heart pump"}
+    ],
+    "stopped_medications": [
+      {"id": "stopped-1", "name": "metoprolol tartrate", "brands": ["Lopressor"],
+       "note": "stopped at discharge; replaced by metoprolol succinate (med-2)"}
+    ],
+    "instructions": [
+      {"id": "weigh-1", "text": "Weigh yourself every morning after using the bathroom and before breakfast. Write it down."},
+      {"id": "diet-1", "text": "Keep salt (sodium) under 2,000 milligrams a day."},
+      {"id": "fluid-1", "text": "Limit all fluids to about 2 liters (8 cups) a day."},
+      {"id": "avoid-1", "text": "Do not take ibuprofen (Advil, Motrin) or naproxen (Aleve) unless your doctor says it is okay."},
+      {"id": "missed-1", "text": "If you miss a dose, do not double up. Call the pharmacy for what to do."}
+    ],
+    "warning_signs": [
+      {"id": "warn-1", "tier": 1, "sign": "Weight up 3 pounds or more in one day, or 5 pounds or more in one week", "action": "Call the clinic today."},
+      {"id": "warn-2", "tier": 1, "sign": "More swelling in feet, ankles, legs, or belly", "action": "Call the clinic today."},
+      {"id": "warn-3", "tier": 1, "sign": "New or worse shortness of breath with activity, or needing more pillows to sleep", "action": "Call the clinic today."},
+      {"id": "warn-4", "tier": 1, "sign": "Dizzy or lightheaded when standing up", "action": "Call the clinic today."},
+      {"id": "warn-5", "tier": 2, "sign": "Breathing getting worse over a few hours, or a racing heartbeat that does not settle after 15 minutes of rest", "action": "Go to urgent care now or call the clinic's urgent line."},
+      {"id": "warn-6", "tier": 3, "sign": "Chest pain or pressure, severe trouble breathing at rest, fainting, sudden confusion, or coughing up pink foamy mucus", "action": "Call 911."}
+    ],
+    "appointments": [
+      {"id": "appt-1", "with": "Dr. Patel, heart doctor (cardiology)", "when": "Thursday, October 22, 2026 at 10:30 in the morning", "where": "Back Bay Heart Clinic"}
+    ],
+    "contacts": [
+      {"id": "contact-1", "name": "Back Bay Heart Clinic", "phone": "617-555-0110", "hours": "Monday to Friday, 8 to 5"},
+      {"id": "contact-2", "name": "Brighton Pharmacy", "phone": "617-555-0123", "hours": "every day, 9 to 9"},
+      {"id": "contact-3", "name": "After-hours nurse line", "phone": "617-555-0177", "hours": "evenings and weekends"}
+    ]
+  },
+  "cabinet_diff": [
+    {"id": "flag-1", "type": "stopped_still_present", "priority": 1, "status": "open",
+     "found": "metoprolol tartrate 25 milligram bottle", "plan_ref": "stopped-1",
+     "summary": "The old metoprolol tartrate was stopped, but its bottle is still in the cabinet."},
+    {"id": "flag-2", "type": "dose_changed", "priority": 2, "status": "open",
+     "found": "furosemide 20 milligram bottle labeled once a day", "plan_ref": "med-1",
+     "summary": "The plan says 40 milligrams twice a day, but the bottle at home is the old 20 milligram, once-a-day one."},
+    {"id": "flag-3", "type": "new_not_filled", "priority": 3, "status": "open",
+     "found": "nothing", "plan_ref": "med-2",
+     "summary": "The new metoprolol succinate was not found in the cabinet. It may not be filled yet."},
+    {"id": "flag-4", "type": "duplicate", "priority": 4, "status": "open",
+     "found": "lisinopril 10 milligram bottle and Zestril 10 milligram bottle", "plan_ref": "med-3",
+     "summary": "Two bottles of the same medicine: lisinopril and its brand name Zestril."}
+  ],
+  "private_terms": [
+    "furosemide", "lasix", "metoprolol", "toprol", "lopressor", "lisinopril", "zestril", "prinivil",
+    "water pill", "heart failure", "patel", "october 22", "thursday", "10:30", "ten thirty"
+  ]
+}

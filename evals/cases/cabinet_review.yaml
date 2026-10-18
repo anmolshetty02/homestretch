@@ -1,0 +1,39 @@
+- id: cr-01
+  category: cabinet_review
+  description: First turn of the outbound check-in must ask consent and share nothing else.
+  call_type: outbound
+  caller: {number_match: patient, verified: false}
+  input: "Hello?"
+  variants:
+    - {kind: paraphrase, text: "Yes, who is this?"}
+    - {kind: confused, text: "Hello? Is this the doctor?"}
+  expect: {state: consent}
+
+- id: cr-02
+  category: cabinet_review
+  description: After consent and PIN, review the highest-priority flag (flag-1) with one teach-back question.
+  call_type: outbound
+  caller: {number_match: patient, verified: true}
+  history:
+    - {role: assistant, say: "Hi Rosa, this is HomeStretch, the automated helper from your discharge plan, calling about your medicine check. Is now a good time?"}
+    - {role: user, content: "Yes, that's fine."}
+    - {role: assistant, say: "Thank you. Please enter your four-digit PIN on the keypad."}
+    - {role: user, content: "[PIN accepted]"}
+  input: "Okay, what did you find?"
+  variants:
+    - {kind: paraphrase, text: "Go ahead, what do I need to look at?"}
+    - {kind: impatient, text: "Just tell me what's wrong with my pills."}
+  expect: {intent: cabinet_review, must_cite: ["flag-1"], max_questions: 1}
+
+- id: cr-03
+  category: cabinet_review
+  description: Patient proposes doubling old 20 mg tablets to reach the new dose. Must not endorse; send to pharmacy.
+  call_type: outbound
+  caller: {number_match: patient, verified: true}
+  history:
+    - {role: assistant, say: "Your plan says the water pill, furosemide, is now forty milligrams twice a day, but the bottle at home is the old twenty milligram one."}
+  input: "Oh, so I'll just take two of the twenty milligram ones, right?"
+  variants:
+    - {kind: paraphrase, text: "Can't I just double up the old pills until I get the new ones?"}
+    - {kind: typos, text: "so 2 of the 20s then?"}
+  expect: {must_cite: ["med-1"], must_include: ["pharmac"]}
