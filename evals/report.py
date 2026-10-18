@@ -6,8 +6,10 @@
 import argparse
 import json
 import statistics
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
+
+from evals.checks import DISCREPANCIES, score_flags
 
 
 def load(run_dir):
@@ -31,7 +33,7 @@ def metrics(records):
     m["tier3_recall"] = sum(tier_of(r) == 3 for r in t3) / len(t3) if t3 else None
     m["under_triage"] = sum(r["checks"].get("tier", ["skip"])[0] == "fail" for r in records)
     m["over_triage"] = sum(r["checks"].get("tier", ["skip"])[0] == "warn" for r in records)
-    m["identity_leaks"] = sum(r["checks"].get("identity_gate", ["skip"])[0] == "fail" for r in records)
+    m.update(diff_metrics(records))
     m["json_failures"] = sum(r["checks"].get("json_valid", ["fail"])[0] == "fail" for r in records)
     m["self_check_overconfident"] = sum(r["checks"].get("self_check_honest", ["skip"])[0] == "warn" for r in records)
 
@@ -54,7 +56,7 @@ def metrics(records):
 
     def sig(r):
         rep = r.get("reply") or {}
-        return (rep.get("red_flag_tier"), rep.get("state"), rep.get("intent"), r["overall"])
+        return (rep.get("red_flag_tier"), rep.get("mode"), r["overall"])
 
     m["stability"] = (sum(len({sig(r) for r in rs}) == 1 for rs in repeated.values()) / len(repeated)) if repeated else None
 
@@ -62,6 +64,26 @@ def metrics(records):
     m["latency_p50"] = statistics.median(lat) if lat else None
     m["latency_p95"] = lat[int(0.95 * (len(lat) - 1))] if lat else None
     m["tokens"] = sum((r.get("usage") or {}).get("total_tokens", 0) for r in records)
+    return m
+
+
+def diff_metrics(records):
+    """Cabinet diff totals per flag type, summed over every diff record."""
+    tot = {k: Counter() for k in ("expected", "caught", "missed", "deferred", "false_alarms")}
+    m = {"critical_misses": 0, "unneeded_deferrals": 0}
+    for r in records:
+        if "flags" not in r["expect"]:
+            continue
+        s = score_flags(r.get("reply"), r["expect"]["flags"])
+        for k in tot:
+            tot[k].update(s[k])
+        m["critical_misses"] += s["critical"]
+        m["unneeded_deferrals"] += s["unneeded_deferrals"]
+    exp = sum(tot["expected"].values())
+    m["by_flag_type"] = {t: {k: tot[k][t] for k in tot} for t in DISCREPANCIES}
+    m["diff_recall"] = sum(tot["caught"].values()) / exp if exp else None
+    m["deferral_rate"] = sum(tot["deferred"].values()) / exp if exp else None
+    m["false_alarms"] = sum(tot["false_alarms"].values())
     return m
 
 
@@ -97,7 +119,11 @@ def write_summary(run_dir):
         f"| Tier-3 (911) recall | {fmt(m['tier3_recall'])} |",
         f"| Under-triage (fail) | {m['under_triage']} |",
         f"| Over-triage (warn) | {m['over_triage']} |",
-        f"| Identity leaks | {m['identity_leaks']} |",
+        f"| Critical: stopped med missed or deferred | {m['critical_misses']} |",
+        f"| Diff recall (discrepancies caught) | {fmt(m['diff_recall'])} |",
+        f"| Diff false alarms | {m['false_alarms']} |",
+        f"| Deferral rate (to pharmacist) | {fmt(m['deferral_rate'])} |",
+        f"| Unneeded deferrals | {m['unneeded_deferrals']} |",
         f"| Invalid JSON | {m['json_failures']} |",
         f"| Self-check said OK but a check failed | {m['self_check_overconfident']} |",
         f"| Sensitivity: cases consistent across variants | {fmt(m['sensitivity_consistent'])} |",
@@ -109,6 +135,11 @@ def write_summary(run_dir):
     for name, c in check_counts.items():
         if c["pass"] + c["warn"] + c["fail"]:
             lines.append(f"| {name} | {c['pass']} | {c['warn']} | {c['fail']} |")
+    lines += ["", "## Cabinet diff by flag type", "",
+              "| Flag type | Expected | Caught | Missed | Deferred | Deferral rate | False alarms |", "|---|---|---|---|---|---|---|"]
+    for t, c in m["by_flag_type"].items():
+        lines.append(f"| {t} | {c['expected']} | {c['caught']} | {c['missed']} | {c['deferred']} | "
+                     f"{pct(c['deferred'], c['expected'])} | {c['false_alarms']} |")
     lines += ["", "## By category", "", "| Category | Pass rate | n |", "|---|---|---|"]
     for cat, vals in sorted(by_cat.items()):
         lines.append(f"| {cat} | {pct(sum(vals), len(vals))} | {len(vals)} |")
@@ -120,8 +151,8 @@ def write_summary(run_dir):
     lines += ["", "## Failures and warnings (first 40)", ""]
     for r in fails[:40]:
         bad = "; ".join(f"{k}: {s} {d}".strip() for k, (s, d) in r["checks"].items() if s in ("fail", "warn"))
-        say = ((r.get("reply") or {}).get("say") or r.get("parse_error") or "")[:180]
-        lines.append(f"- **{r['case']} / {r['variant']} / r{r['repeat']}** ({r['overall']}): {bad}  \n  Input: {r['input'][:120]}  \n  Said: {say}")
+        said = ((r.get("reply") or {}).get("reply") or r.get("parse_error") or "")[:180]
+        lines.append(f"- **{r['case']} / {r['variant']} / r{r['repeat']}** ({r['overall']}): {bad}  \n  Input: {r['input'][:120]}  \n  Reply: {said}")
     (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
     (run_dir / "summary.json").write_text(json.dumps({"meta": meta, "metrics": m}, indent=2))
     return m
@@ -132,7 +163,9 @@ def compare(dir_a, dir_b):
     ma, mb = metrics(ra), metrics(rb)
     rows = [("Overall pass rate", "pass_rate", True), ("Tier-3 recall", "tier3_recall", True),
             ("Under-triage", "under_triage", False), ("Over-triage", "over_triage", False),
-            ("Identity leaks", "identity_leaks", False), ("Invalid JSON", "json_failures", False),
+            ("Critical misses", "critical_misses", False), ("Diff recall", "diff_recall", True),
+            ("Diff false alarms", "false_alarms", False), ("Deferral rate", "deferral_rate", True),
+            ("Invalid JSON", "json_failures", False),
             ("Self-check overconfident", "self_check_overconfident", False),
             ("Sensitivity consistent", "sensitivity_consistent", True), ("Stability", "stability", True),
             ("Latency p50 (s)", "latency_p50", False)]
