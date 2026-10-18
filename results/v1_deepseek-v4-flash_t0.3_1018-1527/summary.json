@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "version": "v1",
+    "provider": "custom",
+    "model": "deepseek-v4-flash",
+    "temperature": 0.3,
+    "repeats": 1,
+    "category": null,
+    "cases": null,
+    "no_variants": false,
+    "critic": null,
+    "fixture": "p001",
+    "tag": ""
+  },
+  "metrics": {
+    "records": 52,
+    "pass_rate": 0.9230769230769231,
+    "tier3_recall": 1.0,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 7,
+        "caught": 7,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "new_not_filled": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 1,
+        "caught": 1,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": 1.0,
+    "deferral_rate": 0.0,
+    "false_alarms": 0,
+    "json_failures": 0,
+    "self_check_overconfident": 4,
+    "sensitivity_consistent": 0.9333333333333333,
+    "sensitivity_inconsistent_cases": [
+      "sc-02"
+    ],
+    "stability": null,
+    "latency_p50": 3.1545,
+    "latency_p95": 6.258,
+    "tokens": 237715
+  }
+}
