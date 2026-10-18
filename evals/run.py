@@ -2,9 +2,8 @@
 
 Examples:
   python -m evals.run --version v1 --provider mock
-  python -m evals.run --version v1 --provider groq --model llama-3.1-8b-instant
-  python -m evals.run --version v1 --provider groq --repeats 3 --category red_flag
-  python -m evals.run --version v1 --provider groq --critic critic_v1
+  python -m evals.run --version v1 --provider custom --model deepseek-v4-flash
+  python -m evals.run --version v1 --provider custom --repeats 3 --category cabinet_diff
 """
 import argparse
 import datetime as dt
@@ -42,14 +41,16 @@ def collect_ids(fixture):
     return ids
 
 
+NO_DIFF = "No cabinet check has been run yet."
+
+
 def render(template, fixture, case):
     values = {
-        "call_type": case.get("call_type", "inbound"),
-        "caller": json.dumps(case.get("caller", {})),
         "today": fixture["today"],
         "patient_profile": json.dumps(fixture["patient_profile"]),
         "care_plan": json.dumps(fixture["care_plan"]),
-        "cabinet_diff": json.dumps(fixture["cabinet_diff"]),
+        # diff cases must not see the answer key
+        "cabinet_diff": NO_DIFF if "cabinet" in case else json.dumps(fixture["cabinet_diff"]),
     }
     for key, val in values.items():
         template = template.replace("{{" + key + "}}", val)
@@ -60,7 +61,7 @@ def build_messages(system, case, user_text):
     messages = [{"role": "system", "content": system}]
     for turn in case.get("history", []) or []:
         if turn["role"] == "assistant":  # earlier agent turns are shown in the agent's own JSON format
-            messages.append({"role": "assistant", "content": json.dumps({"say": turn["say"]})})
+            messages.append({"role": "assistant", "content": json.dumps({"reply": turn["reply"]})})
         else:
             messages.append({"role": "user", "content": turn["content"]})
     messages.append({"role": "user", "content": user_text})
@@ -95,10 +96,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True, help="prompt version, e.g. v1 -> prompts/agent_v1.md")
     ap.add_argument("--provider", default="mock", help="mock | groq | custom")
-    ap.add_argument("--model", default="llama-3.3-70b-versatile")
+    ap.add_argument("--model", default="deepseek-v4-flash")
     ap.add_argument("--temperature", type=float, default=0.3)
     ap.add_argument("--repeats", type=int, default=1, help="calls per input; >1 measures stability")
-    ap.add_argument("--category", help="only run one category, e.g. red_flag")
+    ap.add_argument("--category", help="only run one category, e.g. red_flag or cabinet_diff")
     ap.add_argument("--cases", nargs="*", help="only run these case ids")
     ap.add_argument("--no-variants", action="store_true", help="skip variants (base inputs only)")
     ap.add_argument("--critic", help="optional critic prompt, e.g. critic_v1")
@@ -126,9 +127,10 @@ def main():
     with open(run_dir / "records.jsonl", "w") as out:
         for case in cases:
             system = render(template, fixture, case)
-            inputs = [("base", case["input"])]
+            # diff cases send the cabinet (what the vision step would produce) as JSON
+            inputs = [("base", json.dumps(case["cabinet"]) if "cabinet" in case else case["input"])]
             if not args.no_variants:
-                inputs += [(v["kind"], v["text"]) for v in case.get("variants", [])]
+                inputs += [(v["kind"], json.dumps(v["cabinet"]) if "cabinet" in v else v["text"]) for v in case.get("variants", [])]
             for kind, text in inputs:
                 for rep in range(args.repeats):
                     messages = build_messages(system, case, text)
@@ -142,11 +144,11 @@ def main():
                         c_obj, _ = parse_reply(c_raw)
                         latency += c_lat
                         if c_obj and c_obj.get("verdict") == "revise" and isinstance(c_obj.get("revised"), dict):
-                            critic_info = {"verdict": "revise", "problems": c_obj.get("problems", []), "original_say": reply.get("say")}
+                            critic_info = {"verdict": "revise", "problems": c_obj.get("problems", []), "original_reply": reply.get("reply")}
                             reply = c_obj["revised"]
                         else:
                             critic_info = {"verdict": (c_obj or {}).get("verdict", "unparsed")}
-                    checks = run_checks(reply, case, fixture_ids, fixture["private_terms"])
+                    checks = run_checks(reply, case, fixture_ids)
                     record = {
                         "case": case["id"], "category": case["category"], "variant": kind, "repeat": rep,
                         "expect": case.get("expect", {}),

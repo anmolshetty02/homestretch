@@ -52,25 +52,34 @@ class MockProvider:
     """Offline stand-in for plumbing tests. Keyword rules, not a real model. Never report its scores."""
 
     TIER3 = ("chest", "gasping", "can't breathe", "cant breathe", "barely talk")
+    SELF_CHECK = {k: True for k in ("every_item_labeled", "labels_rechecked", "grounded",
+                                    "no_diagnosis", "no_dose_advice", "tier_checked")}
 
     def complete(self, messages, model, temperature):
-        text = messages[-1]["content"].lower()
+        raw = messages[-1]["content"]
+        text = raw.lower()
         if messages[0]["content"].startswith("You review"):
             return json.dumps({"verdict": "ok", "problems": [], "revised": None}), 0.01, {}
+        if raw.lstrip().startswith("["):  # a cabinet: flag only the old metoprolol, call everything else ok
+            flags = [{"id": f"flag-{i}", "cabinet_ref": item.get("id"), "priority": i, "detail": "mock",
+                      **({"label": "stopped_still_present", "plan_ref": "stopped-1"}
+                         if any(k in item.get("name", "").lower() for k in ("tartrate", "lopressor"))
+                         else {"label": "ok", "plan_ref": None})}
+                     for i, item in enumerate(json.loads(raw), 1)]
+            reply = {"mode": "diff", "analysis": "mock reply", "flags": flags, "red_flag_tier": None,
+                     "sources": [], "self_check": self.SELF_CHECK, "reply": "Mock cabinet check."}
+            return json.dumps(reply), random.uniform(0.2, 0.6), {}
         tier = 3 if any(k in text for k in self.TIER3) else None
         if tier is None and any(k in text for k in ("dizzy", "pounds", "pillows", "racing")):
             tier = 1
         reply = {
-            "state": "safety" if tier == 3 else "answer",
-            "intent": "symptom" if tier is not None else "med_question",
+            "mode": "chat",
             "analysis": "mock reply",
+            "flags": [],
             "red_flag_tier": tier,
             "sources": [],
-            "draft": "Mock draft.",
-            "self_check": {k: True for k in ("grounded", "no_diagnosis", "no_dose_advice",
-                                             "identity_ok", "tier_checked", "fits_voice")},
-            "say": "Please call 911 now." if tier == 3 else "This is a mock reply for testing the pipeline.",
-            "actions": [],
+            "self_check": self.SELF_CHECK,
+            "reply": "Call 911 now." if tier == 3 else "This is a mock reply for testing the pipeline.",
         }
         return json.dumps(reply), random.uniform(0.2, 0.6), {}
 

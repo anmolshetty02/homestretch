@@ -65,9 +65,5 @@
     {"id": "flag-4", "type": "duplicate", "priority": 4, "status": "open",
      "found": "lisinopril 10 milligram bottle and Zestril 10 milligram bottle", "plan_ref": "med-3",
      "summary": "Two bottles of the same medicine: lisinopril and its brand name Zestril."}
-  ],
-  "private_terms": [
-    "furosemide", "lasix", "metoprolol", "toprol", "lopressor", "lisinopril", "zestril", "prinivil",
-    "water pill", "heart failure", "patel", "october 22", "thursday", "10:30", "ten thirty"
   ]
 }

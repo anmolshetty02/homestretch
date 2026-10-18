@@ -1,0 +1,85 @@
+# Cabinet diff. The user message is the cabinet as JSON (what the vision step would produce).
+# expect.flags lists only real discrepancies; "ok" labels are not listed. Matching is on
+# (label, plan_ref), or (label, cabinet_ref) for not_on_list. Every dx-01 variant has the same answer as the base.
+- id: dx-01
+  category: cabinet_diff
+  description: Base cabinet from p001. One of each core discrepancy.
+  cabinet:
+    - {id: cab-1, name: "Metoprolol Tartrate", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-2, name: "Furosemide", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Zestril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+  variants:
+    - kind: brand_names    # both lisinopril bottles stay lisinopril (Zestril + Prinivil), so the duplicate holds
+      cabinet:
+        - {id: cab-1, name: "Lopressor", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+        - {id: cab-2, name: "Lasix", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-3, name: "Zestril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-4, name: "Prinivil", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - kind: ocr_typos
+      cabinet:
+        - {id: cab-1, name: "Metoprol0l Tartrate", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+        - {id: cab-2, name: "Furosemlde", strength: "20 mg", directions: "Take 1 tab by mouth once daily"}
+        - {id: cab-3, name: "Lisinopri1", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-4, name: "Zestrll", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - kind: unit_formatting
+      cabinet:
+        - {id: cab-1, name: "METOPROLOL TARTRATE", strength: "25MG", directions: "1 TAB PO BID"}
+        - {id: cab-2, name: "FUROSEMIDE", strength: "20 MG", directions: "1 TAB PO QD"}
+        - {id: cab-3, name: "LISINOPRIL", strength: "10mg tab", directions: "1 TAB PO QD"}
+        - {id: cab-4, name: "ZESTRIL", strength: "10 MG TABLET", directions: "1 TAB PO QD"}
+    - kind: shuffled
+      cabinet:
+        - {id: cab-1, name: "Zestril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-2, name: "Furosemide", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-4, name: "Metoprolol Tartrate", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: stopped_still_present, plan_ref: stopped-1}
+      - {label: dose_changed, plan_ref: med-1}
+      - {label: new_not_filled, plan_ref: med-2}
+      - {label: duplicate, plan_ref: med-3}
+
+- id: dx-02
+  category: cabinet_diff
+  description: Base cabinet plus an over-the-counter Advil bottle. Not on the list, and avoid-1 says no ibuprofen.
+  cabinet:
+    - {id: cab-1, name: "Metoprolol Tartrate", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-2, name: "Furosemide", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Zestril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-5, name: "Advil (ibuprofen)", strength: "200 mg", directions: "Take 1 to 2 tablets every 4 to 6 hours as needed for pain"}
+  expect:
+    require_sources: true
+    must_cite: [avoid-1]
+    flags:
+      - {label: stopped_still_present, plan_ref: stopped-1}
+      - {label: dose_changed, plan_ref: med-1}
+      - {label: new_not_filled, plan_ref: med-2}
+      - {label: duplicate, plan_ref: med-3}
+      - {label: not_on_list, cabinet_ref: cab-5}
+
+- id: dx-03
+  category: cabinet_diff
+  description: Cabinet matches the plan exactly (Toprol XL is the brand of med-2). Any flag is a false alarm.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily, 8 AM and 2 PM"}
+    - {id: cab-2, name: "Toprol XL", strength: "50 mg", directions: "Take 1 tablet by mouth once daily in the morning"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily in the morning"}
+  expect:
+    flags: []
+
+- id: dx-04
+  category: cabinet_diff
+  description: Old metoprolol tartrate and new metoprolol succinate both present. Only the tartrate is a problem; not a duplicate.
+  cabinet:
+    - {id: cab-1, name: "Metoprolol Succinate ER", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-2, name: "Metoprolol Tartrate", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-3, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-4, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: stopped_still_present, plan_ref: stopped-1}
