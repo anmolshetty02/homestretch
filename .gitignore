@@ -7,3 +7,7 @@ results/.cache/
 .claude/settings.local.json
 results/*_mock_*/
 .DS_Store
+synthea/
+
+~$*
+.Rhistory
