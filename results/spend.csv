@@ -4,3 +4,5 @@ utc_time,run,model_key,model,calls,cached_calls,input_hit,input_miss,output,reas
 2026-10-18 20:20,v1_deepseek-pro_t0.3_1018-1620_smoke,deepseek-pro,deepseek-v4-pro,1,0,0,3940,161,0,0.0095,0.0058
 2026-10-18 20:21,v1_ollama-llama3-8b_t0.3_1018-1620_smoke,ollama-llama3-8b,llama3:latest,1,0,0,3871,145,0,0.0000,0.0000
 2026-10-18 20:22,v1_ollama-qwen3-8b_t0.3_1018-1621_smoke,ollama-qwen3-8b,qwen3:8b,1,0,0,3953,157,0,0.0000,0.0000
+2026-10-18 20:28,v0_deepseek-flash_t0.3_1018-1625,deepseek-flash,deepseek-flash,57,0,76032,16110,31630,0,0.0868,0.0432
+2026-10-18 20:30,v1_deepseek-flash_t0.3_1018-1628,deepseek-flash,deepseek-flash,57,1,202752,16262,21213,0,0.1340,0.0316
