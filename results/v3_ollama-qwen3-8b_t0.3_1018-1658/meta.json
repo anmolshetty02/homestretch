@@ -1,0 +1,23 @@
+{
+  "version": "v3",
+  "model": "ollama-qwen3-8b",
+  "temperature": 0.3,
+  "repeats": 1,
+  "category": null,
+  "cases": null,
+  "no_variants": true,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "",
+  "max_cost": 0.5,
+  "blind": false,
+  "model_key": "ollama-qwen3-8b",
+  "provider": "ollama",
+  "model_id": "qwen3:8b",
+  "extra_body": {
+    "reasoning_effort": "none"
+  },
+  "temperature_ignored": false,
+  "num_ctx": 16384,
+  "server_context": 16384
+}

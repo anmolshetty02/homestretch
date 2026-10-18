@@ -1,0 +1,19 @@
+{
+  "version": "v2",
+  "model": "deepseek-flash",
+  "temperature": 0.3,
+  "e2e": [
+    "dx-01",
+    "dx-02",
+    "dx-06"
+  ],
+  "e2e_style": "blur",
+  "agent": "v3",
+  "max_cost": 0.5,
+  "model_id": "deepseek-flash",
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  }
+}

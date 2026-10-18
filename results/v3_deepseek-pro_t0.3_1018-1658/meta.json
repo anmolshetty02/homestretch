@@ -1,0 +1,25 @@
+{
+  "version": "v3",
+  "model": "deepseek-pro",
+  "temperature": 0.3,
+  "repeats": 1,
+  "category": null,
+  "cases": null,
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "",
+  "max_cost": 1.0,
+  "blind": false,
+  "model_key": "deepseek-pro",
+  "provider": "deepseek",
+  "model_id": "deepseek-v4-pro",
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "temperature_ignored": false,
+  "num_ctx": null,
+  "server_context": null
+}

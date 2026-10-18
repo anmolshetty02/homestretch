@@ -59,15 +59,18 @@ away for tone or brevity, reject the change.
 ## Layout
 
 ```
-prompts/          Prompt B: agent_v0.md (naive baseline), agent_v1.md (structured), later versions. Phase 3 adds extract_vN.md (Prompt A)
+prompts/          Prompt B: agent_v0..v3.md (v3 final). Prompt A: extract_v0..v2.md (v2 final)
 prompts/stretch/  voice-agent prompts (agent_v0, agent_v1, critic_v1), kept unchanged; not part of the assignment scope
 fixtures/         p001.json  synthetic patient: care plan, and the known-correct cabinet diff used in chat cases
+fixtures/labels/  synthetic label images (python -m evals.render_labels) and manifest.json (ground truth)
 evals/cases/      YAML test cases: cabinet_diff (13 cabinets with known flags) and chat (med questions, red flags, scope)
 evals/blind/      held-out cases, loaded only with --blind. Do not open (see Hard rules)
 evals/            run.py (runner, cost guard, spend log), checks.py (scoring, readability), report.py (summaries,
-                  compare, leaderboard), providers.py (registry-driven), models.yaml (model registry and prices)
+                  compare, leaderboard), providers.py (registry-driven), models.yaml (model registry and prices),
+                  extract.py (Prompt A: OCR route, field scoring, end to end), render_labels.py
 results/          one folder per run: records.jsonl, summary.md, summary.json, meta.json; spend.csv (every paid run)
-docs/             prompt-iterations.md (the iteration log), decisions.md (scope and settings changes), assignment2-outline.md
+docs/             prompt-iterations.md (the iteration log), decisions.md (scope and settings changes), assignment2-outline.md,
+                  assignment2_submission.md (the draft submission)
 ```
 
 ## Commands
@@ -81,6 +84,7 @@ python -m evals.run --version v1 --repeats 3 --category red_flag --temperature 0
 python -m evals.run --version v1 --blind                               # held-out set, only when the user asks
 python -m evals.report --compare results/<runA> results/<runB>
 python -m evals.report --leaderboard results/<run> results/<run> ...   # gates, cost, latency; cheapest passing on top
+python -m evals.extract --version v2 --e2e dx-01 dx-02 dx-06           # Prompt A: OCR route + end to end
 python -m evals.checks && python -m evals.providers                    # self-tests
 ```
 

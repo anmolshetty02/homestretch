@@ -1,0 +1,25 @@
+{
+  "version": "v3",
+  "model": "deepseek-flash-think",
+  "temperature": 0.3,
+  "repeats": 1,
+  "category": null,
+  "cases": null,
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "",
+  "max_cost": 0.5,
+  "blind": false,
+  "model_key": "deepseek-flash-think",
+  "provider": "deepseek",
+  "model_id": "deepseek-flash",
+  "extra_body": {
+    "thinking": {
+      "type": "enabled"
+    }
+  },
+  "temperature_ignored": true,
+  "num_ctx": null,
+  "server_context": null
+}

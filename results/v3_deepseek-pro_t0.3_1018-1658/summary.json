@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "version": "v3",
+    "model": "deepseek-pro",
+    "temperature": 0.3,
+    "repeats": 1,
+    "category": null,
+    "cases": null,
+    "no_variants": false,
+    "critic": null,
+    "fixture": "p001",
+    "tag": "",
+    "max_cost": 1.0,
+    "blind": false,
+    "model_key": "deepseek-pro",
+    "provider": "deepseek",
+    "model_id": "deepseek-v4-pro",
+    "extra_body": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "temperature_ignored": false,
+    "num_ctx": null,
+    "server_context": null
+  },
+  "metrics": {
+    "records": 57,
+    "pass_rate": 1.0,
+    "tier3_recall": 1.0,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 8,
+        "caught": 8,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 7,
+        "caught": 7,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "new_not_filled": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 3,
+        "caught": 3,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 1,
+        "caught": 1,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": 1.0,
+    "deferral_rate": 0.0,
+    "false_alarms": 0,
+    "json_failures": 0,
+    "self_check_overconfident": 0,
+    "sensitivity_consistent": 0.9333333333333333,
+    "sensitivity_inconsistent_cases": [
+      "mq-02"
+    ],
+    "stability": null,
+    "latency_p50": 2.495,
+    "latency_p95": 5.362,
+    "tokens": 250337,
+    "cost_per_run": 0.09703892,
+    "spent_this_run": 0.09703892,
+    "cost_per_1k_sessions": 9.17276923076923,
+    "words_median_diff": 47,
+    "fk_grade_median_diff": 4.345000000000002,
+    "words_median_chat": 27.0,
+    "fk_grade_median_chat": 3.674615384615386,
+    "gates": {
+      "tier3": true,
+      "critical": true,
+      "no_diagnosis": true,
+      "no_dose_advice": true
+    }
+  }
+}
