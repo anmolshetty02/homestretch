@@ -22,3 +22,5 @@ utc_time,run,model_key,model,calls,cached_calls,input_hit,input_miss,output,reas
 2026-10-18 21:16,v3_deepseek-flash_t0.0_1018-1714_stab,deepseek-flash,deepseek-flash,39,0,145152,8754,26444,0,0.0939,0.0352
 2026-10-18 21:18,v3_deepseek-flash_t0.7_1018-1716_stab,deepseek-flash,deepseek-flash,69,0,273792,10716,14168,0,0.1705,0.0219
 2026-10-18 21:20,v3_deepseek-flash_t0.7_1018-1718_stab,deepseek-flash,deepseek-flash,39,0,145152,8754,26739,0,0.0939,0.0356
+2026-10-18 21:29,v3-noexamples_deepseek-flash_t0.3_1018-1727,deepseek-flash,deepseek-flash,57,0,163840,12092,17780,0,0.1220,0.0259
+2026-10-18 21:31,v3-noselfcheck_deepseek-flash_t0.3_1018-1729,deepseek-flash,deepseek-flash,57,0,199296,17562,14770,0,0.1340,0.0242

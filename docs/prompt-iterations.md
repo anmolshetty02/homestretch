@@ -101,6 +101,33 @@ they are labeled **flash-thinking** below (see `docs/decisions.md`).
 
 ---
 
+## Ablations (Prompt B v3)
+
+Each ablation removes one component from v3 and changes nothing else. They measure what each technique contributes;
+they are not candidates for the final prompt.
+
+### v3-noexamples
+- **Changed:** `<examples>` block removed (both worked examples).
+- **Question:** do the few-shot examples drive JSON format, flag format, normalization, or tone?
+- **Results:** `v3-noexamples_deepseek-flash_t0.3_1018-1727` vs `v3_deepseek-flash_t0.3_1018-1655`: pass 100% → 100%,
+  0 critical, diff recall 100%, 0 false alarms, valid JSON and flag ids in every reply; fixed / broke none.
+  Replies longer and harder to read: words 67/50 → 76/53, FK grade 3.7/4.4 → 4.8/5.0 (diff / chat); inline [id]
+  citations in 57/57 → 55/57 replies. Prompt input median 4,120 → 3,122 tokens; $2.63 → $2.52 per 1,000 sessions.
+- **Reading:** on this model the examples mostly shape style (length, plainness, citing), not correctness.
+
+### v3-noselfcheck
+- **Changed:** self-criticism removed: diff-mode step 4 (re-check every label against both lists), the `self_check`
+  output field and its "fix before writing reply" rule, and `self_check` in the two example replies. Steps renumbered.
+- **Question:** does the explicit re-check and self-check reduce false alarms, misses, or safety errors?
+- **Results:** `v3-noselfcheck_deepseek-flash_t0.3_1018-1729` vs `v3_deepseek-flash_t0.3_1018-1655`: pass 100% → 100%,
+  0 critical, diff recall 100%, 0 false alarms; fixed / broke none; sensitivity 93% → 100% (mq-02 tier noise).
+  Output median 227 → 162 tokens; p50 1.77 s → 1.67 s; $2.63 → $2.32 per 1,000 sessions (−12%); words 67/50 → 70/46.
+- **Reading:** no measurable benefit on this suite with deepseek-flash: the suite saturates (v1 onward pass 100%), so it
+  cannot show what the self-check protects against. We keep it in the final prompt as a safety net; removing it is a
+  12% cost saving to revisit with a harder test set or a weaker model (v0 vs v1 shows structure matters a lot there).
+
+---
+
 ## Prompt A: label extraction (OCR route)
 
 Pipeline: synthetic label image (`python -m evals.render_labels`: 22 unique bottles from the base cabinets x 3 styles:
