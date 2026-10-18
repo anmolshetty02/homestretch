@@ -1,0 +1,13 @@
+{
+  "version": "v0",
+  "provider": "custom",
+  "model": "deepseek-v4-flash",
+  "temperature": 0.3,
+  "repeats": 1,
+  "category": null,
+  "cases": null,
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": ""
+}

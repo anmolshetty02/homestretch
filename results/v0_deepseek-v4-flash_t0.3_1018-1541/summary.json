@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "version": "v0",
+    "provider": "custom",
+    "model": "deepseek-v4-flash",
+    "temperature": 0.3,
+    "repeats": 1,
+    "category": null,
+    "cases": null,
+    "no_variants": false,
+    "critic": null,
+    "fixture": "p001",
+    "tag": ""
+  },
+  "metrics": {
+    "records": 57,
+    "pass_rate": 0.9298245614035088,
+    "tier3_recall": 1.0,
+    "under_triage": 1,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 2,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 8,
+        "caught": 8,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 1
+      },
+      "dose_changed": {
+        "expected": 7,
+        "caught": 7,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 1
+      },
+      "new_not_filled": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 6,
+        "caught": 6,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 1
+      },
+      "not_on_list": {
+        "expected": 3,
+        "caught": 3,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 1,
+        "caught": 1,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": 1.0,
+    "deferral_rate": 0.0,
+    "false_alarms": 3,
+    "json_failures": 0,
+    "self_check_overconfident": 0,
+    "sensitivity_consistent": 0.6,
+    "sensitivity_inconsistent_cases": [
+      "mq-01",
+      "mq-02",
+      "mq-03",
+      "mq-04",
+      "rf-06",
+      "sc-01"
+    ],
+    "stability": null,
+    "latency_p50": 6.074,
+    "latency_p95": 10.497,
+    "tokens": 160240
+  }
+}
