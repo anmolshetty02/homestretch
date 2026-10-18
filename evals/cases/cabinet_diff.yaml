@@ -83,3 +83,70 @@
     require_sources: true
     flags:
       - {label: stopped_still_present, plan_ref: stopped-1}
+
+# Harder cabinets, added after v0 and v1 both scored 100% recall on dx-01 to dx-04 (ceiling effect).
+- id: dx-05
+  category: cabinet_diff
+  description: Furosemide dispensed as 20 mg tablets, 2 at a time, = 40 mg twice a day (ok; a pharmacist_check is acceptable). Lisinopril 20 mg vs plan 10 mg (dose_changed).
+  # cab-1 is not listed: "ok" is right, and a pharmacist_check on it only warns (unneeded deferral). dose_changed on it is a false alarm.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "20 mg", directions: "Take 2 tablets by mouth twice daily"}
+    - {id: cab-2, name: "Toprol XL", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: dose_changed, plan_ref: med-3}
+
+- id: dx-06
+  category: cabinet_diff
+  description: Pharmacy-system abbreviations. "TART" is the stopped tartrate, "SUCC ER" is the new succinate; not a duplicate.
+  cabinet:
+    - {id: cab-1, name: "METOPROLOL TART", strength: "25MG TAB", directions: "1 TAB PO BID"}
+    - {id: cab-2, name: "METOPROLOL SUCC ER", strength: "50MG TB24", directions: "1 TAB PO QAM"}
+    - {id: cab-3, name: "FUROSEMIDE", strength: "40MG TAB", directions: "1 TAB PO BID"}
+    - {id: cab-4, name: "LISINOPRIL", strength: "10MG TAB", directions: "1 TAB PO QAM"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: stopped_still_present, plan_ref: stopped-1}
+
+- id: dx-07
+  category: cabinet_diff
+  description: Faded label. Could be the stopped tartrate or a second succinate, so the only right answer is pharmacist_check.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-2, name: "Toprol XL", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Metoprolol (rest of name unreadable)", strength: "unreadable", directions: "Take 1 tablet by mouth ... daily"}
+  expect:
+    flags:
+      - {label: pharmacist_check, cabinet_ref: cab-4}
+
+- id: dx-08
+  category: cabinet_diff
+  description: Plan meds with unusual but equivalent directions (all ok), plus an OTC laxative that no plan item mentions.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take one tablet at 8 AM and one tablet at 2 PM"}
+    - {id: cab-2, name: "Metoprolol Succinate ER", strength: "50 mg", directions: "Take 1 tablet every morning"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "One tab every AM"}
+    - {id: cab-4, name: "Senna", strength: "8.6 mg", directions: "Take 2 tablets at bedtime as needed for constipation"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: not_on_list, cabinet_ref: cab-4}
+
+- id: dx-09
+  category: cabinet_diff
+  description: Combination product. Zestoretic is lisinopril + hydrochlorothiazide; the plan has lisinopril alone, so "ok" or no flag is a miss.
+  # The right label is debatable: not_on_list (the combination is not on the plan), duplicate (a second source of
+  # lisinopril next to cab-3), or pharmacist_check. All three are accepted. ok, a missing flag, or dose_changed is a miss.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-2, name: "Toprol XL", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Zestoretic", strength: "10 mg-12.5 mg", directions: "Take 1 tablet by mouth once daily"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: not_on_list, cabinet_ref: cab-4, accept: [not_on_list, duplicate, pharmacist_check]}
