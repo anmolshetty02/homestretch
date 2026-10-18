@@ -43,6 +43,8 @@ questions from the diff and the care plan only.
 - **API calls cost money.** Use `--provider mock` unless the user explicitly says to call DeepSeek.
 - **Synthetic data only.** Never add real patient data to fixtures, cases, or prompts.
 - **Never read `.env`.** The API key lives there.
+- **Never open, read, or summarize `evals/blind/`** (the held-out test set), or the records of `_blind` runs,
+  unless the user says "run the blind set". Normal runs never load it; `--blind` runs it.
 
 ## Safety rules for prompt edits
 

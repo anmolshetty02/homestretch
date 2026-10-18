@@ -10,7 +10,7 @@ import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from evals.checks import FLAG_TYPES, score_flags
+from evals.checks import FLAG_TYPES, readability, score_flags
 
 
 def load(run_dir):
@@ -66,7 +66,20 @@ def metrics(records):
     m["latency_p95"] = lat[int(0.95 * (len(lat) - 1))] if lat else None
     m["tokens"] = sum((r.get("usage") or {}).get("total_tokens", 0) for r in records)
     m.update(cost_metrics(records))
+    m.update(style_metrics(records))
     m["gates"] = safety_gates(records, m)
+    return m
+
+
+def style_metrics(records):
+    """Median reply length and Flesch-Kincaid grade, separately for diff and chat replies."""
+    m = {}
+    for mode, keep in (("diff", lambda r: r["category"] == "cabinet_diff"), ("chat", lambda r: r["category"] != "cabinet_diff")):
+        stats = [readability((r.get("reply") or {}).get("reply", "")) for r in records if keep(r) and r.get("reply")]
+        words = [w for w, _ in stats if w]
+        grades = [g for _, g in stats if g is not None]
+        m[f"words_median_{mode}"] = statistics.median(words) if words else None
+        m[f"fk_grade_median_{mode}"] = statistics.median(grades) if grades else None
     return m
 
 
@@ -166,6 +179,8 @@ def write_summary(run_dir):
         f"| Stability: identical across repeats | {fmt(m['stability'])} |",
         f"| Latency p50 / p95 | {fmt(m['latency_p50'], False)} / {fmt(m['latency_p95'], False)} |",
         f"| Tokens used | {m['tokens']:,} |",
+        f"| Reply words, median (diff / chat) | {num(m['words_median_diff'], 0)} / {num(m['words_median_chat'], 0)} |",
+        f"| Flesch-Kincaid grade, median (diff / chat) | {num(m['fk_grade_median_diff'])} / {num(m['fk_grade_median_chat'])} |",
         f"| Cost per run (all calls priced fresh) | {usd(m['cost_per_run'])} |",
         f"| Spent this run (uncached calls) | {usd(m['spent_this_run'])} |",
         f"| Cost per 1,000 sessions (1 diff + {SESSION_CHAT_TURNS} chat) | {usd(m['cost_per_1k_sessions'], 2)} |", "",
@@ -208,13 +223,17 @@ def compare(dir_a, dir_b):
             ("Self-check overconfident", "self_check_overconfident", False),
             ("Sensitivity consistent", "sensitivity_consistent", True), ("Stability", "stability", True),
             ("Latency p50 (s)", "latency_p50", False), ("Cost per run ($)", "cost_per_run", False),
-            ("Cost per 1,000 sessions ($)", "cost_per_1k_sessions", False)]
+            ("Cost per 1,000 sessions ($)", "cost_per_1k_sessions", False),
+            ("Reply words, median: diff", "words_median_diff", False), ("Reply words, median: chat", "words_median_chat", False),
+            ("FK grade, median: diff", "fk_grade_median_diff", False), ("FK grade, median: chat", "fk_grade_median_chat", False)]
 
     def show(v, is_pct, key):
         if v is None:
             return "n/a"
         if key == "cost_per_run":
             return f"{v:.4f}"
+        if key.startswith("words_"):
+            return f"{v:.0f}"
         return f"{100 * v:.0f}%" if is_pct else (f"{v:.2f}" if isinstance(v, float) else str(v))
 
     print(f"| Metric | {Path(dir_a).name} | {Path(dir_b).name} |\n|---|---|---|")
@@ -227,6 +246,10 @@ def compare(dir_a, dir_b):
     broke = sorted(k for k in va if k in vb and va[k] == "pass" and vb[k] == "fail")
     print(f"\nFixed ({len(fixed)}): " + ", ".join(f"{c}/{v}" for c, v, _ in fixed))
     print(f"Broke ({len(broke)}): " + ", ".join(f"{c}/{v}" for c, v, _ in broke))
+
+
+def num(v, places=1):
+    return "n/a" if v is None else f"{v:.{places}f}"
 
 
 def usd(v, places=3):

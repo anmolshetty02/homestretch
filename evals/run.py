@@ -125,9 +125,10 @@ def log_spend(run_dir, args, entry, records, est):
     return row
 
 
-def load_cases(category=None, case_ids=None):
+def load_cases(category=None, case_ids=None, blind=False):
     cases = []
-    for f in sorted(glob.glob(str(ROOT / "evals" / "cases" / "*.yaml"))):
+    # evals/blind/ is a held-out set: only loaded with --blind, never by normal runs
+    for f in sorted(glob.glob(str(ROOT / "evals" / ("blind" if blind else "cases") / "*.yaml"))):
         cases.extend(yaml.safe_load(Path(f).read_text()) or [])
     if category:
         cases = [c for c in cases if c["category"] == category]
@@ -149,6 +150,7 @@ def main():
     ap.add_argument("--fixture", default="p001")
     ap.add_argument("--tag", default="", help="label added to the run folder name")
     ap.add_argument("--max-cost", type=float, default=0.50, help="abort if the estimated USD cost is higher")
+    ap.add_argument("--blind", action="store_true", help="run the held-out cases in evals/blind/ instead of evals/cases/")
     args = ap.parse_args()
 
     load_env()
@@ -158,7 +160,9 @@ def main():
     critic_template = (ROOT / "prompts" / f"{args.critic}.md").read_text() if args.critic else None
     fixture = json.loads((ROOT / "fixtures" / f"{args.fixture}.json").read_text())
     fixture_ids = collect_ids(fixture)
-    cases = load_cases(args.category, args.cases)
+    cases = load_cases(args.category, args.cases, args.blind)
+    if not cases:
+        raise SystemExit("No cases matched." + (" evals/blind/ is empty or has no matching cases." if args.blind else ""))
 
     # Plan every call first, so the cost guard runs before anything is spent.
     jobs = []
@@ -180,7 +184,7 @@ def main():
     temp_label = "-" if entry.get("temperature_ignored") else args.temperature
     stamp = dt.datetime.now().strftime("%m%d-%H%M")
     name = f"{args.version}{'+' + args.critic if args.critic else ''}_{args.model}_t{temp_label}_{stamp}"
-    run_dir = ROOT / "results" / (name + (f"_{args.tag}" if args.tag else ""))
+    run_dir = ROOT / "results" / (name + ("_blind" if args.blind else "") + (f"_{args.tag}" if args.tag else ""))
     run_dir.mkdir(parents=True, exist_ok=True)
     meta = {**vars(args), "model_key": args.model, "provider": entry["provider"], "model_id": entry.get("model"),
             "extra_body": entry.get("extra_body"), "temperature_ignored": bool(entry.get("temperature_ignored")),
@@ -211,7 +215,7 @@ def main():
                         reply = c_obj["revised"]
                     else:
                         critic_info = {"verdict": (c_obj or {}).get("verdict", "unparsed")}
-                checks = run_checks(reply, case, fixture_ids)
+                checks = run_checks(reply, case, fixture_ids, text)
                 record = {
                     "case": case["id"], "category": case["category"], "variant": kind, "repeat": rep,
                     "expect": case.get("expect", {}),

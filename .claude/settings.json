@@ -16,7 +16,8 @@
       "Bash(git *)",
       "Read(./.env)",
       "Read(./.env.*)",
-      "Bash(cat .env*)"
+      "Bash(cat .env*)",
+      "Read(./evals/blind/**)"
     ]
   }
 }
