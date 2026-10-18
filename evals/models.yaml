@@ -44,7 +44,6 @@ models:
     num_ctx: 8192            # the model's own maximum; it cannot go higher
     price: free
   ollama-qwen3-8b:
-    enabled: false           # enable after `ollama pull qwen3:8b` finishes
     provider: ollama
     model: "qwen3:8b"
     extra_body: {reasoning_effort: none}   # qwen3 thinks by default; "none" turns it off on Ollama's OpenAI API
