@@ -1,0 +1,26 @@
+{
+  "version": "v4",
+  "model": "deepseek-flash",
+  "temperature": 0.3,
+  "repeats": 1,
+  "category": null,
+  "cases": null,
+  "no_variants": false,
+  "critic": null,
+  "fixture": "p001",
+  "tag": "",
+  "max_cost": 0.5,
+  "blind": false,
+  "suite": "stress",
+  "model_key": "deepseek-flash",
+  "provider": "deepseek",
+  "model_id": "deepseek-flash",
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "temperature_ignored": false,
+  "num_ctx": null,
+  "server_context": null
+}

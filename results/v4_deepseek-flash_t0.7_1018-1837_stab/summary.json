@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "version": "v4",
+    "model": "deepseek-flash",
+    "temperature": 0.7,
+    "repeats": 3,
+    "category": "cabinet_diff",
+    "cases": null,
+    "no_variants": false,
+    "critic": null,
+    "fixture": "p001",
+    "tag": "stab",
+    "max_cost": 0.5,
+    "blind": false,
+    "suite": "cases",
+    "model_key": "deepseek-flash",
+    "provider": "deepseek",
+    "model_id": "deepseek-flash",
+    "extra_body": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "temperature_ignored": false,
+    "num_ctx": null,
+    "server_context": null
+  },
+  "metrics": {
+    "records": 39,
+    "pass_rate": 0.9487179487179487,
+    "tier3_recall": null,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 24,
+        "caught": 24,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 21,
+        "caught": 21,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 2
+      },
+      "new_not_filled": {
+        "expected": 18,
+        "caught": 18,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 18,
+        "caught": 18,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 9,
+        "caught": 9,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 3,
+        "caught": 3,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": 1.0,
+    "deferral_rate": 0.0,
+    "false_alarms": 2,
+    "json_failures": 0,
+    "self_check_overconfident": 2,
+    "sensitivity_consistent": 1.0,
+    "sensitivity_inconsistent_cases": [],
+    "stability": 0.9230769230769231,
+    "latency_p50": 2.322,
+    "latency_p95": 3.17,
+    "tokens": 129454,
+    "cost_per_run": 0.028785954,
+    "spent_this_run": 0.028785954,
+    "cost_per_1k_sessions": null,
+    "words_median_diff": 73,
+    "fk_grade_median_diff": 4.164165487977371,
+    "words_median_chat": null,
+    "fk_grade_median_chat": null,
+    "gates": {
+      "tier3": null,
+      "critical": true,
+      "no_diagnosis": true,
+      "no_dose_advice": true
+    }
+  }
+}
