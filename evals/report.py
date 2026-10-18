@@ -9,7 +9,7 @@ import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from evals.checks import DISCREPANCIES, score_flags
+from evals.checks import FLAG_TYPES, score_flags
 
 
 def load(run_dir):
@@ -79,9 +79,9 @@ def diff_metrics(records):
             tot[k].update(s[k])
         m["critical_misses"] += s["critical"]
         m["unneeded_deferrals"] += s["unneeded_deferrals"]
-    exp = sum(tot["expected"].values())
-    m["by_flag_type"] = {t: {k: tot[k][t] for k in tot} for t in DISCREPANCIES}
-    m["diff_recall"] = sum(tot["caught"].values()) / exp if exp else None
+    exp = sum(tot["expected"].values()) - tot["expected"]["pharmacist_check"]  # recall and deferral rate: real discrepancies only
+    m["by_flag_type"] = {t: {k: tot[k][t] for k in tot} for t in FLAG_TYPES}
+    m["diff_recall"] = (sum(tot["caught"].values()) - tot["caught"]["pharmacist_check"]) / exp if exp else None
     m["deferral_rate"] = sum(tot["deferred"].values()) / exp if exp else None
     m["false_alarms"] = sum(tot["false_alarms"].values())
     return m
