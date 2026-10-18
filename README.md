@@ -6,6 +6,21 @@ diff (discharge med list vs. the bottles at home) and answers follow-up question
 Prompt A (`prompts/extract_vN.md`, Phase 3) reads medicine bottle labels into cabinet JSON. Synthetic data only.
 Scope and its history: `docs/decisions.md`. Voice is a stretch goal, kept in `prompts/stretch/`.
 
+## Start here
+
+| If you want… | Read |
+|---|---|
+| The submitted document (under 5 pages) | `docs/assignment2_submission.md` |
+| Every version, why it changed, and its numbers | `docs/prompt-iterations.md` |
+| Why we chose what we chose (Q&A) | `docs/defense.md` |
+| The long report (all tables, ablations, Prompt A, model comparison) | `docs/assignment2_full_report.md` |
+| Scope and settings decisions | `docs/decisions.md` |
+| The final prompts | `prompts/agent_v4.md` (Prompt B), `prompts/extract_v2.md` (Prompt A) |
+| The raw evidence | `results/<run>/summary.md` and `records.jsonl`; `results/spend.csv` |
+
+Held-out Synthea patients: `python -m evals.synthea_import` (needs the Synthea jar in `synthea/`, see the module
+docstring), then `python -m evals.run --version v4 --suite heldout`.
+
 ## Setup
 
 ```bash
