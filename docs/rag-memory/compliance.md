@@ -83,3 +83,6 @@ Decision and why:
 ## Condensed version (150 words or fewer)
 
 The class build uses synthetic data only.
+
+## Open questions
+

@@ -1,6 +1,11 @@
 # HomeStretch: prompt engineering workspace
 
-## Goal
+## Current work: Assignment 3 (RAG, memory, data handling)
+
+Read `docs/rag-memory/README.md` first: tasks, owners, rules, and where each task starts and ends. Assignment 2
+(below) is submitted and graded; do not change its files or results.
+
+## Goal (Assignment 2, done)
 
 Submit assignment 2: a structured document covering every prompt in the app (full final prompts, components
 explained, techniques used), sensitivity and stability results, every iteration with what changed and why, real
