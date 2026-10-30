@@ -120,3 +120,32 @@ Standard test set below = main suite (57 inputs) + `--suite heldout` (50) + `--s
 - **Change:** carry timing words ("at bedtime", "with food", "in the morning") from the plan into the bottle directions.
 - **Test:** regenerate `--suite heldout` and `--suite stress`; rerun v4.
 - **Done when:** no false alarms come from timing words alone; results are reported as a new test-set version.
+
+---
+
+## Repo cleanup (planned 2026-10-18, start here next session)
+
+Goal: make `main` clean for the professor and the team's base for future work, without breaking any link.
+The PDF links point at the `a2-submission` tag, so **push the tag first** (check: `git ls-remote --tags origin a2-submission`),
+then clean `main`. Approach: add short indexes; do not move prompts, results, or doc files (run.py loads prompts by name,
+and the iteration log and defense doc cite run folders by name).
+
+1. Rewrite `README.md` (~40 lines, professor-facing): one-paragraph pitch, 5-row results table, links to the submission
+   PDF, `docs/prompt-iterations.md`, `docs/defense.md`, and a 4-line repo map.
+2. New `docs/CONTRIBUTING.md`: everything the README holds today (setup, Ollama server, commands, cost, slash commands,
+   eval loop) plus team workflow (branch per change, rebuild the doc with `docs/build.py`, never commit `.env`, tag each
+   submission).
+3. New `results/README.md`: one table of runs (what, version, key number), grouped: final evidence, iterations, model
+   comparison, early/smoke runs.
+4. New `prompts/README.md`: final = `agent_v4.md` + `extract_v2.md`; the rest is history (v0–v3, rejected v5, ablations, stretch).
+5. `.gitignore`: add `docs/assignment2_submission.html` (build intermediate) and `**/__pycache__/`.
+6. Update `CLAUDE.md` and `.claude/skills/` references to README sections that move to `CONTRIBUTING.md`.
+
+Open decisions:
+- `docs/.Rhistory` (not created by Claude): delete or keep? It is already gitignored.
+- Old branches `mvp-chat-diff`, `phase1-model-registry`, `phase2-prompt-b`: confirm merged into `main`, then delete
+  locally and on GitHub (git commands to be given; Claude does not run git here).
+- Submission text says total API spend $1.07; actual is ~$1.23 after the v3 held-out/stress comparison runs. Update
+  the `.md` and rebuild, or leave the submitted number as is.
+
+Git order when doing it: push tag → commit cleanup on `main` → push → delete merged branches.

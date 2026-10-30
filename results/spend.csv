@@ -39,3 +39,5 @@ utc_time,run,model_key,model,calls,cached_calls,input_hit,input_miss,output,reas
 2026-10-18 22:49,v5_deepseek-flash_t0.7_1018-1847_stab,deepseek-flash,deepseek-flash,39,0,104064,6552,21802,0,0.0769,0.0288
 2026-10-18 23:04,v4_deepseek-flash_t0.3_1018-1904_heldout,deepseek-flash,deepseek-flash,50,36,0,40470,9065,0,0.0278,0.0230
 2026-10-18 23:20,v4_deepseek-flash_t0.3_1018-1916_stress,deepseek-flash,deepseek-flash,80,0,199936,41542,69974,0,0.1624,0.0976
+2026-10-19 00:48,v3_deepseek-flash_t0.3_1018-2048_heldout,deepseek-flash,deepseek-flash,50,36,0,56990,12530,0,0.0343,0.0321
+2026-10-19 00:54,v3_deepseek-flash_t0.3_1018-2048_stress,deepseek-flash,deepseek-flash,80,0,294400,41478,91512,0,0.1997,0.1240
