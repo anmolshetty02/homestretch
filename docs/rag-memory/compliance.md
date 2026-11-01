@@ -4,15 +4,22 @@ Instructions: `docs/rag-memory/README.md`, Task D. Keep these headings.
 
 ## Data inventory
 
+This is the design for a real deployment. The class build stores only synthetic data (`fixtures/`, `evals/`).
+
 | Data type | Source | Sensitivity (PHI / PII / public) | Where stored | Who can access | Retention |
 |---|---|---|---|---|---|
-| Discharge med list / care plan | | | | | |
-| Cabinet inventory (bottle photos + extracted JSON) | | | | | |
-| Chat messages (session) | | | | | |
-| Long-term memory (confirmed meds, schedule, preferences, resolved flags) | | | | | |
-| Patient + caregiver identity, contacts | | | | | |
-| Drug reference chunks (DailyMed, openFDA, MedlinePlus) | | | | | |
-| App logs | | | | | |
+| Discharge med list / care plan | Caregiver uploads a photo or PDF of the discharge papers; turned into a structured care plan with ids (`med-1`, `stopped-1`, `warn-1`, ...) | PHI\* (medicines, diagnosis, warning signs, linked to a named patient) | App database, per patient, encrypted. The original upload is deleted once the caregiver confirms the extracted plan | Patient and approved caregivers (`approved_caregivers` in `fixtures/p001.json`); sent to the model as prompt context without names | The 30-day recovery window plus 90 days `[design choice]`; deleted at once on request |
+| Cabinet inventory (bottle photos + extracted JSON) | Caregiver photographs the bottles at home; Prompt A turns each label into cabinet JSON (`cab-1`, ...) | PHI\* (labels show the patient's name, drug, dose, prescriber, pharmacy, Rx number) | Photos: processed, then deleted once the caregiver confirms the JSON (never kept). JSON: app database, per patient, encrypted | Patient and approved caregivers; the model sees the JSON, not the photo | JSON as care plan; photos minutes, not days |
+| Chat messages (session) | Caregiver types questions and symptoms | PHI\* (symptoms, medicines, sometimes names) | Session memory on the server while the chat is open | The caregiver in that session; sent to the model for the current reply | Cleared when the session ends; only facts the caregiver confirms move to long-term memory |
+| Long-term memory (confirmed meds, schedule, preferences, resolved flags) | Written only after the caregiver confirms a fact ("yes, the old metoprolol is gone") | PHI\* | App database, per patient, encrypted | Patient and approved caregivers can view, edit, and delete every item | As care plan; a medicine change replaces the old entry; resolved flags kept for the 30 days |
+| Patient + caregiver identity, contacts | Sign-up (caregiver name, relationship, email or phone); discharge papers (patient name, age, discharge date); clinic, pharmacy, and nurse-line numbers (`contact-1..3`) | PII; PHI\* once linked to the care plan. Clinic and pharmacy numbers are public business info | App database (account), encrypted; kept separate from the care plan, linked by an internal id | Patient and approved caregivers; names are removed before any model call | Life of the account; deleted with the account |
+| Drug reference chunks (DailyMed, openFDA, MedlinePlus) | Public government sources (`spikes/labels/`, fetched 2026-11-01) | Public. The caregiver's *question* that retrieves them is not public | Search index on the server, with `set_id` and `effective_time` on every chunk | Anyone (public data) | Replaced when the source label's `effective_time` changes |
+| App logs | The app itself: errors, latency, cost, flag ids, tier, model name | Pseudonymous (internal ids only); no message text, names, or photos | Log store, encrypted | Developers on call, least privilege | 30 days `[design choice]` |
+
+\*PHI only when a HIPAA covered entity or its business associate holds it, for example if a hospital deploys
+HomeStretch (see HIPAA below). In the consumer app the same data may not be legal PHI, but it is just as sensitive:
+it is **consumer health data**, which state laws such as Washington's My Health My Data Act and the FTC Health Breach
+Notification Rule cover (sources in their sections). HomeStretch treats it as PHI either way.
 
 ## HIPAA
 
