@@ -10,6 +10,7 @@ score per question for the best setup and picks the "I don't know" threshold wit
 
 Run (offline after the labels are saved):  .venv/bin/python docs/rag-memory/spikes/retrieval_check.py
 Re-fetch the labels from openFDA (network): .venv/bin/python docs/rag-memory/spikes/retrieval_check.py --fetch
+Post-hoc check with two answer-key gaps filled (not the decision): add --lenient
 Needs: fastembed (installed in .venv). The first run downloads BAAI/bge-small-en-v1.5.
 """
 import json
@@ -46,7 +47,13 @@ EXTRA_BRANDS = {"advil": "ibuprofen", "motrin": "ibuprofen", "aleve": "naproxen"
 SKIP = {"openfda", "_fetch", "set_id", "id", "effective_time", "version", "spl_product_data_elements",
         "package_label_principal_display_panel", "spl_unclassified_section"}
 
-SECTION_MAX = 1500          # by-section: split longer sections at paragraph (or sentence) breaks
+# --lenient (post-hoc check, NOT the decision): answer-key gaps found after the first run. The furosemide label puts
+# the urination fact in general_precautions; the Rx naproxen label uses warnings_and_cautions, not warnings.
+# retrieval_questions.json stays as committed before the run; this only adds answers when the flag is given.
+LENIENT = {"q02": [["furosemide", "general_precautions"]],
+           "q07": [["naproxen", "warnings_and_cautions"]]}
+
+SECTION_MAX = 1500         # by-section: split longer sections at paragraph (or sentence) breaks
 FIXED_SIZE, FIXED_OVERLAP = 800, 100
 K1, B = 1.5, 0.75           # BM25
 RRF_K = 60                  # hybrid: score = sum 1 / (60 + rank)
@@ -239,6 +246,10 @@ def main():
     labels = load_corpus()
     patient = json.loads(PATIENT.read_text())
     qs = json.loads(QUESTIONS.read_text())["questions"]
+    if "--lenient" in sys.argv:
+        print("*** POST-HOC LENIENT RE-SCORE: extra answers", LENIENT, "- not the decision ***")
+        for q in qs:
+            q["answers"] = q["answers"] + LENIENT.get(q["id"], [])
     names = name_map(patient)
     base = patient_drugs(patient, names)
     print(f"metadata filter base (Rosa's plan + cabinet): {sorted(base)}")
