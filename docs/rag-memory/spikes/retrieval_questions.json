@@ -1,0 +1,123 @@
+{
+  "_note": "SYNTHETIC test set for the Task D-tech retrieval experiment. Written on 2026-11-01, before any label was fetched or any search was run. Patient context: Rosa Delgado (fixtures/p001.json). Each answer is [drug, openFDA label section]. A question counts as a hit if any listed answer is retrieved. Old-format labels use 'warnings' and 'precautions'; newer (PLR) labels use 'warnings_and_cautions', so both are accepted where the fact could be in either. Empty answers = no answer exists in the labels; these are used only for the 'I don't know' threshold, not for hit@k.",
+  "questions": [
+    {
+      "id": "q01",
+      "question": "Can she take Advil with her water pill?",
+      "answers": [
+        ["ibuprofen", "drug_interactions"],
+        ["ibuprofen", "ask_doctor_or_pharmacist"],
+        ["ibuprofen", "warnings"],
+        ["furosemide", "drug_interactions"],
+        ["furosemide", "precautions"]
+      ],
+      "why": "NSAIDs can blunt the effect of loop diuretics; the README's example question."
+    },
+    {
+      "id": "q02",
+      "question": "Why is she peeing so much?",
+      "answers": [
+        ["furosemide", "adverse_reactions"],
+        ["furosemide", "information_for_patients"]
+      ],
+      "why": "Plain words only, no drug named: tests whether search finds the diuretic from symptoms."
+    },
+    {
+      "id": "q03",
+      "question": "She gets dizzy when she stands up. Could that be from the metoprolol?",
+      "answers": [
+        ["metoprolol succinate", "adverse_reactions"],
+        ["metoprolol succinate", "warnings_and_cautions"],
+        ["metoprolol succinate", "warnings"]
+      ],
+      "why": "Dizziness/hypotension is a listed metoprolol effect; the label must be succinate (her current drug), not the stopped tartrate."
+    },
+    {
+      "id": "q04",
+      "question": "Is it dangerous if she suddenly stops taking her heart rate pill?",
+      "answers": [
+        ["metoprolol succinate", "boxed_warning"],
+        ["metoprolol succinate", "warnings_and_cautions"],
+        ["metoprolol succinate", "warnings"]
+      ],
+      "why": "Abrupt stopping of beta-blockers is a boxed warning. Uses the plan's plain name, not the drug name."
+    },
+    {
+      "id": "q05",
+      "question": "She has a dry cough that will not go away since she started lisinopril. Is that from the pill?",
+      "answers": [
+        ["lisinopril", "adverse_reactions"],
+        ["lisinopril", "warnings_and_cautions"],
+        ["lisinopril", "warnings"],
+        ["lisinopril", "precautions"]
+      ],
+      "why": "ACE-inhibitor cough."
+    },
+    {
+      "id": "q06",
+      "question": "Her lips and face look a little swollen. Can her blood pressure pill do that?",
+      "answers": [
+        ["lisinopril", "warnings_and_cautions"],
+        ["lisinopril", "warnings"],
+        ["lisinopril", "boxed_warning"],
+        ["lisinopril", "adverse_reactions"]
+      ],
+      "why": "Angioedema with ACE inhibitors. Safety-relevant: the app would also triage this as a red flag."
+    },
+    {
+      "id": "q07",
+      "question": "Can she take Aleve for her knee pain?",
+      "answers": [
+        ["naproxen", "drug_interactions"],
+        ["naproxen", "ask_doctor_or_pharmacist"],
+        ["naproxen", "warnings"],
+        ["lisinopril", "drug_interactions"],
+        ["furosemide", "drug_interactions"]
+      ],
+      "why": "NSAID with an ACE inhibitor and a diuretic. Brand name only (Aleve)."
+    },
+    {
+      "id": "q08",
+      "question": "What is the difference between metoprolol succinate and metoprolol tartrate?",
+      "answers": [
+        ["metoprolol succinate", "description"],
+        ["metoprolol succinate", "dosage_and_administration"],
+        ["metoprolol succinate", "clinical_pharmacology"],
+        ["metoprolol tartrate", "description"],
+        ["metoprolol tartrate", "dosage_and_administration"],
+        ["metoprolol tartrate", "clinical_pharmacology"]
+      ],
+      "why": "The look-alike trap: both labels are in the corpus (tartrate is her stopped medicine)."
+    },
+    {
+      "id": "q09",
+      "question": "Her old doctor had her on amlodipine. Can it cause swollen ankles?",
+      "answers": [
+        ["amlodipine", "adverse_reactions"],
+        ["amlodipine", "warnings_and_cautions"]
+      ],
+      "why": "Peripheral edema. Amlodipine is not in Rosa's plan, so it enters the search only because the question names it (metadata filter)."
+    },
+    {
+      "id": "q10",
+      "question": "What happens if she accidentally takes two of her water pills?",
+      "answers": [
+        ["furosemide", "overdosage"],
+        ["furosemide", "warnings"]
+      ],
+      "why": "Overdose section. The app itself would still send dose questions to the pharmacy [contact-2]."
+    },
+    {
+      "id": "q11",
+      "question": "What are the side effects of Zorvexa?",
+      "answers": [],
+      "why": "No answer: Zorvexa is a made-up drug (same name as in the stress suite)."
+    },
+    {
+      "id": "q12",
+      "question": "Is it okay for her to do some gardening this week after coming home?",
+      "answers": [],
+      "why": "No answer: activity advice is not in any drug label."
+    }
+  ]
+}
