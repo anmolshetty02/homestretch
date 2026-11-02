@@ -100,14 +100,47 @@ under confidentiality and processing contracts; we never sell health data and us
 
 ## Access and security
 
-- Roles (patient, approved caregiver), consent, least privilege:
-- Encryption in transit / at rest:
+- **Roles (patient, approved caregiver), consent, least privilege:**
+  - *Patient:* owns the record; gives consent at sign-up (separate consent screens, see state laws); adds or
+    removes caregivers; can view, export, and delete everything.
+  - *Approved caregiver* (`approved_caregivers` in `fixtures/p001.json`, e.g. Maria, daughter): added only by the
+    patient (or by a legal personal representative [H6]); can see and use the care plan, cabinet diff, chat, and
+    memory for this one patient. Every request is checked against that patient's list; the assistant itself answers
+    about "only this patient" (`<rules>` in `prompts/agent_v4.md`).
+  - *Staff and vendors:* no routine access to health data. Support access only with the patient's permission,
+    time-limited and logged; vendors only under a processing contract (and a BAA in a hospital deployment).
+  - *Model:* receives only what one reply needs: the care plan and cabinet diff for that patient, the retrieved
+    label chunks, and the current session, with names removed (below).
+- **Encryption in transit / at rest:** TLS on every connection (app, server, model API, drug APIs); databases,
+  backups, and logs encrypted at rest, with keys in a managed key service. This matters legally too: the FTC Rule
+  only requires breach notice for "unsecured" data, meaning data not protected by a technology HHS specifies, such
+  as encryption (16 CFR 318.2) [F4]. Photos are deleted after extraction (Data inventory), so they cannot leak later.
 
 ## LLM provider and logging
 
-- DeepSeek hosted API: where data is processed, training use (privacy policy URL, checked date):
-- Options for real data (self-hosted open-weight model; HIPAA-eligible host with BAA; remove names before the call):
-- Logging without PHI:
+- **DeepSeek hosted API: where data is processed, training use.** Assignment 2 called DeepSeek's hosted API with
+  synthetic data only. DeepSeek's privacy policy (last updated February 10, 2026) says: "we directly collect, process
+  and store your Personal Data in People's Republic of China"; inputs may be used to "train and improve our
+  technology, such as our machine learning models"; users have "the right to opt-out of using your Personal Data for
+  training our models" (by emailing privacy@deepseek.com); inputs are kept "for as long as you have an account" [P1].
+  The policy covers paid open-platform use [P1] `[VERIFY: DeepSeek's separate Open Platform privacy policy blocked
+  automated reading]`. DeepSeek offers no BAA that we could find. **Conclusion: the hosted DeepSeek API must never
+  receive real patient data.** It stays a development tool for synthetic data.
+- **Options for real data** (any of these, plus removing names in every case):
+  1. *Self-hosted open-weight model.* Run the model on our own servers so no data leaves our control. Assignment 2
+     already ran local Ollama models (`evals/models.yaml`). Cost: our own hardware and slower answers.
+  2. *HIPAA-eligible host with a BAA.* For example, Amazon Bedrock is on AWS's HIPAA Eligible Services list, and AWS
+     requires a signed BAA before any PHI goes to those services [P2]. Required for a hospital deployment, where the
+     model host is our subcontractor [H4][H6].
+  3. *Remove names before every call.* The prompt gets "the patient" and "the caregiver" instead of "Rosa Delgado"
+     and "Maria"; ids (`med-1`, `flag-1`) are kept; the app puts names back into the reply locally. This lowers
+     the risk but does not make the data anonymous: medicines plus a discharge date can still identify someone, so
+     it is used *with* option 1 or 2, never instead of them.
+- **Logging without PHI:** logs keep an internal account id, the case or session id, timestamps, model, latency,
+  cost, `red_flag_tier`, flag ids and labels, and error codes. Never logged: message text, names, the care plan,
+  photos, or model replies. Debugging with real text needs the patient's permission and is deleted afterwards.
+  Assignment 2's `results/*/records.jsonl` hold each test input and the full model reply; that is fine only because
+  the data is synthetic. Logs are encrypted and kept 30 days (Data inventory).
 
 ## Risks and mitigations
 
@@ -274,6 +307,12 @@ consumer health data, from SB 370 of 2023), https://www.leg.state.nv.us/nrs/nrs-
 
 [S4] Connecticut General Assembly, Public Act No. 23-56 (Substitute Senate Bill No. 3), section 2,
 https://www.cga.ct.gov/2023/act/Pa/pdf/2023PA-00056-R00SB-00003-PA.PDF (checked 2026-11-01)
+
+[P1] DeepSeek, DeepSeek Privacy Policy (last updated February 10, 2026),
+https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html (checked 2026-11-01)
+
+[P2] Amazon Web Services, HIPAA Eligible Services Reference (last updated October 15, 2026),
+https://aws.amazon.com/compliance/hipaa-eligible-services-reference/ (checked 2026-11-01)
 
 ## Condensed version (150 words or fewer)
 
