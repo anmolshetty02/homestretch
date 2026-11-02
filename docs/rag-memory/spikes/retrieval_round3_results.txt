@@ -1,0 +1,35 @@
+1500-character chunks: 315
+500-character chunks: 866
+
+| Setup | Seen hit@1 | Seen hit@3 | Gate cutoff | Seen answerable rejected | heldout3 hit@1 | heldout3 hit@3 | heldout3 no-answer rejected | heldout3 answerable rejected |
+|---|---|---|---|---|---|---|---|---|
+| R2 sections 1500, hybrid | 12/29 | 18/29 | 0.595 | 7 ['q02', 'q04', 'q06', 'q09', 'q15', 'q19', 'q31'] | 3/8 | 5/8 | ['q46', 'q47'] of [q45, q46, q47] | [] |
+| R3a chunks 500, hybrid | 9/29 | 15/29 | 0.605 | 5 ['q02', 'q04', 'q06', 'q19', 'q31'] | 4/8 | 4/8 | ['q46', 'q47'] of [q45, q46, q47] | [] |
+| R3b chunks 500, hybrid + rerank | 7/29 | 13/29 | -10.897 | 1 ['q19'] | 6/8 | 6/8 | ['q46', 'q47'] of [q45, q46, q47] | [] |
+| R3c sections 1500, hybrid + rerank | 14/29 | 16/29 | -10.597 | 3 ['q03', 'q19', 'q31'] | 6/8 | 6/8 | ['q46', 'q47'] of [q45, q46, q47] | [] |
+
+Chosen on the seen set (hit@3, then hit@1): R2 sections 1500, hybrid; gate meets the rule: False
+
+heldout3 per question (chosen setup):
+  q37 hit@3=0 gate=0.695 unknown=- Can her water pill make her feel weak or crampy?
+     got [('furosemide', 'information_for_patients', False), ('lisinopril', 'drug_interactions', False), ('lisinopril', 'warnings_and_cautions', False)]
+  q38 hit@3=1 gate=0.762 unknown=- Could the blood pressure pill be why her tongue feels swollen?
+     got [('lisinopril', 'warnings_and_cautions', True), ('lisinopril', 'information_for_patients', True), ('lisinopril', 'pharmacodynamics', False)]
+  q39 hit@3=1 gate=0.668 unknown=- Will the heart rate pill make her more short of breath?
+     got [('metoprolol_succinate', 'clinical_pharmacology', False), ('metoprolol_succinate', 'pharmacodynamics', False), ('metoprolol_succinate', 'information_for_patients', True)]
+  q40 hit@3=0 gate=0.669 unknown=- Why does the water pill make her dizzy in the morning?
+     got [('metoprolol_succinate', 'adverse_reactions', False), ('furosemide', 'warnings', False), ('lisinopril', 'use_in_specific_populations', False)]
+  q41 hit@3=1 gate=0.760 unknown=- Can lisinopril make her blood sugar drop?
+     got [('lisinopril', 'drug_interactions', True), ('lisinopril', 'warnings_and_cautions', False), ('lisinopril', 'pharmacodynamics', False)]
+  q42 hit@3=1 gate=0.677 unknown=- Can the heart rate pill hide the signs of low blood sugar?
+     got [('metoprolol_succinate', 'clinical_pharmacology', False), ('metoprolol_succinate', 'warnings_and_cautions', True), ('metoprolol_succinate', 'warnings_and_cautions', True)]
+  q43 hit@3=0 gate=0.680 unknown=- Is it safe for her to take Motrin every day for her knees?
+     got [('ibuprofen', 'dosage_and_administration', False), ('lisinopril', 'information_for_patients', False), ('lisinopril', 'nonclinical_toxicology', False)]
+  q44 hit@3=1 gate=0.728 unknown=- Could Aleve make her swelling worse?
+     got [('naproxen', 'warnings', True), ('lisinopril', 'information_for_patients', False), ('naproxen', 'warnings', True)]
+  q45 hit@3=- gate=0.634 unknown=- Can she take Tylenol for pain?
+     got [('metoprolol_succinate', 'information_for_patients', False), ('lisinopril', 'information_for_patients', False), ('metoprolol_succinate', 'overdosage', False)]
+  q46 hit@3=- gate=0.640 unknown=['Trivolam'] Is Trivolam okay with her heart pills?
+     got [('metoprolol_succinate', 'contraindications', False), ('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_succinate', 'overdosage', False)]
+  q47 hit@3=- gate=0.430 unknown=- What should I cook for her birthday dinner?
+     got [('metoprolol_succinate', 'pregnancy', False), ('lisinopril', 'dosage_and_administration', False), ('metoprolol_succinate', 'use_in_specific_populations', False)]

@@ -1,0 +1,67 @@
+Scenario day10, Wednesday, October 28, 2026; prompt v9; state fix: True; digest: False
+Caregiver: Hi there, what's the plan for today?
+Memory sent:
+{
+ "long_term": {
+  "semantic": {
+   "preferences": [
+    "Short answers (caregiver, Oct 20, confirmed)"
+   ]
+  },
+  "episodic": [
+   "Oct 27: new furosemide 40 mg picked up; old 20 mg bottle returned (caregiver)",
+   "Oct 27: needed an extra pillow to sleep; check breathing lying flat Oct 28 night (caregiver)"
+  ],
+  "open_items": [
+   "Ask the pharmacist whether she can use her old eye drops (caregiver, Oct 27)"
+  ],
+  "resolved_flags": [
+   {
+    "id": "flag-2",
+    "date": "Oct 27",
+    "source": "caregiver"
+   }
+  ]
+ },
+ "session_record": "new session, nothing yet"
+}
+
+--- BASELINE v4, no memory, run 1 --- tier None
+Today's plan: give the 8 a.m. medicines — furosemide 40 mg, metoprolol succinate 50 mg, and lisinopril 10 mg [med-1][med-2][med-3]. Furosemide is also due at 2 p.m. [med-1]. Weigh Rosa each morning before breakfast and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups a day [diet-1][fluid-1]. The heart doctor visit was October 22 [appt-1].
+
+--- BASELINE v4, no memory, run 2 --- tier None
+Today's plan: weigh Rosa this morning after the bathroom and before breakfast, and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Her morning medicines are at 8, and the water pill is again at 2 [med-1][med-2][med-3]. Do you want to check the cabinet bottles against the discharge list?
+
+--- BASELINE v4, no memory, run 3 --- tier None
+Today's plan: the 8 a.m. medicines (water pill, heart rate pill, blood pressure pill) and the 2 p.m. water pill [med-1][med-2][med-3]. Weigh her this morning and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Her heart doctor visit was October 22 [appt-1]; call the clinic at 617-555-0110 with questions [contact-1].
+
+--- v9 + long-term memory, run 1 --- tier None
+No follow-ups from earlier days. Open items from the cabinet check:
+1. [flag-1] The old metoprolol tartrate bottle is still there. It was stopped [stopped-1]. Set it aside and ask the pharmacist.
+2. [flag-3] The new metoprolol succinate was not in the cabinet [med-2]. It may not be filled yet.
+3. [flag-4] Two bottles of the same medicine: lisinopril and Zestril [med-3]. Ask the pharmacist which to keep.
+Call Brighton Pharmacy at 617-555-0123 [contact-2].
+
+--- v9 + long-term memory, run 2 --- tier None
+No follow-ups from earlier days. Three cabinet items are still open:
+1. [flag-1] The old metoprolol tartrate bottle is still there [stopped-1]. Set it aside and ask her pharmacist [contact-2].
+2. [flag-3] The new metoprolol succinate was not in the cabinet [med-2]. It may not be filled yet.
+3. [flag-4] There are two bottles of the same pill: lisinopril and Zestril [med-3]. Ask the pharmacist which to keep.
+Today: weigh her in the morning and write it down. Watch for weight up 3 pounds in a day, more swelling, or worse breathing [warn-1][warn-2][warn-3].
+
+--- v9 + long-term memory, run 3 --- tier None
+No follow-ups from earlier days. Three cabinet items are still open:
+1. [flag-1] The old metoprolol tartrate bottle is still there. Set it aside and ask her pharmacist [contact-2].
+2. [flag-3] The new metoprolol succinate was not in the cabinet. It may not be filled yet [med-2].
+3. [flag-4] There are two bottles of the same pill: lisinopril and Zestril [med-3]. Ask the pharmacist which to keep.
+Today, keep weighing her each morning and watch for swelling or breath changes.
+
+Key-word hints (read the replies to confirm):
+  BASELINE v4, no memory, run 1: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+  BASELINE v4, no memory, run 2: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+  BASELINE v4, no memory, run 3: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+  v9 + long-term memory, run 1: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+  v9 + long-term memory, run 2: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+  v9 + long-term memory, run 3: {'eye drops question raised': False, 'breathing/pillow check raised': False, 'resolved flag called open': False}
+
+Spent $0.0042 (6 calls)

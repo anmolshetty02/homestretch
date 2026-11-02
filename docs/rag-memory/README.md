@@ -8,6 +8,17 @@ document; the two small experiments below exist only to give that document real 
 
 **Start here:** read this file top to bottom once, then go to your task (Sriya: Task S; Darshan: Task D; Anmol: Task A).
 
+> **Status, November 1, 2026: done.** The submission is `draft.md` → `draft.pdf` (3 pages, brief allows 1–3; build with
+> `.venv/bin/python docs/rag-memory/build_a3.py`). Self-grade and the items to verify by hand: `self_grade.md`.
+> Anmol covered Task D (`compliance.md` and the retrieval experiment) and wrote a backup of Task S
+> (`sources_backup.md`, `spikes/name_match_check.py`, `spikes/name_truth_anmol.csv`, names chosen so Sriya's files can be
+> run and compared without conflicts). Full design and every experiment's setup, rule, and result: `design.md`.
+> Scripts and raw outputs: `spikes/`. Prompt versions v6–v10 (v8 final) and the checker changes: `docs/prompt-iterations.md`.
+> **Teammates' branches compared (Nov 1):** Sriya (`rag-memory-sriya`) and Darshan (`darshan`) were checked against our
+> versions by an independent review. Ours stay the base; their sourced additions are merged and credited in
+> `sources_backup.md` and `compliance.md` ("Added from …" sections). Take only their own files when merging (see
+> those sections); their copies of shared files (`design.md`, `prompt-iterations.md`, `evals/`) are older.
+
 ## Deliverable
 
 A 1–2 page structured document (`draft.md`, built to PDF like Assignment 2), with a clear flow, one example scenario,
@@ -38,16 +49,8 @@ Each person edits **only their own files**. Anmol merges everything into `draft.
 | Person | Research part | Technical part | Your files (the only ones you touch) |
 |---|---|---|---|
 | **Sriya** | **S:** knowledge sources, verified, + the reference list | **S-tech:** drug-name matching experiment (3 approaches on our 151 messy bottle names) | `docs/rag-memory/sources.md`, `docs/rag-memory/spikes/rxnorm_check.py`, `docs/rag-memory/spikes/name_truth.csv`, `docs/rag-memory/spikes/.cache_rxnav.json` |
-| **Darshan** | **D:** data inventory, compliance (HIPAA, FTC, state laws), risks | **D-tech:** retrieval experiment (2 chunking × 3 search approaches on real FDA labels) | `docs/rag-memory/compliance.md`, `docs/rag-memory/spikes/retrieval_check.py`, `docs/rag-memory/spikes/retrieval_questions.json`, `docs/rag-memory/spikes/labels/` |
+| **Darshan** (Anmol covering, Darshan is unwell) | **D:** data inventory, compliance (HIPAA, FTC, state laws), risks | **D-tech:** retrieval experiment (2 chunking × 3 search approaches on real FDA labels) | `docs/rag-memory/compliance.md`, `docs/rag-memory/spikes/retrieval_check.py`, `docs/rag-memory/spikes/retrieval_questions.json`, `docs/rag-memory/spikes/labels/` |
 | **Anmol** | **A–C:** RAG pipeline, memory, integration + scenario | Memory comparison; Prompt B v6 design; merge and build | `docs/rag-memory/design.md`, `docs/rag-memory/draft.md`, and anything else needed at merge time |
-
-**Order and deadlines:**
-
-| When | What |
-|---|---|
-| Due: ______ (Anmol fills in) | Sriya and Darshan hand in (both parts, including the condensed version) |
-| Due: ______ | Anmol's merged `draft.md` shared for team review |
-| Due: ______ | Final PDF submitted |
 
 Each teammate writes a **condensed version (150 words or fewer, plus the key table)** at the bottom of their file.
 That is what goes into the 2-page doc. The full file is linked from the repo as backup detail.
@@ -345,8 +348,8 @@ the team. That is the end of Assignment 3.
 
 You need collaborator access to push (Anmol sends the invite). Without it, send your files to Anmol directly.
 
-## Open decisions (Anmol)
+## Decisions taken (Anmol)
 
-- Scenario outputs: illustrative, or a real run (a few cents on DeepSeek)?
-- Citation style: numbered like Assignment 2 (default) or APA?
-- Due dates: fill in the table above.
+- Scenario outputs: real runs on DeepSeek (`spikes/scenario_run.py`, `spikes/longterm_scenario.py`), not illustrative.
+- Citation style: numbered, as in Assignment 2.
+- Due-date table: removed.

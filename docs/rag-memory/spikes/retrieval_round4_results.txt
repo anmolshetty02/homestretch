@@ -1,0 +1,18 @@
+| Setup | Selection hit@1 | Selection hit@3 | heldout4 hit@1 | heldout4 hit@3 |
+|---|---|---|---|---|
+| R2 hybrid | 15/37 | 23/37 | 2/8 | 2/8 |
+| R2 + expansion | 25/37 | 30/37 | 4/8 | 5/8 |
+| R3c hybrid + reranker | 20/37 | 22/37 | 3/8 | 3/8 |
+| R3c + expansion | 21/37 | 26/37 | 4/8 | 4/8 |
+
+Chosen on the selection set: R2 + expansion
+
+heldout4 per question (hit@3 for each setup, in table order):
+  q48 [0, 1, 0, 0] Can the blood pressure pill change how food tastes?  | expanded: taste disturbance dysgeusia
+  q49 [1, 1, 1, 1] Could the water pill bring on a gout flare in her toe?  | expanded: gout hyperuricemia uric acid
+  q50 [0, 0, 0, 1] Can the heart rate pill give her bad dreams?  | expanded: sleep disturbances nightmares insomnia
+  q51 [0, 0, 0, 0] Can Advil push her blood pressure up?  | expanded: hypertension blood pressure increase
+  q52 [0, 1, 0, 0] Her skin is itchy. Could it be the blood pressure pill?  | expanded: rash pruritus skin reactions
+  q53 [1, 1, 1, 1] Can Aleve upset her stomach?  | expanded: gastrointestinal stomach bleeding ulcer
+  q54 [0, 1, 1, 1] Could the heart rate pill be making her feel down?  | expanded: depression mental
+  q55 [0, 0, 0, 0] Could the water pill cause a skin rash?  | expanded: rash pruritus skin reactions

@@ -1,0 +1,72 @@
+Scenario day6, Saturday, October 24, 2026; prompt v8; state fix: True; digest: False
+Caregiver: Good morning, how are things looking?
+Memory sent:
+{
+ "long_term": {
+  "semantic": {
+   "preferences": [
+    "Short answers (caregiver, Oct 20, confirmed)"
+   ]
+  },
+  "episodic": [
+   "Oct 21: old Lopressor bottle returned to the pharmacy (caregiver)",
+   "Oct 23: weight 151.0 lb, up 2 lb from Oct 22; below the 3-lb warning sign; recheck Oct 24 morning (caregiver)"
+  ],
+  "open_items": [
+   "Ask the pharmacist whether Tylenol is okay for her knee pain (caregiver, Oct 23)"
+  ],
+  "resolved_flags": [
+   {
+    "id": "flag-1",
+    "date": "Oct 21",
+    "source": "caregiver"
+   }
+  ]
+ },
+ "session_record": "new session, nothing yet"
+}
+
+--- BASELINE v4, no memory, run 1 --- tier None
+The cabinet check still has 4 open items. First, set aside the old metoprolol tartrate bottle and ask the pharmacist about it [flag-1]. The furosemide bottle at home is the old 20 mg once-a-day one, not what the plan says [flag-2]. The new metoprolol succinate was not found, so it may not be filled yet [flag-3]. There are also two lisinopril bottles, one labeled Zestril [flag-4]. Call Brighton Pharmacy at 617-555-0123 [contact-2]. Tell me any symptoms and I can check them against the warning signs.
+
+--- BASELINE v4, no memory, run 2 --- tier None
+The cabinet check still has 4 open items. First, set aside the old metoprolol tartrate bottle and ask the pharmacist about it [flag-1]. The furosemide bottle at home is the old 20 mg once-a-day one, not what the plan says [flag-2]. The new metoprolol succinate was not found, so it may not be filled yet [flag-3]. There are also two lisinopril bottles, one labeled Zestril [flag-4]. Call Brighton Pharmacy at 617-555-0123 with these [contact-2].
+
+--- BASELINE v4, no memory, run 3 --- tier None
+The cabinet check still has 4 open items. Start with the old metoprolol tartrate: set it aside and ask the pharmacist [flag-1]. The furosemide bottle at home is the old 20 mg once-a-day one, not the plan's 40 mg twice a day [flag-2]. The new metoprolol succinate was not found, so it may not be filled yet [flag-3]. There are also two lisinopril bottles, lisinopril and Zestril [flag-4]. Call Brighton Pharmacy at 617-555-0123 [contact-2].
+
+--- v8 + long-term memory, run 1 --- tier None
+Here is what is still open:
+1. Oct 23: ask the pharmacist whether Tylenol is okay for her knee pain [contact-2].
+2. [flag-2] The furosemide bottle at home is the old 20 mg once-a-day one; the plan says 40 mg twice a day [med-1]. Ask the pharmacy.
+3. [flag-3] The new metoprolol succinate was not in the cabinet [med-2]. It may not be filled yet.
+4. [flag-4] Two bottles of the same medicine: lisinopril and Zestril [med-3]. Ask the pharmacist.
+5. Oct 23: weight was up 2 lb, below the 3-lb warning sign [warn-1]. Recheck this morning.
+
+--- v8 + long-term memory, run 2 --- tier None
+Here is what is still open:
+1. Oct 23: ask the pharmacist if Tylenol is okay for her knee pain [contact-2].
+2. Oct 23: recheck her weight this morning; it was up 2 lb [warn-1].
+3. Open flag: the furosemide bottle at home is the old 20 mg once a day; the plan says 40 mg twice a day [flag-2].
+4. Open flag: no metoprolol succinate bottle found; it may not be filled yet [flag-3].
+5. Open flag: two bottles of the same medicine, lisinopril and Zestril [flag-4].
+Call the pharmacy about items 3 to 5 [contact-2]; the after-hours line is for evenings and weekends [contact-3].
+
+--- v8 + long-term memory, run 3 --- tier None
+Here is what is still open:
+- Oct 23: ask the pharmacist if Tylenol is okay for her knee pain [contact-2].
+- [flag-2] The furosemide bottle at home is the old 20 mg once a day; the plan says 40 mg twice a day [med-1].
+- [flag-3] The new metoprolol succinate was not in the cabinet [med-2].
+- [flag-4] Two bottles of the same medicine: lisinopril and Zestril [med-3].
+- Oct 23: weight was up 2 lb, below the 3-lb warning sign; recheck this morning [warn-1].
+Call the pharmacy about the bottles [contact-2].
+
+Key-word hints (read the replies to confirm):
+  BASELINE v4, no memory, run 1: {'Tylenol question raised': False, 'weight recheck raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 2: {'Tylenol question raised': False, 'weight recheck raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 3: {'Tylenol question raised': False, 'weight recheck raised': False, 'resolved flag called open': True}
+  v8 + long-term memory, run 1: {'Tylenol question raised': True, 'weight recheck raised': True, 'resolved flag called open': False}
+  v8 + long-term memory, run 2: {'Tylenol question raised': True, 'weight recheck raised': True, 'resolved flag called open': False}
+  v8 + long-term memory, run 3: {'Tylenol question raised': True, 'weight recheck raised': True, 'resolved flag called open': False}
+
+Spent $0.0020 (3 calls)

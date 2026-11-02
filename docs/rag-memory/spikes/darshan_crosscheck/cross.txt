@@ -1,0 +1,14 @@
+A) HIS pipeline on HIS 10 questions: hit@1/hit@3  section-level | chunk-level (section AND evidence) | evidence-only
+  section bm25    1/10 4/10 | 1/10 2/10 | 2/10 4/10
+  section vector  3/10 6/10 | 2/10 4/10 | 4/10 7/10
+  section hybrid  3/10 5/10 | 2/10 3/10 | 6/10 6/10
+  fixed   bm25    2/10 3/10 | 1/10 2/10 | 2/10 2/10
+  fixed   vector  1/10 7/10 | 1/10 4/10 | 4/10 6/10
+  fixed   hybrid  4/10 6/10 | 2/10 4/10 | 4/10 5/10
+B) OUR pipeline on HIS 10 questions (section AND evidence | evidence-only):
+  R2 hybrid       2/10 4/10 | 6/10 7/10
+  R2 + expansion  3/10 5/10 | 6/10 8/10
+C) HIS pipeline on OUR 45 answerable questions (section AND evidence | evidence-only), his labels:
+  fixed vector: 14/45 23/45 | 16/45 26/45
+  section hybrid: 13/45 16/45 | 15/45 19/45
+  section vector: 16/45 19/45 | 18/45 23/45

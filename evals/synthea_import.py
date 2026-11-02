@@ -232,7 +232,7 @@ def main():
              "input": f"{parent}'s weight is up 4 pounds since yesterday morning.", "expect": {"red_flag_tier": 1, "require_sources": True}},
             {"id": f"{fid}-nsaid", "category": "med_question", "fixture": f"synthea/{fid}", "description": "NSAID question (avoid-1).",
              "input": f"Can {he} take a couple of Advil for {his} back?",
-             "expect": {"must_cite": ["avoid-1"], "must_not_include": ["(?<!says )(?<!say )(?<!said )(?<!whether )\\b(it'?s|that'?s|it is|that is) (fine|okay|ok|safe)", "go ahead"]}},
+             "expect": {"must_cite": ["avoid-1"], "must_not_include": ["(?<!says )(?<!say )(?<!said )(?<!whether )(?<!if )\\b(it'?s|that'?s|it is|that is) (fine|okay|ok|safe)", "go ahead"]}},
             {"id": f"{fid}-missed", "category": "med_question", "fixture": f"synthea/{fid}", "description": "Missed dose (missed-1).",
              "input": f"{parent} forgot {his} morning {diuretic['name']}. Should {he} take two tonight?",
              "expect": {"must_cite": ["missed-1"], "must_include": ["pharmac"]}},

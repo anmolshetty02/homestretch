@@ -1,0 +1,41 @@
+Today: Thursday, October 22, 2026
+Caregiver: Morning! Anything I should keep in mind today?
+Long-term memory sent to v7:
+{
+ "long_term": {
+  "semantic": {
+   "preferences": [
+    "Use simple words; caregiver's English is not perfect (caregiver, Oct 19, confirmed)"
+   ]
+  },
+  "episodic": [
+   "Oct 19: flag-4 resolved, Zestril bottle put away (caregiver)",
+   "Oct 20: dizzy when standing up, warn-4, tier 1; Maria called the clinic, told to keep watching (caregiver)",
+   "Oct 21: morning weight 148.6 lb (caregiver)"
+  ],
+  "open_items": [
+   "Pelvacor 20 mg bottle found Oct 19, not identified yet: ask the pharmacist (caregiver)"
+  ]
+ },
+ "session_record": "new session, nothing yet"
+}
+
+--- BASELINE (v4, no memory), run 1 --- tier None sources ['appt-1', 'weigh-1', 'diet-1', 'fluid-1', 'flag-1', 'flag-2', 'flag-3', 'flag-4', 'contact-1', 'contact-2']
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Weigh her this morning and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Also, 4 cabinet items still need the pharmacy [flag-1][flag-2][flag-3][flag-4]. Call 617-555-0123 [contact-2].
+
+--- BASELINE (v4, no memory), run 2 --- tier None sources ['appt-1', 'weigh-1', 'diet-1', 'fluid-1', 'flag-1', 'flag-2', 'flag-3', 'flag-4', 'contact-1', 'contact-2']
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Weigh her this morning and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Also, 4 cabinet problems are still open [flag-1][flag-2][flag-3][flag-4]. Call Brighton Pharmacy at 617-555-0123 [contact-2].
+
+--- BASELINE (v4, no memory), run 3 --- tier None sources ['appt-1', 'weigh-1', 'med-1', 'med-2', 'med-3', 'warn-1', 'warn-2', 'warn-3', 'warn-4', 'contact-1']
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Do the morning weigh-in first and write it down [weigh-1]. Watch for weight up 3 pounds in a day, more swelling, or worse breathing; call the clinic today if you see it [warn-1][warn-2][warn-3]. Clinic: 617-555-0110 [contact-1].
+
+--- HOMESTRETCH (v7 + long-term memory), run 1 --- tier None sources ['appt-1', 'contact-1', 'flag-1', 'flag-2', 'flag-3', 'flag-4', 'weigh-1', 'warn-1', 'warn-2', 'warn-3', 'warn-4']
+Yes. She has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Bring the open cabinet questions: the old metoprolol tartrate bottle [flag-1], the furosemide bottle that is the old 20 mg once-a-day one [flag-2], the missing new metoprolol succinate [flag-3], and the two lisinopril bottles [flag-4]. Weigh her this morning and write it down [weigh-1]. Call the clinic today at 617-555-0110 if her weight is up 3 pounds in a day or 5 in a week, swelling gets worse, breathing gets worse, or she feels dizzy standing [warn-1][warn-2][warn-3][warn-4].
+
+--- HOMESTRETCH (v7 + long-term memory), run 2 --- tier None sources ['appt-1', 'flag-1', 'flag-2', 'flag-3', 'flag-4', 'contact-1', 'contact-2', 'warn-1', 'warn-2', 'warn-3', 'warn-4']
+Yes. She has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Bring the open cabinet items to ask about: the old metoprolol tartrate bottle [flag-1], the old 20 mg furosemide bottle [flag-2], the missing new metoprolol succinate [flag-3], and the two lisinopril/Zestril bottles [flag-4]. Call the clinic at 617-555-0110 with questions [contact-1]. Keep watching for weight up 3 pounds in a day or 5 in a week, more swelling, worse shortness of breath, or dizziness [warn-1][warn-2][warn-3][warn-4].
+
+--- HOMESTRETCH (v7 + long-term memory), run 3 --- tier None sources ['appt-1', 'contact-1', 'flag-1', 'flag-2', 'flag-3', 'flag-4', 'warn-1', 'warn-2', 'warn-3', 'warn-4', 'weigh-1']
+She has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Bring the open cabinet items to ask about: the old metoprolol tartrate bottle [flag-1], the old furosemide bottle [flag-2], the missing new metoprolol succinate [flag-3], and the two lisinopril bottles [flag-4]. Also do her morning weigh-in [weigh-1]. Call the clinic today if weight is up 3 pounds in a day or 5 in a week, or if swelling or breathlessness gets worse [warn-1][warn-2][warn-3].
+
+Spent $0.0043 (6 calls)

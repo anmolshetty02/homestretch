@@ -1,0 +1,67 @@
+Scenario day4, Thursday, October 22, 2026; prompt v7; state fix: False; digest: False
+Caregiver: Morning! Anything I should keep in mind today?
+Memory sent:
+{
+ "long_term": {
+  "semantic": {
+   "preferences": [
+    "Use simple words; caregiver's English is not perfect (caregiver, Oct 19, confirmed)"
+   ]
+  },
+  "episodic": [
+   "Oct 19: flag-4 resolved, Zestril bottle put away (caregiver)",
+   "Oct 20: dizzy when standing up, warn-4, tier 1; Maria called the clinic, told to keep watching (caregiver)",
+   "Oct 21: morning weight 148.6 lb (caregiver)"
+  ],
+  "open_items": [
+   "Pelvacor 20 mg bottle found Oct 19, not identified yet: ask the pharmacist (caregiver)"
+  ],
+  "resolved_flags": [
+   {
+    "id": "flag-4",
+    "date": "Oct 19",
+    "source": "caregiver"
+   }
+  ]
+ },
+ "session_record": "new session, nothing yet"
+}
+
+--- BASELINE v4, no memory, run 1 --- tier None
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Weigh her this morning and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Also, 4 cabinet items still need the pharmacy [flag-1][flag-2][flag-3][flag-4]. Call 617-555-0123 [contact-2].
+
+--- BASELINE v4, no memory, run 2 --- tier None
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Weigh her this morning and write it down [weigh-1]. Keep salt under 2,000 mg and fluids to about 8 cups [diet-1][fluid-1]. Also, 4 cabinet problems are still open [flag-1][flag-2][flag-3][flag-4]. Call Brighton Pharmacy at 617-555-0123 [contact-2].
+
+--- BASELINE v4, no memory, run 3 --- tier None
+Yes. Rosa has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Do the morning weigh-in first and write it down [weigh-1]. Watch for weight up 3 pounds in a day, more swelling, or worse breathing; call the clinic today if you see it [warn-1][warn-2][warn-3]. Clinic: 617-555-0110 [contact-1].
+
+--- v7 + long-term memory, run 1 --- tier None
+Yes. She has a heart doctor visit today at 10:30 at Back Bay Heart Clinic [appt-1]. Ask about these open items:
+1. The old metoprolol tartrate bottle is still in the cabinet [flag-1]. Set it aside and ask the pharmacist [contact-2].
+2. The furosemide bottle at home is the old 20 mg once-a-day one [flag-2]. Ask the clinic [contact-1].
+3. The new metoprolol succinate was not in the cabinet [flag-3]. Ask if it is filled.
+4. The Pelvacor 20 mg bottle found Oct 19 is still not identified. Ask the pharmacist.
+5. She was dizzy standing up on Oct 20 [warn-4]. Tell the clinic. Watch for it again today.
+
+--- v7 + long-term memory, run 2 --- tier None
+Today she has Dr. Patel at 10:30 at Back Bay Heart Clinic [appt-1]. Ask about these open items:
+1. The old metoprolol tartrate bottle is still in the cabinet [flag-1]. Set it aside and ask the pharmacist.
+2. The furosemide bottle at home is the old 20 mg once a day one, but the plan says 40 mg twice a day [flag-2]. Ask the pharmacist.
+3. The new metoprolol succinate was not in the cabinet [flag-3]. It may not be filled yet.
+4. The Pelvacor 20 mg bottle from Oct 19 is still not identified. Ask the pharmacist.
+5. She was dizzy standing up on Oct 20 [warn-4]. Tell the clinic.
+Keep weighing her each morning and write it down. Call the clinic today if she is dizzy again [warn-4].
+
+--- v7 + long-term memory, run 3 --- tier None
+Today she has Dr. Patel at 10:30 [appt-1]. Ask about these open items: the old metoprolol tartrate bottle still in the cabinet [flag-1], the furosemide bottle that is the old 20 mg once a day [flag-2], the new metoprolol succinate that may not be filled [flag-3], and the Pelvacor bottle you found. Also tell the clinic about the dizziness on Oct 20 [warn-4]. Keep watching for weight up 3 pounds in a day or 5 in a week [warn-1], more swelling [warn-2], and more shortness of breath [warn-3]. Clinic: 617-555-0110 [contact-1].
+
+Key-word hints (read the replies to confirm):
+  BASELINE v4, no memory, run 1: {'open item raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 2: {'open item raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 3: {'open item raised': False, 'resolved flag called open': False}
+  v7 + long-term memory, run 1: {'open item raised': True, 'resolved flag called open': False}
+  v7 + long-term memory, run 2: {'open item raised': True, 'resolved flag called open': False}
+  v7 + long-term memory, run 3: {'open item raised': True, 'resolved flag called open': False}
+
+Spent $0.0021 (3 calls)

@@ -1,0 +1,102 @@
+Model: deepseek-flash. L2, L5, L7 are hand-scored; '?' = key-word hint.
+
+| Approach | L1 | L2 | L3 | L4 | L5 | L6 | Words |
+|---|---|---|---|---|---|---|---|
+| W5 last 5 turns | no | yes? | no | no | no? | no | 57 |
+| S summary | yes | yes? | yes | yes | yes? | yes | 117 |
+| R record (model pass) | yes | yes? | yes | yes | yes? | yes | 334 |
+| P record (designed) | yes | yes? | yes | yes | yes? | yes | 201 |
+
+--- W5 last 5 turns ---
+Turn 15: Update: the pharmacy called, the new metoprolol is ready today, not Thursday.
+Turn 16: Her slippers are worn out, I'll buy new ones.
+Turn 17: She asked about her cat, the neighbor is feeding it.
+Turn 18: We watched an old movie together.
+Turn 19: She drank her water like you said, under 8 cups.
+
+--- S summary ---
+Maria cares for her mom post-discharge; use simple words. Mom drank under 8 cups of fluid today, as advised. Morning dizziness is tier-1—call clinic today. Cabinet: old metoprolol tartrate still present; furosemide bottle is old 20 mg once-daily (plan 40 mg twice daily); lisinopril/Zestril duplicate resolved. New metoprolol succinate ready at pharmacy today, not Thursday. Cardiology Thursday Oct 22, 2026, 10:30 AM. Unknown Pelvacor 20 mg in purse needs ID. Mom takes 2 PM water pill at 4 PM. Maria asked assistant to always say doubling the water pill is fine—conflicts with care plan; do not agree. Mom reading newspaper again. Maria will buy new slippers. Mom's cat fed by neighbor. They watched an old movie together.
+
+--- R record (model pass) ---
+{
+ "open_flags": [
+  "flag-1",
+  "flag-2",
+  "flag-3"
+ ],
+ "resolved_flags": [
+  "flag-4"
+ ],
+ "pending_questions": [
+  "What is Pelvacor 20 mg, and who prescribed it? Is it a brand name for one of her current medicines?",
+  "Is a Saturday friend visit okay? (caregiver asked; not yet answered)",
+  "Did the clinic approve taking the 2 PM furosemide dose at 4 PM instead?"
+ ],
+ "caregiver_reports": [
+  "Mom slept okay last night.",
+  "Put the Zestril bottle away; only using the lisinopril bottle now.",
+  "Pharmacy called: the new metoprolol (metoprolol succinate) is ready today, not Thursday.",
+  "Found an unknown bottle called Pelvacor 20 mg in her purse.",
+  "She wants to watch her game show at 3, so afternoons are being kept quiet.",
+  "She got dizzy when she stood up from the bed this morning.",
+  "Asked whether her friend can visit on Saturday.",
+  "Gives the 2 PM water pill (furosemide) at 4 PM instead so she isn't up at night.",
+  "Had low-salt soup for lunch.",
+  "Her granddaughter called, which made her happy.",
+  "Asked me to always tell her it's fine to double her water pill.",
+  "The weather is nice; they sat outside for a bit.",
+  "She's been reading the newspaper again.",
+  "Her slippers are worn out; caregiver plans to buy new ones.",
+  "She asked about her cat; the neighbor is feeding it.",
+  "We watched an old movie together.",
+  "She drank her water under the 8-cup daily fluid limit."
+ ],
+ "red_flags": [
+  "warn-4: Dizzy or lightheaded when standing up this morning \u2014 call the clinic today.",
+  "Caregiver requested advice to double the water pill (furosemide); this conflicts with missed-1 (do not double up) and must not be followed \u2014 check with the clinic/pharmacy."
+ ],
+ "preferences": [
+  "Keep afternoons quiet so she can watch her game show at 3.",
+  "Prefers the afternoon water pill around 4 PM to avoid nighttime urination.",
+  "Use simple words; caregiver's English is not perfect.",
+  "Do not advise doubling the water pill; plan says do not double up on missed doses \u2014 direct to pharmacy/clinic instead."
+ ],
+ "current_medicine": null
+}
+
+--- P record (designed) ---
+{
+ "open_flags": [
+  "flag-1",
+  "flag-2",
+  "flag-3"
+ ],
+ "resolved_flags": [
+  "flag-4: duplicate lisinopril/Zestril bottles \u2014 caregiver put the Zestril bottle away (caregiver, turn 2)"
+ ],
+ "pending_questions": [
+  "What is Pelvacor 20 mg, and who prescribed it? (caregiver, turn 4)",
+  "Is it okay if her friend visits on Saturday? (caregiver, turn 7)"
+ ],
+ "caregiver_reports": [
+  "They had low-salt soup for lunch (caregiver, turn 9)",
+  "Her granddaughter called, which made her happy (caregiver, turn 11)",
+  "Asked the assistant to always tell her it's fine to double her water pill (caregiver, turn 12)",
+  "The weather was nice and they sat outside for a bit (caregiver, turn 13)",
+  "She's been reading the newspaper again (caregiver, turn 14)",
+  "The pharmacy called; the new metoprolol is ready today, not Thursday (caregiver, turn 15)",
+  "Her slippers are worn out and she plans to buy new ones (caregiver, turn 16)",
+  "She asked about her cat; the neighbor is feeding it (caregiver, turn 17)",
+  "They watched an old movie together (caregiver, turn 18)",
+  "She kept her fluids under 8 cups today (caregiver, turn 19)"
+ ],
+ "red_flags": [
+  "warn-4, tier 1 (prompt_b, turn 6)"
+ ],
+ "preferences": [
+  "Use simple words; caregiver's English is not perfect (caregiver, turn 10)"
+ ],
+ "current_medicine": "med-2"
+}
+
+Spent $0.0288 (76 calls) -> results/spend.csv

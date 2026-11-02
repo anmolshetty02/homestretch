@@ -1,0 +1,1172 @@
+[
+ {
+  "id": "q01",
+  "split": "dev",
+  "question": "Can she take Advil with her water pill?",
+  "evidence": {
+   "ibuprofen": "diuretic",
+   "furosemide": "indomethacin|nsaid|anti-inflammatory"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ]
+  ]
+ },
+ {
+  "id": "q02",
+  "split": "dev",
+  "question": "Why is she peeing so much since she came home?",
+  "evidence": {
+   "furosemide": "diuresis|diuretic effect"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "warnings"
+   ],
+   [
+    "furosemide",
+    "clinical_pharmacology"
+   ],
+   [
+    "furosemide",
+    "geriatric_use"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "furosemide",
+    "dosage_and_administration"
+   ]
+  ]
+ },
+ {
+  "id": "q03",
+  "split": "dev",
+  "question": "Her ears are ringing. Could that be one of her pills?",
+  "evidence": {
+   "furosemide": "tinnitus|ototox"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "warnings"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q04",
+  "split": "dev",
+  "question": "She has a dry cough that won't go away.",
+  "evidence": {
+   "lisinopril": "\\bcough"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q05",
+  "split": "dev",
+  "question": "Her lips look puffy. Is that from her blood pressure pill?",
+  "evidence": {
+   "lisinopril": "angioedema"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "contraindications"
+   ],
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q06",
+  "split": "dev",
+  "question": "Can she use a salt substitute on her food?",
+  "evidence": {
+   "lisinopril": "salt substitute"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q07",
+  "split": "dev",
+  "question": "Can she just stop the heart rate pill if she feels fine?",
+  "evidence": {
+   "metoprolol_succinate": "abrupt|cessation"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "indications_and_usage"
+   ],
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ]
+  ]
+ },
+ {
+  "id": "q08",
+  "split": "dev",
+  "question": "Her pulse is slow, about 52. Is that the metoprolol?",
+  "evidence": {
+   "metoprolol_succinate": "bradycard"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "dosage_and_administration"
+   ],
+   [
+    "metoprolol_succinate",
+    "contraindications"
+   ],
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ],
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "drug_interactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "use_in_specific_populations"
+   ],
+   [
+    "metoprolol_succinate",
+    "pregnancy"
+   ],
+   [
+    "metoprolol_succinate",
+    "overdosage"
+   ]
+  ]
+ },
+ {
+  "id": "q09",
+  "split": "dev",
+  "question": "She gets dizzy when she stands up.",
+  "evidence": {
+   "furosemide": "dizz|orthostatic|lighthead",
+   "metoprolol_succinate": "dizz|orthostatic|lighthead",
+   "lisinopril": "dizz|orthostatic|lighthead"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "clinical_pharmacology"
+   ],
+   [
+    "metoprolol_succinate",
+    "pharmacodynamics"
+   ],
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q10",
+  "split": "dev",
+  "question": "Does the water pill make her lose potassium?",
+  "evidence": {
+   "furosemide": "hypokal|potassium"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "warnings"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ],
+   [
+    "furosemide",
+    "information_for_patients"
+   ],
+   [
+    "furosemide",
+    "laboratory_tests"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "furosemide",
+    "overdosage"
+   ]
+  ]
+ },
+ {
+  "id": "q11",
+  "split": "dev",
+  "question": "Can she take Aleve for her back with her heart problems?",
+  "evidence": {
+   "naproxen": "heart failure|heart attack|stroke|heart disease"
+  },
+  "accept": [
+   [
+    "naproxen",
+    "warnings"
+   ],
+   [
+    "naproxen",
+    "ask_doctor"
+   ],
+   [
+    "naproxen",
+    "ask_doctor_or_pharmacist"
+   ],
+   [
+    "naproxen",
+    "stop_use"
+   ]
+  ]
+ },
+ {
+  "id": "q12",
+  "split": "dev",
+  "question": "Can she drink grapefruit juice with Lipitor?",
+  "evidence": {
+   "atorvastatin": "grapefruit"
+  },
+  "accept": [
+   [
+    "atorvastatin",
+    "warnings_and_cautions"
+   ],
+   [
+    "atorvastatin",
+    "drug_interactions"
+   ],
+   [
+    "atorvastatin",
+    "clinical_pharmacology"
+   ],
+   [
+    "atorvastatin",
+    "pharmacokinetics"
+   ],
+   [
+    "atorvastatin",
+    "information_for_patients"
+   ],
+   [
+    "atorvastatin",
+    "patient_medication_information"
+   ]
+  ]
+ },
+ {
+  "id": "q13",
+  "split": "dev",
+  "question": "Her legs ache. Her friend says it's the atorvastatin.",
+  "evidence": {
+   "atorvastatin": "myopathy|muscle pain|muscle ache"
+  },
+  "accept": [
+   [
+    "atorvastatin",
+    "warnings_and_cautions"
+   ],
+   [
+    "atorvastatin",
+    "adverse_reactions"
+   ],
+   [
+    "atorvastatin",
+    "drug_interactions"
+   ],
+   [
+    "atorvastatin",
+    "use_in_specific_populations"
+   ],
+   [
+    "atorvastatin",
+    "pediatric_use"
+   ],
+   [
+    "atorvastatin",
+    "geriatric_use"
+   ],
+   [
+    "atorvastatin",
+    "information_for_patients"
+   ],
+   [
+    "atorvastatin",
+    "patient_medication_information"
+   ]
+  ]
+ },
+ {
+  "id": "q14",
+  "split": "dev",
+  "question": "Does amlodipine make your ankles swell?",
+  "evidence": {
+   "amlodipine": "edema|swelling"
+  },
+  "accept": [
+   [
+    "amlodipine",
+    "adverse_reactions"
+   ],
+   [
+    "amlodipine",
+    "drug_interactions"
+   ],
+   [
+    "amlodipine",
+    "spl_patient_package_insert"
+   ]
+  ],
+  "note": "answer-key fix after round 1: evidence was 'edema' only; patient insert says 'swelling'"
+ },
+ {
+  "id": "q15",
+  "split": "dev",
+  "question": "Can the water pill make her burn in the sun?",
+  "evidence": {
+   "furosemide": "photosens|sunlight"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q16",
+  "split": "dev",
+  "question": "What are the side effects of Zorvexa?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q17",
+  "split": "dev",
+  "question": "Is it okay for her to do some gardening after discharge?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q18",
+  "split": "dev",
+  "question": "Can she fly on a plane to see her sister next week?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q19",
+  "split": "heldout",
+  "question": "Can she have a glass of wine with her pills?",
+  "evidence": {
+   "furosemide": "alcohol",
+   "metoprolol_succinate": "alcohol",
+   "lisinopril": "alcohol"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q20",
+  "split": "heldout",
+  "question": "Can Motrin hurt her stomach?",
+  "evidence": {
+   "ibuprofen": "stomach bleed|ulcer"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ],
+   [
+    "ibuprofen",
+    "stop_use"
+   ]
+  ]
+ },
+ {
+  "id": "q21",
+  "split": "heldout",
+  "question": "Her potassium came back high. Which pill does that?",
+  "evidence": {
+   "furosemide": "hyperkal",
+   "metoprolol_succinate": "hyperkal",
+   "lisinopril": "hyperkal"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "use_in_specific_populations"
+   ],
+   [
+    "lisinopril",
+    "pregnancy"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q22",
+  "split": "heldout",
+  "question": "Does Toprol make you tired?",
+  "evidence": {
+   "metoprolol_succinate": "tired|fatigue"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q23",
+  "split": "heldout",
+  "question": "She takes lithium from another doctor. Does that matter with her heart pills?",
+  "evidence": {
+   "furosemide": "lithium",
+   "metoprolol_succinate": "lithium",
+   "lisinopril": "lithium"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ]
+  ]
+ },
+ {
+  "id": "q24",
+  "split": "heldout",
+  "question": "What should she do if she misses a Lipitor dose?",
+  "evidence": {
+   "atorvastatin": "miss"
+  },
+  "accept": [
+   [
+    "atorvastatin",
+    "dosage_and_administration"
+   ],
+   [
+    "atorvastatin",
+    "information_for_patients"
+   ],
+   [
+    "atorvastatin",
+    "patient_medication_information"
+   ]
+  ]
+ },
+ {
+  "id": "q25",
+  "split": "heldout",
+  "question": "Can she take Aleve with her blood pressure pill?",
+  "evidence": {
+   "naproxen": "blood pressure|diuretic|heart",
+   "lisinopril": "nsaid|anti-inflammatory"
+  },
+  "accept": [
+   [
+    "naproxen",
+    "warnings"
+   ],
+   [
+    "naproxen",
+    "do_not_use"
+   ],
+   [
+    "naproxen",
+    "ask_doctor"
+   ],
+   [
+    "naproxen",
+    "ask_doctor_or_pharmacist"
+   ],
+   [
+    "naproxen",
+    "stop_use"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "clinical_pharmacology"
+   ],
+   [
+    "lisinopril",
+    "pharmacodynamics"
+   ]
+  ]
+ },
+ {
+  "id": "q26",
+  "split": "heldout",
+  "question": "Should the heart rate pill be taken with food?",
+  "evidence": {
+   "metoprolol_succinate": "\\bfood|meal"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "clinical_pharmacology"
+   ],
+   [
+    "metoprolol_succinate",
+    "pharmacokinetics"
+   ],
+   [
+    "metoprolol_succinate",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q27",
+  "split": "heldout",
+  "question": "How much Kelvanide should she take?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q28",
+  "split": "heldout",
+  "question": "Is it safe for her to take a hot bath?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q29",
+  "split": "heldout2",
+  "question": "Is it okay to skip the Toprol on days her pulse is low?",
+  "evidence": {
+   "metoprolol_succinate": "bradycard"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "dosage_and_administration"
+   ],
+   [
+    "metoprolol_succinate",
+    "contraindications"
+   ],
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ],
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "drug_interactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "use_in_specific_populations"
+   ],
+   [
+    "metoprolol_succinate",
+    "pregnancy"
+   ],
+   [
+    "metoprolol_succinate",
+    "overdosage"
+   ]
+  ]
+ },
+ {
+  "id": "q30",
+  "split": "heldout2",
+  "question": "Can the heart rate pill make her hands and feet cold?",
+  "evidence": {
+   "metoprolol_succinate": "cold extremit|raynaud"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q31",
+  "split": "heldout2",
+  "question": "She still has some Lopressor left. What is that one for?",
+  "evidence": {
+   "metoprolol_tartrate": "(hand-set)"
+  },
+  "accept": [
+   [
+    "metoprolol_tartrate",
+    "indications_and_usage"
+   ]
+  ]
+ },
+ {
+  "id": "q32",
+  "split": "heldout2",
+  "question": "Can she take Advil for a headache with her blood pressure pill?",
+  "evidence": {
+   "ibuprofen": "blood pressure|heart",
+   "lisinopril": "nsaid|anti-inflammatory"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "ibuprofen",
+    "do_not_use"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor_or_pharmacist"
+   ],
+   [
+    "ibuprofen",
+    "stop_use"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "clinical_pharmacology"
+   ],
+   [
+    "lisinopril",
+    "pharmacodynamics"
+   ]
+  ]
+ },
+ {
+  "id": "q33",
+  "split": "heldout2",
+  "question": "Why does the water pill make her so thirsty?",
+  "evidence": {
+   "furosemide": "thirst|dry mouth"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ]
+  ]
+ },
+ {
+  "id": "q34",
+  "split": "heldout2",
+  "question": "Could her blood pressure pill be making her dizzy?",
+  "evidence": {
+   "lisinopril": "dizz|lighthead"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q35",
+  "split": "heldout2",
+  "question": "Is Bravacil safe with her water pill?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q36",
+  "split": "heldout2",
+  "question": "Can she go to church on Sunday?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q37",
+  "split": "heldout3",
+  "question": "Can her water pill make her feel weak or crampy?",
+  "evidence": {
+   "furosemide": "muscle cramp|muscle spasm|weakness"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ],
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q38",
+  "split": "heldout3",
+  "question": "Could the blood pressure pill be why her tongue feels swollen?",
+  "evidence": {
+   "lisinopril": "tongue"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q39",
+  "split": "heldout3",
+  "question": "Will the heart rate pill make her more short of breath?",
+  "evidence": {
+   "metoprolol_succinate": "bronchospas|shortness of breath|dyspnea"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ],
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "overdosage"
+   ],
+   [
+    "metoprolol_succinate",
+    "clinical_pharmacology"
+   ],
+   [
+    "metoprolol_succinate",
+    "pharmacodynamics"
+   ],
+   [
+    "metoprolol_succinate",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q40",
+  "split": "heldout3",
+  "question": "Why does the water pill make her dizzy in the morning?",
+  "evidence": {
+   "furosemide": "dizz|orthostatic|lighthead"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q41",
+  "split": "heldout3",
+  "question": "Can lisinopril make her blood sugar drop?",
+  "evidence": {
+   "lisinopril": "hypoglycemi"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ],
+   [
+    "lisinopril",
+    "drug_interactions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "q42",
+  "split": "heldout3",
+  "question": "Can the heart rate pill hide the signs of low blood sugar?",
+  "evidence": {
+   "metoprolol_succinate": "mask"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ]
+  ]
+ },
+ {
+  "id": "q43",
+  "split": "heldout3",
+  "question": "Is it safe for her to take Motrin every day for her knees?",
+  "evidence": {
+   "ibuprofen": "stomach bleed|heart attack|stroke|longer than"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor_or_pharmacist"
+   ],
+   [
+    "ibuprofen",
+    "stop_use"
+   ]
+  ]
+ },
+ {
+  "id": "q44",
+  "split": "heldout3",
+  "question": "Could Aleve make her swelling worse?",
+  "evidence": {
+   "naproxen": "swelling|edema|fluid|heart failure"
+  },
+  "accept": [
+   [
+    "naproxen",
+    "warnings"
+   ],
+   [
+    "naproxen",
+    "stop_use"
+   ]
+  ]
+ },
+ {
+  "id": "q45",
+  "split": "heldout3",
+  "question": "Can she take Tylenol for pain?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q46",
+  "split": "heldout3",
+  "question": "Is Trivolam okay with her heart pills?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q47",
+  "split": "heldout3",
+  "question": "What should I cook for her birthday dinner?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q48",
+  "split": "heldout4",
+  "question": "Can the blood pressure pill change how food tastes?",
+  "evidence": {
+   "lisinopril": "taste|dysgeusia"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q49",
+  "split": "heldout4",
+  "question": "Could the water pill bring on a gout flare in her toe?",
+  "evidence": {
+   "furosemide": "gout|hyperuricemia|uric acid"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "general_precautions"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q50",
+  "split": "heldout4",
+  "question": "Can the heart rate pill give her bad dreams?",
+  "evidence": {
+   "metoprolol_succinate": "nightmare|dream|insomnia|sleep disturb"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q51",
+  "split": "heldout4",
+  "question": "Can Advil push her blood pressure up?",
+  "evidence": {
+   "ibuprofen": "blood pressure"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ]
+  ]
+ },
+ {
+  "id": "q52",
+  "split": "heldout4",
+  "question": "Her skin is itchy. Could it be the blood pressure pill?",
+  "evidence": {
+   "lisinopril": "rash|pruritus"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q53",
+  "split": "heldout4",
+  "question": "Can Aleve upset her stomach?",
+  "evidence": {
+   "naproxen": "stomach|ulcer|bleed"
+  },
+  "accept": [
+   [
+    "naproxen",
+    "warnings"
+   ],
+   [
+    "naproxen",
+    "ask_doctor"
+   ],
+   [
+    "naproxen",
+    "when_using"
+   ],
+   [
+    "naproxen",
+    "stop_use"
+   ]
+  ]
+ },
+ {
+  "id": "q54",
+  "split": "heldout4",
+  "question": "Could the heart rate pill be making her feel down?",
+  "evidence": {
+   "metoprolol_succinate": "depress"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ],
+   [
+    "metoprolol_succinate",
+    "use_in_specific_populations"
+   ],
+   [
+    "metoprolol_succinate",
+    "pregnancy"
+   ]
+  ]
+ },
+ {
+  "id": "q55",
+  "split": "heldout4",
+  "question": "Could the water pill cause a skin rash?",
+  "evidence": {
+   "furosemide": "rash|dermatitis|pruritus"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "q56",
+  "split": "heldout4",
+  "question": "Is Zentravil safe with her water pill?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "q57",
+  "split": "heldout4",
+  "question": "Can she get her flu shot this week?",
+  "evidence": {},
+  "accept": []
+ }
+]

@@ -13,6 +13,7 @@ import datetime as dt
 import glob
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import yaml
@@ -46,6 +47,13 @@ def collect_ids(fixture):
     return ids
 
 
+def unstated_names(fixture, said):
+    """Patient and caregiver names the caregiver has not written in this chat (the reply should not use them)."""
+    p = fixture["patient_profile"]
+    names = p.get("name", "").split() + [p.get("preferred_name", "")] + [c.get("name", "") for c in p.get("approved_caregivers", [])]
+    return sorted({n for n in names if n and not re.search(rf"\b{re.escape(n)}\b", said, re.I)})
+
+
 NO_DIFF = "No cabinet check has been run yet."
 
 
@@ -56,6 +64,10 @@ def render(template, fixture, case):
         "care_plan": json.dumps(fixture["care_plan"]),
         # diff cases must not see the answer key
         "cabinet_diff": NO_DIFF if "cabinet" in case else json.dumps(fixture["cabinet_diff"]),
+        # v6+ slots (Assignment 3); the A2 suites run them empty. Prompts without the slots are unchanged.
+        "memory": "No session notes yet. No saved preferences.",
+        "references": "<references>none</references>",
+        "follow_ups": "None.",
     }
     for key, val in values.items():
         template = template.replace("{{" + key + "}}", val)
@@ -224,7 +236,8 @@ def main():
                         reply = c_obj["revised"]
                     else:
                         critic_info = {"verdict": (c_obj or {}).get("verdict", "unparsed")}
-                checks = run_checks(reply, case, fixture_for(case)[1], text)
+                said = " ".join([text] + [h.get("content", "") for h in case.get("history", []) or [] if h.get("role") == "user"])
+                checks = run_checks(reply, case, fixture_for(case)[1], text, unstated_names(fixture_for(case)[0], said))
                 record = {
                     "case": case["id"], "category": case["category"], "variant": kind, "repeat": rep,
                     "expect": case.get("expect", {}),

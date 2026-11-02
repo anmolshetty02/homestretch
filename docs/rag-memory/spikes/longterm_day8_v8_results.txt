@@ -1,0 +1,80 @@
+Scenario day8, Monday, October 26, 2026; prompt v8; state fix: True; digest: True
+Caregiver: Hey, we're starting the week. Where do we stand?
+Memory sent:
+{
+ "raise_first": [
+  "Ask the clinic whether she can restart her evening walk (open since Oct 25)",
+  "Check her ankles this morning: a bit puffy on Oct 25 evening (recheck due Oct 26)"
+ ],
+ "long_term": {
+  "semantic": {
+   "preferences": [
+    "Short answers (caregiver, Oct 20, confirmed)"
+   ]
+  },
+  "episodic": [
+   "Oct 24: new metoprolol succinate picked up from the pharmacy (caregiver)",
+   "Oct 25: ankles a bit puffy in the evening, below the warning sign; check again Oct 26 morning (caregiver)"
+  ],
+  "open_items": [
+   "Ask the clinic whether she can restart her evening walk (caregiver, Oct 25)"
+  ],
+  "resolved_flags": [
+   {
+    "id": "flag-3",
+    "date": "Oct 24",
+    "source": "caregiver"
+   }
+  ]
+ },
+ "session_record": "new session, nothing yet"
+}
+
+--- BASELINE v4, no memory, run 1 --- tier None
+Four cabinet items are still open. Set aside the old metoprolol tartrate bottle and ask the pharmacist [flag-1]. The furosemide bottle at home is the old 20 mg once-a-day one, not the plan's 40 mg twice a day [flag-2]. The new metoprolol succinate was not found, so it may not be filled yet [flag-3]. There are two lisinopril bottles, one labeled Zestril [flag-4]. Call Brighton Pharmacy at 617-555-0123 [contact-2]. Keep weighing every morning [weigh-1].
+
+--- BASELINE v4, no memory, run 2 --- tier None
+Four cabinet items are still open. Set aside the old metoprolol tartrate bottle and ask the pharmacist [flag-1]. The furosemide bottle is the old 20 mg once-a-day one; the plan says 40 mg twice a day, so call the pharmacy before using it [flag-2][med-1]. The new metoprolol succinate may not be filled yet [flag-3]. There are two lisinopril bottles, lisinopril and Zestril; ask the pharmacist which to keep [flag-4]. Keep weighing every morning [weigh-1]. Clinic: 617-555-0110 [contact-1]. Pharmacy: 617-555-0123 [contact-2].
+
+--- BASELINE v4, no memory, run 3 --- tier None
+Four things from the cabinet check are still open. Most urgent first:
+1. [flag-1] The old metoprolol tartrate bottle is still there [stopped-1]. Set it aside and ask the pharmacist.
+2. [flag-2] The furosemide bottle is the old 20 mg once-a-day one, not the plan's 40 mg twice a day [med-1]. Call the pharmacy [contact-2] before using it.
+3. [flag-3] The new metoprolol succinate was not in the cabinet [med-2]. It may not be filled yet.
+4. [flag-4] Two bottles of the same pill: lisinopril and Zestril [med-3]. Ask the pharmacist which to keep.
+The lisinopril itself matches the plan. Call the pharmacy at 617-555-0123, or the clinic at 617-555-0110 with questions.
+
+--- v8 + long-term memory, run 1 --- tier None
+Here is where things stand:
+1. Ask the clinic if she can restart her evening walk (open since Oct 25) [contact-1].
+2. Check her ankles this morning; they were a bit puffy Oct 25 evening [warn-2].
+3. The old metoprolol tartrate bottle is still in the cabinet [flag-1]. Set it aside and ask the pharmacist [contact-2].
+4. The furosemide bottle at home is the old 20 mg once-a-day one; the plan says 40 mg twice a day [flag-2]. Call the pharmacy [contact-2].
+5. Two lisinopril bottles, lisinopril and Zestril, are the same medicine [flag-4]. Ask the pharmacist [contact-2].
+
+--- v8 + long-term memory, run 2 --- tier None
+Here is what is still open:
+1. Oct 25: ask the clinic if she can restart her evening walk [contact-1].
+2. Oct 25: her ankles were a bit puffy. Check them this morning [warn-2].
+3. Cabinet: the old metoprolol tartrate bottle is still there. Set it aside and ask the pharmacist [flag-1].
+4. Cabinet: the furosemide bottle is the old 20 mg once-a-day one, not the plan's 40 mg twice a day. Call the pharmacy [flag-2][med-1].
+5. Cabinet: lisinopril and Zestril are the same medicine in two bottles. Ask the pharmacist [flag-4].
+Also keep watching her morning weight and any new shortness of breath [warn-1][warn-3].
+
+--- v8 + long-term memory, run 3 --- tier None
+Open items to follow up on:
+1. Oct 25: ask the clinic if she can restart her evening walk [contact-1].
+2. Oct 25: her ankles were a bit puffy. Check them again this morning.
+3. The old metoprolol tartrate bottle is still in the cabinet. Set it aside and ask the pharmacist [flag-1].
+4. The furosemide bottle at home is the old 20 mg once-a-day one. The plan says 40 mg twice a day. Call the pharmacy [flag-2].
+5. There are two lisinopril bottles, lisinopril and Zestril. Ask the pharmacist [flag-4].
+
+Key-word hints (read the replies to confirm):
+  BASELINE v4, no memory, run 1: {'walk question raised': False, 'ankle check raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 2: {'walk question raised': False, 'ankle check raised': False, 'resolved flag called open': True}
+  BASELINE v4, no memory, run 3: {'walk question raised': False, 'ankle check raised': False, 'resolved flag called open': True}
+  v8 + long-term memory, run 1: {'walk question raised': True, 'ankle check raised': True, 'resolved flag called open': False}
+  v8 + long-term memory, run 2: {'walk question raised': True, 'ankle check raised': True, 'resolved flag called open': False}
+  v8 + long-term memory, run 3: {'walk question raised': True, 'ankle check raised': True, 'resolved flag called open': False}
+
+Spent $0.0020 (3 calls)

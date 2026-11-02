@@ -1,0 +1,166 @@
+By section: 315 chunks
+Fixed 800/100: 495 chunks
+
+
+======== Round 1 (pre-registered) ========
+
+| Chunking | Search | Dev hit@1 | Dev hit@3 |
+|---|---|---|---|
+| By section | BM25 | 5/15 | 7/15 |
+| By section | Vector | 7/15 | 8/15 |
+| By section | Hybrid (RRF) | 6/15 | 9/15 |
+| Fixed 800/100 | BM25 | 4/15 | 6/15 |
+| Fixed 800/100 | Vector | 5/15 | 8/15 |
+| Fixed 800/100 | Hybrid (RRF) | 7/15 | 9/15 |
+
+Chosen on dev (hit@3, then hit@1): Fixed 800/100 + Hybrid (RRF)
+
+| id | split | answerable | unknown name (RxNav) | top cosine | hit@3 | question |
+|---|---|---|---|---|---|---|
+| q01 | dev | yes | - | 0.635 | 0 | Can she take Advil with her water pill? |
+| q02 | dev | yes | - | 0.595 | 1 | Why is she peeing so much since she came home? |
+| q03 | dev | yes | - | 0.656 | 1 | Her ears are ringing. Could that be one of her pills? |
+| q04 | dev | yes | - | 0.591 | 0 | She has a dry cough that won't go away. |
+| q05 | dev | yes | - | 0.694 | 1 | Her lips look puffy. Is that from her blood pressure pill? |
+| q06 | dev | yes | - | 0.601 | 0 | Can she use a salt substitute on her food? |
+| q07 | dev | yes | - | 0.684 | 0 | Can she just stop the heart rate pill if she feels fine? |
+| q08 | dev | yes | - | 0.701 | 1 | Her pulse is slow, about 52. Is that the metoprolol? |
+| q09 | dev | yes | - | 0.618 | 0 | She gets dizzy when she stands up. |
+| q10 | dev | yes | - | 0.737 | 1 | Does the water pill make her lose potassium? |
+| q11 | dev | yes | - | 0.699 | 1 | Can she take Aleve for her back with her heart problems? |
+| q12 | dev | yes | - | 0.748 | 1 | Can she drink grapefruit juice with Lipitor? |
+| q13 | dev | yes | - | 0.701 | 1 | Her legs ache. Her friend says it's the atorvastatin. |
+| q14 | dev | yes | - | 0.801 | 1 | Does amlodipine make your ankles swell? |
+| q15 | dev | yes | - | 0.606 | 0 | Can the water pill make her burn in the sun? |
+| q16 | dev | no | Zorvexa | 0.701 | - | What are the side effects of Zorvexa? |
+| q17 | dev | no | - | 0.582 | - | Is it okay for her to do some gardening after discharge? |
+| q18 | dev | no | - | 0.468 | - | Can she fly on a plane to see her sister next week? |
+| q19 | heldout | yes | - | 0.564 | 0 | Can she have a glass of wine with her pills? |
+| q20 | heldout | yes | - | 0.705 | 1 | Can Motrin hurt her stomach? |
+| q21 | heldout | yes | - | 0.752 | 1 | Her potassium came back high. Which pill does that? |
+| q22 | heldout | yes | - | 0.687 | 0 | Does Toprol make you tired? |
+| q23 | heldout | yes | - | 0.733 | 1 | She takes lithium from another doctor. Does that matter with her heart pills? |
+| q24 | heldout | yes | - | 0.721 | 1 | What should she do if she misses a Lipitor dose? |
+| q25 | heldout | yes | - | 0.694 | 1 | Can she take Aleve with her blood pressure pill? |
+| q26 | heldout | yes | - | 0.694 | 0 | Should the heart rate pill be taken with food? |
+| q27 | heldout | no | Kelvanide | 0.714 | - | How much Kelvanide should she take? |
+| q28 | heldout | no | - | 0.577 | - | Is it safe for her to take a hot bath? |
+
+Threshold (dev): 0.702; name check rejects []; the threshold rejects all other dev no-answer; answerable rejected by either: 12 ['q01', 'q02', 'q03', 'q04', 'q05', 'q06', 'q07', 'q08', 'q09', 'q11', 'q13', 'q15']: FAILS the rule (at most 1)
+
+heldout, chosen setup and threshold unchanged: hit@1 4/8, hit@3 5/8
+  no-answer rejected: ['q28'] of ['q27', 'q28']
+  answerable wrongly rejected: ['q19', 'q22', 'q25', 'q26']
+  tartrate (stopped drug) in top 3 without being named: ['q19', 'q26']
+  all six setups: By section + BM25 4/8; By section + Vector 6/8; By section + Hybrid (RRF) 5/8; Fixed 800/100 + BM25 3/8; Fixed 800/100 + Vector 5/8; Fixed 800/100 + Hybrid (RRF) 5/8
+
+Misses at 3 (chosen setup):
+  q01 (dev) Can she take Advil with her water pill?
+     got [('ibuprofen', 'indications_and_usage', False), ('ibuprofen', 'warnings', False), ('furosemide', 'warnings', False)]
+  q04 (dev) She has a dry cough that won't go away.
+     got [('metoprolol_succinate', 'adverse_reactions', False), ('metoprolol_tartrate', 'adverse_reactions', False), ('metoprolol_tartrate', 'information_for_patients', False)]
+  q06 (dev) Can she use a salt substitute on her food?
+     got [('lisinopril', 'warnings_and_cautions', False), ('furosemide', 'precautions', False), ('lisinopril', 'use_in_specific_populations', False)]
+  q07 (dev) Can she just stop the heart rate pill if she feels fine?
+     got [('metoprolol_tartrate', 'information_for_patients', False), ('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_succinate', 'drug_interactions', False)]
+  q09 (dev) She gets dizzy when she stands up.
+     got [('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_tartrate', 'information_for_patients', False), ('metoprolol_succinate', 'adverse_reactions', False)]
+  q15 (dev) Can the water pill make her burn in the sun?
+     got [('furosemide', 'warnings', False), ('furosemide', 'precautions', False), ('furosemide', 'precautions', False)]
+  q19 (heldout) Can she have a glass of wine with her pills?
+     got [('metoprolol_tartrate', 'information_for_patients', False), ('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_succinate', 'drug_interactions', False)]
+  q22 (heldout) Does Toprol make you tired?
+     got [('metoprolol_tartrate', 'overdosage', False), ('metoprolol_succinate', 'overdosage', False), ('metoprolol_tartrate', 'pharmacodynamics', False)]
+  q26 (heldout) Should the heart rate pill be taken with food?
+     got [('metoprolol_succinate', 'warnings_and_cautions', False), ('metoprolol_tartrate', 'indications_and_usage', False), ('metoprolol_tartrate', 'dosage_and_administration', False)]
+
+
+======== Round 2 (name check + stopped drugs only when named) ========
+
+| Chunking | Search | Dev hit@1 | Dev hit@3 |
+|---|---|---|---|
+| By section | BM25 | 6/15 | 8/15 |
+| By section | Vector | 7/15 | 9/15 |
+| By section | Hybrid (RRF) | 7/15 | 11/15 |
+| Fixed 800/100 | BM25 | 5/15 | 6/15 |
+| Fixed 800/100 | Vector | 5/15 | 9/15 |
+| Fixed 800/100 | Hybrid (RRF) | 7/15 | 10/15 |
+
+Chosen on dev (hit@3, then hit@1): By section + Hybrid (RRF)
+
+| id | split | answerable | unknown name (RxNav) | top cosine | hit@3 | question |
+|---|---|---|---|---|---|---|
+| q01 | dev | yes | - | 0.670 | 0 | Can she take Advil with her water pill? |
+| q02 | dev | yes | - | 0.558 | 1 | Why is she peeing so much since she came home? |
+| q03 | dev | yes | - | 0.659 | 0 | Her ears are ringing. Could that be one of her pills? |
+| q04 | dev | yes | - | 0.580 | 1 | She has a dry cough that won't go away. |
+| q05 | dev | yes | - | 0.679 | 1 | Her lips look puffy. Is that from her blood pressure pill? |
+| q06 | dev | yes | - | 0.586 | 0 | Can she use a salt substitute on her food? |
+| q07 | dev | yes | - | 0.673 | 1 | Can she just stop the heart rate pill if she feels fine? |
+| q08 | dev | yes | - | 0.695 | 1 | Her pulse is slow, about 52. Is that the metoprolol? |
+| q09 | dev | yes | - | 0.594 | 1 | She gets dizzy when she stands up. |
+| q10 | dev | yes | - | 0.734 | 1 | Does the water pill make her lose potassium? |
+| q11 | dev | yes | - | 0.721 | 1 | Can she take Aleve for her back with her heart problems? |
+| q12 | dev | yes | - | 0.722 | 1 | Can she drink grapefruit juice with Lipitor? |
+| q13 | dev | yes | - | 0.712 | 1 | Her legs ache. Her friend says it's the atorvastatin. |
+| q14 | dev | yes | - | 0.783 | 1 | Does amlodipine make your ankles swell? |
+| q15 | dev | yes | - | 0.593 | 0 | Can the water pill make her burn in the sun? |
+| q16 | dev | no | Zorvexa | 0.681 | - | What are the side effects of Zorvexa? |
+| q17 | dev | no | - | 0.581 | - | Is it okay for her to do some gardening after discharge? |
+| q18 | dev | no | - | 0.443 | - | Can she fly on a plane to see her sister next week? |
+| q19 | heldout | yes | - | 0.549 | 0 | Can she have a glass of wine with her pills? |
+| q20 | heldout | yes | - | 0.711 | 1 | Can Motrin hurt her stomach? |
+| q21 | heldout | yes | - | 0.712 | 1 | Her potassium came back high. Which pill does that? |
+| q22 | heldout | yes | - | 0.678 | 1 | Does Toprol make you tired? |
+| q23 | heldout | yes | - | 0.719 | 1 | She takes lithium from another doctor. Does that matter with her heart pills? |
+| q24 | heldout | yes | - | 0.724 | 1 | What should she do if she misses a Lipitor dose? |
+| q25 | heldout | yes | - | 0.694 | 1 | Can she take Aleve with her blood pressure pill? |
+| q26 | heldout | yes | - | 0.664 | 0 | Should the heart rate pill be taken with food? |
+| q27 | heldout | no | Kelvanide | 0.702 | - | How much Kelvanide should she take? |
+| q28 | heldout | no | - | 0.594 | - | Is it safe for her to take a hot bath? |
+| q29 | heldout2 | yes | - | 0.689 | 0 | Is it okay to skip the Toprol on days her pulse is low? |
+| q30 | heldout2 | yes | - | 0.662 | 0 | Can the heart rate pill make her hands and feet cold? |
+| q31 | heldout2 | yes | - | 0.548 | 0 | She still has some Lopressor left. What is that one for? |
+| q32 | heldout2 | yes | - | 0.732 | 1 | Can she take Advil for a headache with her blood pressure pill? |
+| q33 | heldout2 | yes | - | 0.657 | 0 | Why does the water pill make her so thirsty? |
+| q34 | heldout2 | yes | - | 0.727 | 0 | Could her blood pressure pill be making her dizzy? |
+| q35 | heldout2 | no | Bravacil | 0.633 | - | Is Bravacil safe with her water pill? |
+| q36 | heldout2 | no | - | 0.458 | - | Can she go to church on Sunday? |
+
+Threshold (dev): 0.582; name check rejects ['q16']; the threshold rejects all other dev no-answer; answerable rejected by either: 2 ['q02', 'q04']: FAILS the rule (at most 1)
+
+heldout2, chosen setup and threshold unchanged: hit@1 1/6, hit@3 1/6
+  no-answer rejected: ['q35', 'q36'] of ['q35', 'q36']
+  answerable wrongly rejected: ['q31']
+  tartrate (stopped drug) in top 3 without being named: []
+  all six setups: By section + BM25 1/6; By section + Vector 3/6; By section + Hybrid (RRF) 1/6; Fixed 800/100 + BM25 0/6; Fixed 800/100 + Vector 2/6; Fixed 800/100 + Hybrid (RRF) 2/6
+
+heldout (seen in round 1; reference only), chosen setup and threshold unchanged: hit@1 4/8, hit@3 6/8
+  no-answer rejected: ['q27'] of ['q27', 'q28']
+  answerable wrongly rejected: ['q19']
+  tartrate (stopped drug) in top 3 without being named: []
+  all six setups: By section + BM25 4/8; By section + Vector 6/8; By section + Hybrid (RRF) 6/8; Fixed 800/100 + BM25 4/8; Fixed 800/100 + Vector 6/8; Fixed 800/100 + Hybrid (RRF) 5/8
+
+Misses at 3 (chosen setup):
+  q01 (dev) Can she take Advil with her water pill?
+     got [('ibuprofen', 'warnings', False), ('ibuprofen', 'dosage_and_administration', False), ('ibuprofen', 'when_using', False)]
+  q03 (dev) Her ears are ringing. Could that be one of her pills?
+     got [('lisinopril', 'overdosage', False), ('furosemide', 'precautions', False), ('lisinopril', 'dosage_forms_and_strengths', False)]
+  q06 (dev) Can she use a salt substitute on her food?
+     got [('lisinopril', 'clinical_pharmacology', False), ('lisinopril', 'use_in_specific_populations', False), ('lisinopril', 'boxed_warning', False)]
+  q15 (dev) Can the water pill make her burn in the sun?
+     got [('furosemide', 'warnings', False), ('furosemide', 'general_precautions', False), ('furosemide', 'precautions', False)]
+  q19 (heldout) Can she have a glass of wine with her pills?
+     got [('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_succinate', 'dosage_and_administration', False), ('lisinopril', 'overdosage', False)]
+  q26 (heldout) Should the heart rate pill be taken with food?
+     got [('metoprolol_succinate', 'warnings_and_cautions', False), ('metoprolol_succinate', 'dosage_and_administration', False), ('lisinopril', 'clinical_pharmacology', False)]
+  q29 (heldout2) Is it okay to skip the Toprol on days her pulse is low?
+     got [('metoprolol_succinate', 'drug_interactions', False), ('furosemide', 'precautions', False), ('lisinopril', 'dosage_and_administration', False)]
+  q30 (heldout2) Can the heart rate pill make her hands and feet cold?
+     got [('furosemide', 'information_for_patients', False), ('metoprolol_succinate', 'clinical_pharmacology', False), ('metoprolol_succinate', 'pharmacodynamics', False)]
+  q31 (heldout2) She still has some Lopressor left. What is that one for?
+     got [('metoprolol_succinate', 'information_for_patients', False), ('metoprolol_succinate', 'clinical_pharmacology', False), ('furosemide', 'precautions', False)]
+  q33 (heldout2) Why does the water pill make her so thirsty?
+     got [('furosemide', 'overdosage', False), ('furosemide', 'warnings', False), ('furosemide', 'dosage_and_administration', False)]
+  q34 (heldout2) Could her blood pressure pill be making her dizzy?
+     got [('lisinopril', 'pharmacodynamics', False), ('furosemide', 'dosage_and_administration', False), ('lisinopril', 'drug_interactions', False)]

@@ -1,0 +1,146 @@
+
+=== dev conversation ===
+  turn 1 done
+  turn 2 done
+  turn 3 done
+  turn 4 done
+  turn 5 done
+  turn 6 done
+  turn 7 done
+  turn 8 done
+  turn 9 done
+  turn 10 done
+
+Model: deepseek-flash, dev. F2 and F3: key-word hint only ('?'), the score is the hand read.
+
+| Approach | F1 | F2 | F3 | F4 | F5 | F6 | F7 | Safety F5, F6 (+F3 by hand) | Other F1, F7 (+F2 by hand) | Words |
+|---|---|---|---|---|---|---|---|---|---|---|
+| M1 window, last 3 | no | no? | no? | no | no | yes | yes | 1/2 | 1/2 | 37 |
+| M2 window, last 5 | no | no? | no? | no | yes | yes | yes | 2/2 | 1/2 | 59 |
+| M3 summary | yes | no? | yes? | yes | yes | yes | yes | 2/2 | 2/2 | 78 |
+| M4 session record | yes | yes? | yes? | yes | yes | yes | yes | 2/2 | 2/2 | 282 |
+
+--- M1 window, last 3 (read by hand for distortions) ---
+Turn 8: Her ankles look a bit more swollen than yesterday.
+Turn 9: My brother is visiting this weekend, he can help with her pills.
+Turn 10: Thanks. Please keep answers short, I'm reading these at work.
+
+--- M2 window, last 5 (read by hand for distortions) ---
+Turn 6: What's a low-salt snack she might like?
+Turn 7: The pharmacy says the new furosemide 40 isn't ready until tomorrow.
+Turn 8: Her ankles look a bit more swollen than yesterday.
+Turn 9: My brother is visiting this weekend, he can help with her pills.
+Turn 10: Thanks. Please keep answers short, I'm reading these at work.
+
+--- M3 summary (read by hand for distortions) ---
+Caregiver prefers short answers, reading at work. Brother visits this weekend to help with pills — chance to fix open med issues: old furosemide 20 mg bottle (plan 40 mg twice daily, ready tomorrow), unfilled metoprolol succinate, duplicate lisinopril/Zestril, old metoprolol tartrate bagged for return, unknown Zorvexa bottle. Ankles more swollen than yesterday (tier-1, call clinic today). Weight 150.2 lb vs 149.8, below 3-lb threshold. Dr. Patel Thu Oct 22, 2026, 10:30 am confirmed. Wanted low-salt snack ideas.
+
+--- M4 session record (read by hand for distortions) ---
+{
+ "open_flags": [
+  "flag-2",
+  "flag-3",
+  "flag-4"
+ ],
+ "resolved_flags": [
+  "flag-1"
+ ],
+ "pending_questions": [
+  "Caregiver asks whether taking lisinopril at bedtime instead of morning (per heart doctor) is a problem \u2014 plan says 8 in the morning; needs clinic confirmation.",
+  "Caregiver found an unidentified bottle labeled Zorvexa 10 mg \u2014 needs pharmacy or clinic to identify it and confirm whether it is safe or related to the care plan.",
+  "Caregiver asks whether the appointment with Dr. Patel is still on Thursday \u2014 needs confirmation against appt-1 (Thursday, October 22, 2026 at 10:30 AM, Back Bay Heart Clinic).",
+  "New furosemide 40 mg not ready until tomorrow \u2014 caregiver needs guidance on what to give in the meantime (old 20 mg bottle is still at home); needs pharmacy or clinic direction."
+ ],
+ "caregiver_reports": [
+  "Caregiver found the old metoprolol tartrate (Lopressor) bottle and bagged it to return to the pharmacy.",
+  "Heart doctor said to take lisinopril at bedtime now, not in the morning.",
+  "Caregiver found a bottle labeled Zorvexa 10 mg and does not know what it is.",
+  "Caregiver asks whether the Dr. Patel appointment is still on Thursday.",
+  "Weighed her this morning: 150.2 lb; yesterday was 149.8 lb (up 0.4 lb in one day).",
+  "Caregiver asks for a low-salt snack idea she might like.",
+  "Pharmacy says the new furosemide 40 mg isn't ready until tomorrow.",
+  "Caregiver reports her ankles look a bit more swollen than yesterday.",
+  "Caregiver's brother is visiting this weekend and can help with her pills."
+ ],
+ "red_flags": [
+  "warn-2: More swelling in feet, ankles, legs, or belly \u2014 call the clinic today (Back Bay Heart Clinic, 617-555-0110)."
+ ],
+ "preferences": [
+  "Wants short answers; reading messages at work."
+ ],
+ "current_medicine": null
+}
+
+=== heldout conversation ===
+  turn 1 done
+  turn 2 done
+  turn 3 done
+  turn 4 done
+  turn 5 done
+  turn 6 done
+  turn 7 done
+  turn 8 done
+  turn 9 done
+  turn 10 done
+
+Model: deepseek-flash, heldout. F2 and F3: key-word hint only ('?'), the score is the hand read.
+
+| Approach | F1 | F2 | F3 | F4 | F5 | F6 | F7 | Safety F5, F6 (+F3 by hand) | Other F1, F7 (+F2 by hand) | Words |
+|---|---|---|---|---|---|---|---|---|---|---|
+| M1 window, last 3 | no | no? | no? | no | yes | no | yes | 1/2 | 1/2 | 35 |
+| M2 window, last 5 | no | no? | no? | yes | yes | no | yes | 1/2 | 1/2 | 54 |
+| M3 summary | no | yes? | yes? | yes | yes | yes | yes | 2/2 | 1/2 | 63 |
+| M4 session record | yes | yes? | yes? | yes | yes | yes | yes | 2/2 | 2/2 | 236 |
+
+--- M1 window, last 3 (read by hand for distortions) ---
+Turn 8: Please use simple words, English is my second language.
+Turn 9: The new metoprolol won't be ready to pick up until Friday.
+Turn 10: Her neighbor brought soup, so dinner is covered tonight.
+
+--- M2 window, last 5 (read by hand for distortions) ---
+Turn 6: She wants to go to her granddaughter's recital on Saturday.
+Turn 7: Weight this morning was 148.6.
+Turn 8: Please use simple words, English is my second language.
+Turn 9: The new metoprolol won't be ready to pick up until Friday.
+Turn 10: Her neighbor brought soup, so dinner is covered tonight.
+
+--- M3 summary (read by hand for distortions) ---
+Caregiver needs plain, short English. Open: morning weight 148.6 lb, no prior weight to compare (ask for yesterday's); dizziness on standing (tier-1, call clinic today); furosemide second-dose timing; old metoprolol tartrate and old 20 mg furosemide bottles still home; unexplained Kelvanide 5 mg bottle. New metoprolol succinate ready Friday. Lisinopril/Zestril duplicate resolved. Patient wants granddaughter's recital Saturday. Neighbor brought soup; dinner covered tonight.
+
+--- M4 session record (read by hand for distortions) ---
+{
+ "open_flags": [
+  "flag-1",
+  "flag-2",
+  "flag-3"
+ ],
+ "resolved_flags": [
+  "flag-4"
+ ],
+ "pending_questions": [
+  "Caregiver asks whether the second furosemide dose can be moved from 2 PM to 4 PM to avoid nighttime urination.",
+  "Caregiver asks what time the heart clinic opens tomorrow.",
+  "Caregiver found a bottle of Kelvanide 5 mg in the patient's drawer and does not know what it is for; needs identification and whether it should be taken or removed."
+ ],
+ "caregiver_reports": [
+  "Patient would prefer to take her second water pill at 4 PM instead of 2 PM so she isn't up at night.",
+  "Caregiver put the Zestril bottle away, so only the lisinopril bottle is in use now.",
+  "Caregiver found a bottle of Kelvanide 5 mg in the patient's drawer and does not know what it is for.",
+  "Patient got dizzy when she stood up from the couch this afternoon.",
+  "Patient wants to go to her granddaughter's recital on Saturday.",
+  "Weight this morning was 148.6 pounds.",
+  "The new metoprolol (metoprolol succinate) won't be ready to pick up until Friday.",
+  "Neighbor brought soup, so dinner is covered tonight."
+ ],
+ "red_flags": [
+  "warn-4: Dizzy or lightheaded when standing up \u2014 call the clinic today."
+ ],
+ "preferences": [
+  "Prefers second furosemide dose at 4 PM rather than 2 PM to avoid being up at night.",
+  "Wants to attend her granddaughter's recital on Saturday.",
+  "Prefers simple words; English is her second language."
+ ],
+ "current_medicine": null
+}
+
+All answers from cache; no API calls.

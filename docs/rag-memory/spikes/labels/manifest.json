@@ -1,0 +1,107 @@
+{
+ "amlodipine": {
+  "set_id": "003dd1ec-16f8-4f96-b6a8-c4689d35892a",
+  "effective_time": "20260420",
+  "generic_name": [
+   "AMLODIPINE BESYLATE"
+  ],
+  "brand": [
+   "Amlodipine Besylate"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 3
+ },
+ "atorvastatin": {
+  "set_id": "06abf2dc-5ebd-4d42-b43c-7deeb93925dd",
+  "effective_time": "20251204",
+  "generic_name": [
+   "ATORVASTATIN CALCIUM"
+  ],
+  "brand": [
+   "ATORVASTATIN CALCIUM"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 3
+ },
+ "furosemide": {
+  "set_id": "020bc039-9e99-4895-96f8-0c6a556d3e67",
+  "effective_time": "20231004",
+  "generic_name": [
+   "FUROSEMIDE"
+  ],
+  "brand": [
+   "Furosemide"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 2
+ },
+ "ibuprofen": {
+  "set_id": "00653b7c-7099-487e-9a01-e89781c21323",
+  "effective_time": "20260429",
+  "generic_name": [
+   "IBUPROFEN"
+  ],
+  "brand": [
+   "Ibuprofen Dye Free"
+  ],
+  "product_type": "HUMAN OTC DRUG",
+  "candidates": 5,
+  "qualifying": 4
+ },
+ "lisinopril": {
+  "set_id": "02c23f9c-f3cf-4366-ae1e-56296f1fedf9",
+  "effective_time": "20260522",
+  "generic_name": [
+   "LISINOPRIL"
+  ],
+  "brand": [
+   "LISINOPRIL"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 2
+ },
+ "metoprolol_succinate": {
+  "set_id": "0a99ed82-2ee8-6f9c-e063-6394a90ac7ba",
+  "effective_time": "20260603",
+  "generic_name": [
+   "METOPROLOL SUCCINATE"
+  ],
+  "brand": [
+   "metoprolol succinate"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 5
+ },
+ "metoprolol_tartrate": {
+  "set_id": "028b6e4a-1597-4d21-89d0-0bbbad21efa8",
+  "effective_time": "20260727",
+  "generic_name": [
+   "METOPROLOL TARTRATE"
+  ],
+  "brand": [
+   "Metoprolol Tartrate"
+  ],
+  "product_type": "HUMAN PRESCRIPTION DRUG",
+  "candidates": 5,
+  "qualifying": 4
+ },
+ "naproxen": {
+  "set_id": "0f8843be-50a3-442c-9016-d9da3b444f60",
+  "effective_time": "20260506",
+  "generic_name": [
+   "NAPROXEN SODIUM"
+  ],
+  "brand": [
+   "all day relief"
+  ],
+  "product_type": "HUMAN OTC DRUG",
+  "candidates": 25,
+  "qualifying": 22,
+  "note": "newest Aleve label (20251204) had an empty warnings section; rule added: warnings text > 500 characters"
+ }
+}

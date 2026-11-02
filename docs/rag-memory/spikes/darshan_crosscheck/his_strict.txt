@@ -1,0 +1,72 @@
+self-check passed
+metadata filter base (Rosa's plan + cabinet): ['furosemide', 'lisinopril', 'metoprolol succinate', 'metoprolol tartrate']
+labels: furosemide (20230301), metoprolol succinate (20260406), metoprolol tartrate (20250610), lisinopril (20230818), ibuprofen (20260429), naproxen (20260129), amlodipine (20260420), atorvastatin (20250828)
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 5 files:  20%|██        | 1/5 [00:00<00:01,  2.08it/s]Fetching 5 files: 100%|██████████| 5/5 [00:08<00:00,  1.70s/it]Fetching 5 files: 100%|██████████| 5/5 [00:08<00:00,  1.63s/it]
+
+chunking=section: 354 chunks, mean 1075 chars, max 1500
+
+chunking=fixed: 548 chunks, mean 794 chars, max 800
+
+## Six setups (answerable questions: 10)
+
+| Chunking | Search | hit@1 | hit@3 |
+|---|---|---|---|
+| By section | Keyword (BM25) | 1/10 | 4/10 |
+| By section | Vector (bge-small) | 3/10 | 6/10 |
+| By section | Hybrid (RRF) | 3/10 | 5/10 |
+| Fixed 800/100 | Keyword (BM25) | 2/10 | 3/10 |
+| Fixed 800/100 | Vector (bge-small) | 1/10 | 7/10 |
+| Fixed 800/100 | Hybrid (RRF) | 4/10 | 6/10 |
+
+best setup by the rule: Fixed 800/100 + Vector (bge-small)
+
+## Per-question results (rank of first acceptable answer in top 3; '-' = miss)
+
+| q | By section bm25 | By section vector | By section hybrid | Fixed 800/ bm25 | Fixed 800/ vector | Fixed 800/ hybrid |
+|---|---|---|---|---|---|---|
+| q01 | 3 | 1 | 1 | 1 | 2 | 1 |
+| q02 | - | - | - | - | - | - |
+| q03 | - | - | - | - | 3 | 2 |
+| q04 | - | 1 | - | - | 1 | - |
+| q05 | 3 | 3 | 1 | - | - | 1 |
+| q06 | - | 2 | 2 | 3 | 3 | 2 |
+| q07 | - | - | - | - | - | - |
+| q08 | 1 | 1 | 1 | 1 | 2 | 1 |
+| q09 | - | 2 | 3 | - | 3 | - |
+| q10 | 3 | - | - | - | 2 | 1 |
+
+## Top-3 results of the best setup
+
+q01: ibuprofen/active_ingredient; ibuprofen/warnings; furosemide/drug_interactions
+q02: furosemide/general_precautions; furosemide/precautions; lisinopril/information_for_patients
+q03: metoprolol succinate/overdosage; metoprolol succinate/drug_interactions; metoprolol succinate/adverse_reactions
+q04: metoprolol succinate/warnings_and_cautions; metoprolol succinate/contraindications; metoprolol tartrate/drug_interactions
+q05: lisinopril/dosage_forms_and_strengths; lisinopril/how_supplied; lisinopril/information_for_patients
+q06: lisinopril/information_for_patients; lisinopril/how_supplied; lisinopril/warnings_and_cautions
+q07: naproxen/information_for_patients; naproxen/clinical_studies; naproxen/warnings_and_cautions
+q08: metoprolol tartrate/carcinogenesis_and_mutagenesis_and_impairment_of_fertility; metoprolol succinate/description; metoprolol succinate/carcinogenesis_and_mutagenesis_and_impairment_of_fertility
+q09: amlodipine/spl_patient_package_insert; amlodipine/contraindications; amlodipine/warnings_and_cautions
+q10: furosemide/drug_interactions; furosemide/warnings; lisinopril/use_in_specific_populations
+q11: metoprolol succinate/adverse_reactions; lisinopril/drug_interactions; furosemide/general_precautions
+q12: metoprolol tartrate/how_supplied; lisinopril/how_supplied; furosemide/storage_and_handling
+
+## Top vector cosine score per question (chunking: Fixed 800/100)
+
+| q | answerable | top cosine | top chunk |
+|---|---|---|---|
+| q01 | yes | 0.6386 | ibuprofen/active_ingredient |
+| q02 | yes | 0.5861 | furosemide/general_precautions |
+| q03 | yes | 0.7347 | metoprolol succinate/overdosage |
+| q04 | yes | 0.7214 | metoprolol succinate/warnings_and_cautions |
+| q05 | yes | 0.7134 | lisinopril/dosage_forms_and_strengths |
+| q06 | yes | 0.7275 | lisinopril/information_for_patients |
+| q07 | yes | 0.7173 | naproxen/information_for_patients |
+| q08 | yes | 0.7908 | metoprolol tartrate/carcinogenesis_and_mutagenesis_and_impairment_of_fertility |
+| q09 | yes | 0.7834 | amlodipine/spl_patient_package_insert |
+| q10 | yes | 0.6443 | furosemide/drug_interactions |
+| q11 | NO | 0.6860 | metoprolol succinate/adverse_reactions |
+| q12 | NO | 0.5234 | metoprolol tartrate/how_supplied |
+
+highest no-answer score 0.6860; lowest answerable score 0.5861
+threshold: answer only if top cosine >= 0.687; rejects both no-answer questions and 3 answerable ['q01', 'q02', 'q10'] -> rule FAILS (more than one answerable rejected)

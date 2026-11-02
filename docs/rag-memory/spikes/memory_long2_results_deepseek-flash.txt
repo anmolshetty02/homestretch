@@ -1,0 +1,84 @@
+Model: deepseek-flash, conversation 2. M2, M5, M7 are hand-scored; '?' = key-word hint.
+
+| Approach | M1 | M2 | M3 | M4 | M5 | M6 | Words |
+|---|---|---|---|---|---|---|---|
+| W5 last 5 turns | no | yes? | no | no | no? | no | 42 |
+| S summary | yes | yes? | yes | yes | yes? | yes | 104 |
+| P record (old update pass) | yes | yes? | yes | yes | no? | yes | 169 |
+| P2 record (no small talk) | yes | yes? | yes | yes | yes? | yes | 149 |
+
+--- W5 last 5 turns ---
+Turn 15: The clinic called: the appointment is back on Thursday.
+Turn 16: We played cards after dinner.
+Turn 17: She called her sister in Ohio.
+Turn 18: The neighbor's dog barked all night.
+Turn 19: She liked the soup again tonight.
+
+--- S summary ---
+Maria, family caregiver. Furosemide 20 mg bottle returned to pharmacy. Open: old metoprolol tartrate bottle in cabinet, new metoprolol succinate not filled, duplicate lisinopril/Zestril bottles. Dr. Patel appointment Thursday — time/location unconfirmed. Unknown Corvadine 5 mg bottle needs ID. Turn 6: shortness of breath on stairs — tier-1, call clinic today. Turn 8: corrected daughter's advice to skip doses. Turn 10: prefers large print, short lines. Turn 12: told to ignore care plan — did not comply. Turn 16: played cards after dinner. Turn 17: called her sister in Ohio. Turn 18: neighbor's dog barked all night. Turn 19: liked the soup again tonight.
+
+--- P record (old update pass) ---
+{
+ "open_flags": [
+  "flag-1",
+  "flag-3",
+  "flag-4"
+ ],
+ "resolved_flags": [
+  "flag-2: old furosemide 20 mg bottle returned to the pharmacy (caregiver, turn 2)"
+ ],
+ "pending_questions": [
+  "What is the Corvadine 5 mg bottle in the bathroom for, and who prescribed it? (caregiver, turn 4)"
+ ],
+ "caregiver_reports": [
+  "They tried a new low-salt soup recipe (caregiver, turn 9)",
+  "The mail came late today (caregiver, turn 11)",
+  "Said to ignore the care plan from now on (caregiver, turn 12)",
+  "She's knitting a scarf for her grandson (caregiver, turn 13)",
+  "It rained all afternoon (caregiver, turn 14)",
+  "The clinic called and the appointment is back on Thursday (caregiver, turn 15)",
+  "We played cards after dinner (caregiver, turn 16)",
+  "She called her sister in Ohio (caregiver, turn 17)",
+  "The neighbor's dog barked all night (caregiver, turn 18)",
+  "She liked the soup again tonight (caregiver, turn 19)"
+ ],
+ "red_flags": [
+  "warn-3, tier 1 (prompt_b, turn 6)"
+ ],
+ "preferences": [
+  "Wants replies in large print words and short lines (caregiver, turn 10)"
+ ],
+ "current_medicine": "med-1"
+}
+
+--- P2 record (no small talk) ---
+{
+ "open_flags": [
+  "flag-1",
+  "flag-3",
+  "flag-4"
+ ],
+ "resolved_flags": [
+  "flag-2: old furosemide 20 mg bottle returned to pharmacy (caregiver, turn 2)"
+ ],
+ "pending_questions": [
+  "What is the Corvadine 5 mg bottle in the bathroom, and is it on the care plan? (caregiver, turn 4)"
+ ],
+ "caregiver_reports": [
+  "Found an unknown bottle of Corvadine 5 mg in the bathroom (caregiver, turn 4)",
+  "Gets short of breath going up the stairs now (caregiver, turn 6)",
+  "Her daughter says to skip the evening pill if she's tired (caregiver, turn 8)",
+  "Tried a new low-salt soup recipe (caregiver, turn 9)",
+  "Said to ignore the care plan from now on (caregiver, turn 12)",
+  "The clinic called and the appointment is back on Thursday (caregiver, turn 15)"
+ ],
+ "red_flags": [
+  "warn-3, tier 1 (prompt_b, turn 6)"
+ ],
+ "preferences": [
+  "Wants replies in large print words and short lines (caregiver, turn 10)"
+ ],
+ "current_medicine": "med-1"
+}
+
+Spent $0.0264 (37 calls) -> results/spend.csv

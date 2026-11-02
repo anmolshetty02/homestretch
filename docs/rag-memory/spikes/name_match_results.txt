@@ -1,0 +1,35 @@
+151 names scored (0 UNREADABLE reported apart)
+
+| Approach | Cutoff | Correct | Wrong drug | No match (real drug) | Zorvexa = no match? |
+|---|---|---|---|---|---|
+| A. Exact RxNav | n/a | 38 | 0 | 113 | yes |
+| B. Approximate RxNav | score >= 0 | 120 | 3 | 28 | yes |
+| B. Approximate RxNav | score >= 4 | 120 | 3 | 28 | yes |
+| B. Approximate RxNav | score >= 6 | 108 | 3 | 40 | yes |
+| B. Approximate RxNav | score >= 8 | 74 | 2 | 75 | yes |
+| C. Local fuzzy (difflib) | 0.6 | 137 | 1 | 13 | yes |
+| C. Local fuzzy (difflib) | 0.7 | 115 | 0 | 36 | yes |
+| C. Local fuzzy (difflib) | 0.8 | 96 | 0 | 55 | yes |
+| C then A (post-hoc) | 0.7 | 121 | 0 | 30 | yes |
+
+Chosen by the rule (fewest wrong_drug, then most correct): C then A (post-hoc), cutoff 0.7
+
+Wrong-drug cases per setup:
+  B. Approximate RxNav (score >= 0): 1lsinopril -> fosinopril (true lisinopril); Slrnvastatin -> cerivastatin (true simvastatin); VERAPARNIL HYDROCHLORIDC -> hydrochloric acid (true verapamil)
+  B. Approximate RxNav (score >= 4): 1lsinopril -> fosinopril (true lisinopril); Slrnvastatin -> cerivastatin (true simvastatin); VERAPARNIL HYDROCHLORIDC -> hydrochloric acid (true verapamil)
+  B. Approximate RxNav (score >= 6): 1lsinopril -> fosinopril (true lisinopril); Slrnvastatin -> cerivastatin (true simvastatin); VERAPARNIL HYDROCHLORIDC -> hydrochloric acid (true verapamil)
+  B. Approximate RxNav (score >= 8): Slrnvastatin -> cerivastatin (true simvastatin); VERAPARNIL HYDROCHLORIDC -> hydrochloric acid (true verapamil)
+  C. Local fuzzy (difflib) (0.6): VERAPAMIL HYDROCHLORIDE -> hydrochlorothiazide (true verapamil)
+
+Per-patient (realistic) C 0.7 then A, on 379 (patient, bottle name) pairs from the stress cabinets:
+  correct 315, wrong_drug 0, no_match on a real drug 64
+  wrong: none
+  no match (-> pharmacist_check), by true drug: {'acetaminophen': 14, 'aspirin': 13, 'ibuprofen': 12, 'metformin': 9, 'naproxen': 9, 'furosemide': 4, 'simvastatin': 2, 'carvedilol': 1}
+
+Fresh names (bracket fix), Rosa's list then exact RxNav:
+  without bracket variants: correct 2, wrong_drug 0, no_match 14 (of 16)
+  with bracket variants: correct 14, wrong_drug 0, no_match 2 (of 16)
+  misses with brackets: Bayer Low Dose Aspirin -> no_match; LISIN0PRIL 10 MG -> no_match
+
+B scores, for reference (name: top ingredient, score):
+  1ASLX: no_match 0.00; 1aslx: no_match 0.00; C0rcg: no_match 0.00; DIG0XLN: no_match 0.00; FUR0SERNIDE: no_match 0.00; fur0sernide: no_match 0.00; FUROSCRNIDE: no_match 0.00; Furosernidc: no_match 0.00; furosernidc: no_match 0.00; FUROSERNLDE: no_match 0.00; Z0c0r: no_match 0.00; zcsfril: no_match 0.00; Zcstri1: no_match 0.00; Zesfrll: no_match 0.00; zesfrll: no_match 0.00; ZESFRLL: no_match 0.00; Zorvexa: no_match 0.00; F0prol XL: no_match 4.83; TOPR01 XL: no_match 4.83; Am1odipine: amlodipine 5.85; AML0DIPINC: amlodipine 5.85; 1isin0pril: lisinopril 5.98; 1ISIN0PRIL: lisinopril 5.98; 1ISINOPRI1: lisinopril 5.98; 1isinopri1: lisinopril 5.98; lisin0pri1: lisinopril 5.98; lisln0pril: lisinopril 5.98; lislnopri1: lisinopril 5.98; FUR0SCMIDE: furosemide 5.99; FUR0SEMIDC: furosemide 5.99; FUROSEM1DE: furosemide 5.99; carvcdil0l: carvedilol 6.09; Carvedi10l: carvedilol 6.09; Carvedil0l: carvedilol 6.09; Carvedl1ol: carvedilol 6.09; CARVEDLL0L: carvedilol 6.09; Carvedll0l: carvedilol 6.09; C1OPIDOGRCL: clopidogrel 6.19; CLOPID0GREL: clopidogrel 6.19; Clopld0grel: clopidogrel 6.19; Hydroch1orothiazide: hydrochlorothiazide 6.21; C0reg: carvedilol 6.30; Zestri1: lisinopril 6.38; C0ZAAR: losartan 6.40; n0rvasc: amlodipine 6.42; N0rvasc: amlodipine 6.42; z0cor: simvastatin 6.43; P1avix: clopidogrel 6.49; PLAV1X: clopidogrel 6.49; Lisin0pril: lisinopril 6.57; fur0semide: furosemide 6.59; METOPRO1OL SUCCLNATE: metoprolol 6.60; Metoprol0l Succinafe: metoprolol 6.60; SIMVASTAT1N: simvastatin 6.62; verapami1 hydrochl0ride: verapamil 6.66; advi1 (ibuprofcn): ibuprofen 6.84; Losarfan P0tassium: losartan 6.90; 1lsinopril: fosinopril 6.94; 1isinopril: lisinopril 7.03; 1ISINOPRIL: lisinopril 7.03; ATORVASTAFIN: atorvastatin 7.97; ATORVASTAFLN: atorvastatin 7.97; furoscmidc: furosemide 7.99; FUROSEMIDC: furosemide 7.99; FUROSEMLDC: furosemide 7.99; FUROSEMLDE: furosemide 7.99; Simvasfafin: simvastatin 8.01; Carvcdilol: carvedilol 8.09; carvedllol: carvedilol 8.09; clopldogrcl: clopidogrel 8.19; hydrochlorothlazide: hydrochlorothiazide 8.21; Cntrcsto: sacubitril / valsartan 8.41; Enfresto: sacubitril / valsartan 8.41; lisinoprll: lisinopril 8.57; Lislnopril: lisinopril 8.57; LISLNOPRIL: lisinopril 8.57; LLSINOPRIL: lisinopril 8.57; SIRNVASTATLN: simvastatin 8.62; Sirnvastatln: simvastatin 8.62; a1eve (napr0xen sodium): naproxen 8.67; Advi1 (ibuprofen): ibuprofen 8.75; AFORVASTATIN: atorvastatin 9.00; Zesfril: lisinopril 9.21; MCTOPROL0L SUCCINATE: metoprolol 9.56; Metopr0l0l Succinate: metoprolol 9.56; METOPRO1OL SUCCINATE: metoprolol 9.56; Sirnvastatin: simvastatin 9.77; Microzide: no_match 9.96; VERAPARNIL HYDROCHLORIDC: hydrochloric acid 10.06; G1ucophagc XR: no_match 10.13; Gluc0phagc XR: no_match 10.13; GLUC0PHAGE XR: no_match 10.13; Slrnvastatin: cerivastatin 10.61; Losartan P0tassium: losartan 10.83; HYDROCHLOROTHIAZIDE: hydrochlorothiazide 10.84; Hydrochlorothiazide: hydrochlorothiazide 10.84; A1cve (naproxen sodium): naproxen 11.24; A1EVE (NAPROXEN SODIUM): naproxen 11.24; Amlodipine: amlodipine 11.31; AMLODIPINE: amlodipine 11.31; Amoxicillin: amoxicillin 11.47; rnetoprolol succinate: metoprolol 11.56; Vitamin D3: vitamin d3 11.64; Toprol X1: metoprolol 11.83; ATORVASTATIN: atorvastatin 11.89; Melatonin: melatonin 11.93; LISINOPRIL: lisinopril 11.95; Lisinopril: lisinopril 11.95; Furosemide: furosemide 12.02; FUROSEMIDE: furosemide 12.02; Warfarin Sodiurn: warfarin 12.06; Glucophagc XR: no_match 12.13; SIMVASTATIN: simvastatin 12.13; Simvastatin: simvastatin 12.13; METOPROLOL SUCCLNATE: metoprolol 12.14; Digoxin: digoxin 12.46; Losartan Potassiurn: losartan 12.48; CARVEDILOL: carvedilol 12.53; Carvedilol: carvedilol 12.53; Metoprolol Succinatc: metoprolol 12.58; Docusate sodium: docusate 12.66; Calcium carbonate: calcium carbonate 12.99; Clopidogrel: clopidogrel 13.04; CLOPIDOGREL: clopidogrel 13.04; foprol xl: no_match 13.07; ADVIL (LBUPROFCN): ibuprofen 13.12; Advil (lbuprofcn): ibuprofen 13.12; Tylenol (acetaminophen): acetaminophen 13.14; VERAPAMIL HYDROCHLORIDE: verapamil 13.20; Coreg: carvedilol 13.58; Warfarin Sodium: warfarin 13.67; ALEVE (NAPROXEN SOD1UM): naproxen 13.85; Lasix: furosemide 13.94; Zestril: lisinopril 13.99; Cozaar: losartan 14.08; Entresto: sacubitril / valsartan 14.13; Lipitor: atorvastatin 14.15; Norvasc: amlodipine 14.18; Zocor: simvastatin 14.23; Fish Oil: fish oils 14.38; Plavix: clopidogrel 14.55; Advil (ibuprofen): ibuprofen 14.66; Losartan Potassium: losartan 14.84; Metoprolol Succinate: metoprolol 15.11; METOPROLOL SUCCINATE: metoprolol 15.11; METFORMIN HYDROCHLORIDE ER: no_match 15.37; Aspirin low dose: no_match 16.33; Glucophage XR: no_match 16.89; Aleve (naproxen sodium): naproxen 16.92; Sacubitril/Valsartan: sacubitril / valsartan 17.14; Toprol XL: no_match 18.12
