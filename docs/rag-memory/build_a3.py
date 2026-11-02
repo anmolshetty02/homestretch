@@ -20,11 +20,12 @@ b = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(b)
 
 b.EYEBROW = "Building AI Applications · Assignment 3"
+b.TAG = "main"  # links open the latest pushed version of each cited file
 b.CSS = b.CSS.replace("Assignment 2", "Assignment 3")
 b.CSS += (".refs { font-size: 7.4pt; line-height: 1.28; } h2.sec { margin-top: 10pt; }"
-          "table { break-inside: avoid; } .fig { margin: 4pt 0 8pt; break-inside: avoid; } .figcap { font-size: 7.6pt; color: var(--muted); margin-top: 2pt; }")
+          "a { text-decoration: underline; text-decoration-color: var(--line); } table { break-inside: avoid; } .fig { margin: 4pt 0 8pt; break-inside: avoid; } .figcap { font-size: 7.6pt; color: var(--muted); margin-top: 2pt; }")
 SRC, OUT = HERE / "draft.md", HERE / "draft"
-MUST_SURVIVE = ["The class build uses synthetic data only.", "[ref-3]"]
+MUST_SURVIVE = ["The class build uses synthetic data only", "[ref-3]"]
 
 
 def references(h):
@@ -35,7 +36,7 @@ def references(h):
 
 
 def main():
-    plain = markdown.markdown(SRC.read_text(), extensions=["tables"])
+    plain = markdown.markdown(b.expand_links(SRC.read_text()), extensions=["tables"])
     styled = references(b.headings(b.title_block(plain)))
     page = (f"<!doctype html><html><head><meta charset='utf-8'><title>HomeStretch Assignment 3</title>"
             f"<style>{b.CSS}</style></head><body>{styled}</body></html>")

@@ -733,3 +733,53 @@ failures were null instead of 0 on mild symptoms (v10 1, v8 3). v10 still missed
 to warn-5, not warn-6, so it is a symptom-boundary problem, not framing. Stress varies 2–4 cases between runs of the
 same prompt (v8 3 and 5 failures; v10 7 and 2). **v10 rejected, v8 final** (`docs/prompt-iterations.md`). A real fix
 would be in the care plan, not the prompt: write warn-6 to include "can't finish a sentence at rest".
+
+## E. Retrieval round 5: gate and ranking fixes (setup written before running, 2026-11-01)
+
+**Why.** A diagnosis of every miss (`spikes/retrieval_round5_diagnosis.txt`) found that the gate was never re-checked
+on the chosen pipeline. With R2 + expansion and the round-3 gate rule (cutoff just above the best no-answer score),
+the gate blocks 14 of the 30 correct top-3 answers on the selection set, so only 16 of 37 reach the model. The "1 of
+29" in round 3 belonged to a different setup (R3b). Remaining misses: 7 ranking (correct passage ranked 4, 5, 5, 8, 17,
+28, 39), 0 coverage, 0 filter. On the old heldout4: 3 ranking, 2 gate.
+
+**Candidates.**
+- Gate: G0 the round-3 gate as is; G1 the reranker scores the expanded question; G2 cutoff recalibrated on the
+  selection set so at most 1 real question is blocked; G3 no gate.
+- Ranking: R1 rerank the top 20 by the expanded question; R2 section name prepended to each chunk; R3 send the top 5
+  instead of the top 3; R4 bge-base-en-v1.5 in place of bge-small.
+
+**Rule.**
+- Chosen on the selection set only (dev + heldout + heldout2 + heldout3: 37 answerable, the seen no-answer questions).
+- Score = the right passage, at chunk level, is among the passages sent **and** passes the gate.
+- Hard limits:
+  - 0 rank-1 passages from a drug the question is not about
+  - the gate blocks at most 1 of 37 real questions
+  - every made-up drug is still stopped by the name check
+- Ties: fewer changes, then the higher hit@1, then the one that blocks more no-answer questions. Changes counted:
+  G0 = 0; G1, G2, G3 = 1 each; G1 + G2 = 2; R1–R4 = 1 each.
+- The old heldout4 (8) and Darshan's 10 are reported, marked post-hoc. They are not used to choose.
+
+**Confirmation.** A fresh agent writes `spikes/retrieval_heldout5.json`: 12–15 new questions, written from the labels
+and the patient file only, frozen before any run. It is run once with the chosen setup and the current one (R2 +
+expansion, G0). Its score, whatever it is, goes in the draft.
+
+**Correction to the rule, after the first selection run and before heldout5 (disclosed).** The first hard limit was
+written as "0 rank-1 passages from a drug the question is not about". That is stricter than the "wrong-drug answers"
+the earlier rounds and the draft report, which count passages from the stopped look-alike drug (metoprolol tartrate)
+when the question did not name it. Under the strict wording no setup qualifies, the current pipeline included (2–7),
+so it cannot have been the intended limit. The limit is restored to the earlier definition. Every setup scores 0 on
+it, because the round-2 filter excludes unnamed stopped drugs, so the correction does not favour any candidate. The
+strict count is still reported as "rank-1 off-target" (information only).
+
+### Round 5: results (`spikes/retrieval_round5_results.txt`, `retrieval_round5_final.txt`)
+
+- **Chosen by the rule:** R1 + R3 + R4, no gate (G3): rerank the top 20 by the expanded question, send the top 5, use
+  bge-base-en-v1.5. Selection set: 34 of 37 reach the model (current pipeline 16 of 37); 0 wrong-drug passages; 0 real
+  questions blocked; made-up drugs still stopped by the name check (q16, q27, q35, q46, q56).
+- **Post-hoc** (not used to choose): old heldout4 7 of 8 (current 3 of 8); Darshan's 10 7 of 10 (current 4 of 10).
+- **heldout5, new and frozen, run once:** chosen setup **9 of 12** (hit@1 4; right passage sent 10 of 12; 1 real
+  question stopped by the name check; 0 wrong drug; 3 of 3 no-answer stopped). Current pipeline: 2 of 12 (the right
+  passage was sent for 10 of 12, but its gate blocked 9).
+- **Why no gate is safe enough:** made-up drugs are stopped before retrieval by the name check, and Prompt B v8 uses
+  references only when they answer the question (Section C: when retrieval failed, v8 used none of it, 3/3). Cost: up
+  to 5 label passages in the prompt on every medicine question.

@@ -1,0 +1,256 @@
+[
+ {
+  "id": "h01",
+  "split": "heldout5",
+  "question": "Mom keeps saying her ears are ringing since she started the water pill. Can that pill do that to her hearing?",
+  "evidence": {
+   "furosemide": "tinnitus"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "warnings"
+   ],
+   [
+    "furosemide",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "h02",
+  "split": "heldout5",
+  "question": "We like to sit out on the porch in the afternoon. Does the water pill make her burn easier in the sun?",
+  "evidence": {
+   "furosemide": "sensitive to the effects of sunlight"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "h03",
+  "split": "heldout5",
+  "question": "She gets woozy and has to grab the counter when she stands up from her chair. Could the water pill be causing that?",
+  "evidence": {
+   "furosemide": "orthostatic hypotension|postural hypotension"
+  },
+  "accept": [
+   [
+    "furosemide",
+    "adverse_reactions"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ],
+   [
+    "furosemide",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "h04",
+  "split": "heldout5",
+  "question": "She says she feels fine now and wants to quit the heart rate pill. Is it okay to just stop it all at once?",
+  "evidence": {
+   "metoprolol_succinate": "abrupt|not interrupt|reduce the dosage gradually"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ],
+   [
+    "metoprolol_succinate",
+    "information_for_patients"
+   ],
+   [
+    "metoprolol_succinate",
+    "dosage_and_administration"
+   ]
+  ]
+ },
+ {
+  "id": "h05",
+  "split": "heldout5",
+  "question": "Mom has been so tired and a little dizzy all week. Is that something the heart rate pill can cause?",
+  "evidence": {
+   "metoprolol_succinate": "tiredness,? (and )?dizziness"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "h06",
+  "split": "heldout5",
+  "question": "She's barely eating and threw up this morning. Does the heart rate pill make her more likely to get low blood sugar?",
+  "evidence": {
+   "metoprolol_succinate": "hypoglycemia"
+  },
+  "accept": [
+   [
+    "metoprolol_succinate",
+    "warnings_and_cautions"
+   ],
+   [
+    "metoprolol_succinate",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "h07",
+  "split": "heldout5",
+  "question": "She's got this dry tickly cough that won't go away. Could that be from her blood pressure pill?",
+  "evidence": {
+   "lisinopril": "cough"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "h08",
+  "split": "heldout5",
+  "question": "Her lips and around her eyes look puffy today. Is that something to worry about with the blood pressure pill?",
+  "evidence": {
+   "lisinopril": "angioedema|swelling of face"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "h09",
+  "split": "heldout5",
+  "question": "Since she has to cut back on salt, can she use one of those salt substitutes with her blood pressure pill?",
+  "evidence": {
+   "lisinopril": "salt substitutes"
+  },
+  "accept": [
+   [
+    "lisinopril",
+    "warnings_and_cautions"
+   ],
+   [
+    "lisinopril",
+    "information_for_patients"
+   ]
+  ]
+ },
+ {
+  "id": "h10",
+  "split": "heldout5",
+  "question": "Her knee is killing her. Can she take some Advil with her water pill?",
+  "evidence": {
+   "ibuprofen": "taking a diuretic",
+   "furosemide": "NSAIDs|indomethacin"
+  },
+  "accept": [
+   [
+    "ibuprofen",
+    "ask_doctor"
+   ],
+   [
+    "ibuprofen",
+    "warnings"
+   ],
+   [
+    "furosemide",
+    "drug_interactions"
+   ],
+   [
+    "furosemide",
+    "precautions"
+   ]
+  ]
+ },
+ {
+  "id": "h11",
+  "split": "heldout5",
+  "question": "My aunt gave Mom an Aleve for a headache. What signs of bleeding in her stomach should I look out for?",
+  "evidence": {
+   "naproxen": "black stools|vomit blood"
+  },
+  "accept": [
+   [
+    "naproxen",
+    "stop_use"
+   ],
+   [
+    "naproxen",
+    "warnings"
+   ]
+  ]
+ },
+ {
+  "id": "h12",
+  "split": "heldout5",
+  "question": "The doctor talked about maybe adding atorvastatin for her cholesterol. Can that one give her achy, sore muscles?",
+  "evidence": {
+   "atorvastatin": "muscle pain|myalgia"
+  },
+  "accept": [
+   [
+    "atorvastatin",
+    "warnings_and_cautions"
+   ],
+   [
+    "atorvastatin",
+    "information_for_patients"
+   ],
+   [
+    "atorvastatin",
+    "patient_medication_information"
+   ],
+   [
+    "atorvastatin",
+    "adverse_reactions"
+   ]
+  ]
+ },
+ {
+  "id": "h13",
+  "split": "heldout5",
+  "question": "Should Mom get the shingles vaccine now that she's home, or wait a while?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "h14",
+  "split": "heldout5",
+  "question": "Can you suggest a good TV show for Mom and me to watch together tonight?",
+  "evidence": {},
+  "accept": []
+ },
+ {
+  "id": "h15",
+  "split": "heldout5",
+  "question": "A friend recommended Cardiflexa for her heart. Is that safe to take with her water pill?",
+  "evidence": {},
+  "accept": []
+ }
+]

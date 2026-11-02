@@ -1,0 +1,549 @@
+Gate cutoff (round-3 rule, R2+expansion pool): -8.043
+
+######## SELECTION (dev..heldout3, 37)
+
+q01 [b RANKING] gate=-9.534 best-correct-rank=5 evidence-only-rank=5
+  Q: Can she take Advil with her water pill?
+  expanded: -
+  expect: [['ibuprofen', 'warnings'], ['ibuprofen', 'ask_doctor'], ['furosemide', 'precautions'], ['furosemide', 'drug_interactions']]  evidence: {'ibuprofen': 'diuretic', 'furosemide': 'indomethacin|nsaid|anti-inflammatory'}
+    1. ibuprofen/warnings 
+    2. ibuprofen/dosage_and_administration 
+    3. ibuprofen/when_using 
+    4. lisinopril/information_for_patients 
+    5. ibuprofen/warnings <== correct
+    6. metoprolol_succinate/information_for_patients 
+    7. furosemide/warnings 
+    8. lisinopril/drug_interactions 
+    9. furosemide/dosage_and_administration 
+   10. furosemide/dosage_and_administration 
+
+q02 [c GATE] gate=-10.463 best-correct-rank=1 evidence-only-rank=1
+  Q: Why is she peeing so much since she came home?
+  expanded: urination diuresis nocturia
+  expect: [['furosemide', 'warnings'], ['furosemide', 'clinical_pharmacology'], ['furosemide', 'geriatric_use'], ['furosemide', 'precautions'], ['furosemide', 'general_precautions'], ['furosemide', 'drug_interactions'], ['furosemide', 'dosage_and_administration']]  evidence: {'furosemide': 'diuresis|diuretic effect'}
+    1. furosemide/general_precautions <== correct
+    2. furosemide/precautions <== correct
+    3. furosemide/warnings <== correct
+    4. furosemide/dosage_and_administration <== correct
+    5. furosemide/clinical_pharmacology <== correct
+    6. furosemide/dosage_and_administration <== correct
+    7. furosemide/dosage_and_administration <== correct
+    8. furosemide/clinical_pharmacology <== correct
+    9. furosemide/geriatric_use <== correct
+   10. furosemide/overdosage 
+
+q03 [c GATE] gate=-11.022 best-correct-rank=1 evidence-only-rank=1
+  Q: Her ears are ringing. Could that be one of her pills?
+  expanded: tinnitus hearing ototoxicity
+  expect: [['furosemide', 'warnings'], ['furosemide', 'precautions'], ['furosemide', 'general_precautions'], ['furosemide', 'drug_interactions'], ['furosemide', 'adverse_reactions']]  evidence: {'furosemide': 'tinnitus|ototox'}
+    1. furosemide/warnings <== correct
+    2. furosemide/drug_interactions <== correct
+    3. furosemide/precautions <== correct
+    4. lisinopril/overdosage 
+    5. furosemide/precautions 
+    6. lisinopril/adverse_reactions 
+    7. furosemide/precautions <== correct
+    8. furosemide/teratogenic_effects 
+    9. lisinopril/pharmacodynamics 
+   10. furosemide/general_precautions <== correct
+
+q04 [c GATE] gate=-10.054 best-correct-rank=1 evidence-only-rank=1
+  Q: She has a dry cough that won't go away.
+  expanded: cough
+  expect: [['lisinopril', 'adverse_reactions']]  evidence: {'lisinopril': '\\bcough'}
+    1. lisinopril/adverse_reactions <== correct
+    2. furosemide/precautions 
+    3. lisinopril/warnings_and_cautions 
+    4. lisinopril/pregnancy 
+    5. lisinopril/use_in_specific_populations 
+    6. lisinopril/adverse_reactions 
+    7. metoprolol_succinate/information_for_patients 
+    8. lisinopril/information_for_patients 
+    9. metoprolol_succinate/adverse_reactions 
+   10. lisinopril/adverse_reactions 
+
+q06 [b RANKING] gate=-3.359 best-correct-rank=4 evidence-only-rank=4
+  Q: Can she use a salt substitute on her food?
+  expanded: -
+  expect: [['lisinopril', 'warnings_and_cautions'], ['lisinopril', 'information_for_patients']]  evidence: {'lisinopril': 'salt substitute'}
+    1. lisinopril/clinical_pharmacology 
+    2. lisinopril/use_in_specific_populations 
+    3. lisinopril/boxed_warning 
+    4. lisinopril/information_for_patients <== correct
+    5. lisinopril/warnings_and_cautions 
+    6. lisinopril/warnings_and_cautions <== correct
+    7. furosemide/precautions 
+    8. furosemide/precautions 
+    9. lisinopril/drug_interactions 
+   10. lisinopril/pharmacokinetics 
+
+q07 [c GATE] gate=-8.866 best-correct-rank=1 evidence-only-rank=1
+  Q: Can she just stop the heart rate pill if she feels fine?
+  expanded: abrupt cessation withdrawal
+  expect: [['metoprolol_succinate', 'indications_and_usage'], ['metoprolol_succinate', 'warnings_and_cautions']]  evidence: {'metoprolol_succinate': 'abrupt|cessation'}
+    1. metoprolol_succinate/warnings_and_cautions <== correct
+    2. metoprolol_succinate/warnings_and_cautions <== correct
+    3. lisinopril/pharmacodynamics 
+    4. metoprolol_succinate/drug_interactions 
+    5. metoprolol_succinate/information_for_patients 
+    6. lisinopril/clinical_pharmacology 
+    7. metoprolol_succinate/clinical_pharmacology 
+    8. metoprolol_succinate/warnings_and_cautions 
+    9. lisinopril/warnings_and_cautions 
+   10. metoprolol_succinate/pharmacodynamics 
+
+q09 [c GATE] gate=-10.181 best-correct-rank=1 evidence-only-rank=1
+  Q: She gets dizzy when she stands up.
+  expanded: dizziness orthostatic hypotension
+  expect: [['furosemide', 'adverse_reactions'], ['metoprolol_succinate', 'adverse_reactions'], ['metoprolol_succinate', 'clinical_pharmacology'], ['metoprolol_succinate', 'pharmacodynamics'], ['lisinopril', 'adverse_reactions']]  evidence: {'furosemide': 'dizz|orthostatic|lighthead', 'metoprolol_succinate': 'dizz|orthostatic|lighthead', 'lisinopril': 'dizz|orthostatic|lighthead'}
+    1. lisinopril/adverse_reactions <== correct
+    2. metoprolol_succinate/adverse_reactions <== correct
+    3. lisinopril/warnings_and_cautions 
+    4. lisinopril/adverse_reactions <== correct
+    5. lisinopril/warnings_and_cautions 
+    6. metoprolol_succinate/information_for_patients 
+    7. lisinopril/pharmacodynamics 
+    8. furosemide/precautions 
+    9. furosemide/general_precautions 
+   10. furosemide/information_for_patients 
+
+q15 [c GATE] gate=-10.018 best-correct-rank=2 evidence-only-rank=2
+  Q: Can the water pill make her burn in the sun?
+  expanded: photosensitivity sunlight
+  expect: [['furosemide', 'precautions'], ['furosemide', 'information_for_patients']]  evidence: {'furosemide': 'photosens|sunlight'}
+    1. lisinopril/adverse_reactions 
+    2. furosemide/information_for_patients <== correct
+    3. furosemide/precautions <== correct
+    4. furosemide/teratogenic_effects 
+    5. furosemide/warnings 
+    6. furosemide/precautions 
+    7. furosemide/pregnancy 
+    8. furosemide/general_precautions 
+    9. furosemide/precautions 
+   10. lisinopril/drug_interactions 
+
+q19 [b RANKING] gate=-10.919 best-correct-rank=28 evidence-only-rank=28
+  Q: Can she have a glass of wine with her pills?
+  expanded: alcohol
+  expect: [['furosemide', 'adverse_reactions']]  evidence: {'furosemide': 'alcohol', 'metoprolol_succinate': 'alcohol', 'lisinopril': 'alcohol'}
+    1. metoprolol_succinate/information_for_patients 
+    2. lisinopril/overdosage 
+    3. furosemide/warnings 
+    4. metoprolol_succinate/use_in_specific_populations 
+    5. metoprolol_succinate/dosage_and_administration 
+    6. lisinopril/information_for_patients 
+    7. metoprolol_succinate/warnings_and_cautions 
+    8. metoprolol_succinate/drug_interactions 
+    9. furosemide/precautions 
+   10. furosemide/precautions 
+
+q20 [c GATE] gate=-8.261 best-correct-rank=1 evidence-only-rank=1
+  Q: Can Motrin hurt her stomach?
+  expanded: gastrointestinal stomach bleeding ulcer
+  expect: [['ibuprofen', 'warnings'], ['ibuprofen', 'ask_doctor'], ['ibuprofen', 'stop_use']]  evidence: {'ibuprofen': 'stomach bleed|ulcer'}
+    1. ibuprofen/warnings <== correct
+    2. ibuprofen/ask_doctor <== correct
+    3. ibuprofen/warnings <== correct
+    4. ibuprofen/stop_use <== correct
+    5. ibuprofen/when_using 
+    6. furosemide/adverse_reactions 
+    7. lisinopril/warnings_and_cautions 
+    8. furosemide/precautions 
+    9. furosemide/general_precautions 
+   10. lisinopril/drug_interactions 
+
+q23 [c GATE] gate=-8.640 best-correct-rank=1 evidence-only-rank=1
+  Q: She takes lithium from another doctor. Does that matter with her heart pills?
+  expanded: -
+  expect: [['furosemide', 'precautions'], ['furosemide', 'drug_interactions'], ['lisinopril', 'drug_interactions']]  evidence: {'furosemide': 'lithium', 'metoprolol_succinate': 'lithium', 'lisinopril': 'lithium'}
+    1. lisinopril/drug_interactions <== correct
+    2. lisinopril/drug_interactions <== correct
+    3. furosemide/precautions <== correct
+    4. furosemide/drug_interactions <== correct
+    5. lisinopril/adverse_reactions 
+    6. metoprolol_succinate/information_for_patients 
+    7. lisinopril/adverse_reactions 
+    8. lisinopril/clinical_pharmacology 
+    9. lisinopril/pharmacokinetics 
+   10. lisinopril/warnings_and_cautions 
+
+q26 [b RANKING] gate=-3.821 best-correct-rank=8 evidence-only-rank=8
+  Q: Should the heart rate pill be taken with food?
+  expanded: food meal
+  expect: [['metoprolol_succinate', 'clinical_pharmacology'], ['metoprolol_succinate', 'pharmacokinetics'], ['metoprolol_succinate', 'information_for_patients']]  evidence: {'metoprolol_succinate': '\\bfood|meal'}
+    1. lisinopril/clinical_pharmacology 
+    2. metoprolol_succinate/warnings_and_cautions 
+    3. lisinopril/indications_and_usage 
+    4. metoprolol_succinate/dosage_and_administration 
+    5. furosemide/precautions 
+    6. lisinopril/pharmacokinetics 
+    7. metoprolol_succinate/clinical_pharmacology 
+    8. metoprolol_succinate/information_for_patients <== correct
+    9. metoprolol_succinate/use_in_specific_populations 
+   10. furosemide/precautions 
+
+q29 [c GATE] gate=-9.253 best-correct-rank=1 evidence-only-rank=1
+  Q: Is it okay to skip the Toprol on days her pulse is low?
+  expanded: bradycardia
+  expect: [['metoprolol_succinate', 'dosage_and_administration'], ['metoprolol_succinate', 'contraindications'], ['metoprolol_succinate', 'warnings_and_cautions'], ['metoprolol_succinate', 'adverse_reactions'], ['metoprolol_succinate', 'drug_interactions'], ['metoprolol_succinate', 'use_in_specific_populations'], ['metoprolol_succinate', 'pregnancy'], ['metoprolol_succinate', 'overdosage']]  evidence: {'metoprolol_succinate': 'bradycard'}
+    1. metoprolol_succinate/warnings_and_cautions <== correct
+    2. metoprolol_succinate/contraindications <== correct
+    3. metoprolol_succinate/overdosage <== correct
+    4. furosemide/precautions 
+    5. metoprolol_succinate/adverse_reactions <== correct
+    6. metoprolol_succinate/drug_interactions 
+    7. lisinopril/information_for_patients 
+    8. lisinopril/dosage_and_administration 
+    9. metoprolol_succinate/dosage_and_administration <== correct
+   10. metoprolol_succinate/warnings_and_cautions <== correct
+
+q30 [c GATE] gate=-9.188 best-correct-rank=3 evidence-only-rank=3
+  Q: Can the heart rate pill make her hands and feet cold?
+  expanded: cold extremities
+  expect: [['metoprolol_succinate', 'adverse_reactions']]  evidence: {'metoprolol_succinate': 'cold extremit|raynaud'}
+    1. furosemide/information_for_patients 
+    2. furosemide/precautions 
+    3. metoprolol_succinate/adverse_reactions <== correct
+    4. lisinopril/information_for_patients 
+    5. lisinopril/warnings_and_cautions 
+    6. metoprolol_succinate/clinical_pharmacology 
+    7. lisinopril/adverse_reactions 
+    8. metoprolol_succinate/use_in_specific_populations 
+    9. lisinopril/warnings_and_cautions 
+   10. metoprolol_succinate/pharmacodynamics 
+
+q31 [b RANKING] gate=-10.637 best-correct-rank=39 evidence-only-rank=5
+  Q: She still has some Lopressor left. What is that one for?
+  expanded: -
+  expect: [['metoprolol_tartrate', 'indications_and_usage']]  evidence: {'metoprolol_tartrate': '(hand-set)'}
+    1. metoprolol_succinate/information_for_patients 
+    2. metoprolol_succinate/clinical_pharmacology 
+    3. furosemide/precautions 
+    4. furosemide/precautions 
+    5. metoprolol_tartrate/information_for_patients (evidence, other section)
+    6. furosemide/pregnancy 
+    7. furosemide/teratogenic_effects 
+    8. furosemide/overdosage 
+    9. furosemide/information_for_patients 
+   10. metoprolol_succinate/pregnancy 
+
+q33 [c GATE] gate=-8.586 best-correct-rank=1 evidence-only-rank=1
+  Q: Why does the water pill make her so thirsty?
+  expanded: thirst dry mouth dehydration
+  expect: [['furosemide', 'precautions'], ['furosemide', 'general_precautions']]  evidence: {'furosemide': 'thirst|dry mouth'}
+    1. furosemide/general_precautions <== correct
+    2. furosemide/precautions <== correct
+    3. furosemide/overdosage 
+    4. furosemide/precautions 
+    5. lisinopril/information_for_patients 
+    6. furosemide/laboratory_tests 
+    7. furosemide/warnings 
+    8. lisinopril/adverse_reactions 
+    9. lisinopril/clinical_pharmacology 
+   10. furosemide/clinical_pharmacology 
+
+q34 [c GATE] gate=-8.212 best-correct-rank=1 evidence-only-rank=1
+  Q: Could her blood pressure pill be making her dizzy?
+  expanded: dizziness orthostatic hypotension
+  expect: [['lisinopril', 'adverse_reactions']]  evidence: {'lisinopril': 'dizz|lighthead'}
+    1. lisinopril/adverse_reactions <== correct
+    2. lisinopril/adverse_reactions <== correct
+    3. lisinopril/warnings_and_cautions 
+    4. lisinopril/pharmacodynamics 
+    5. metoprolol_succinate/adverse_reactions 
+    6. lisinopril/clinical_pharmacology 
+    7. lisinopril/drug_interactions 
+    8. furosemide/information_for_patients 
+    9. lisinopril/warnings_and_cautions 
+   10. lisinopril/pregnancy 
+
+q37 [c GATE] gate=-8.407 best-correct-rank=1 evidence-only-rank=1
+  Q: Can her water pill make her feel weak or crampy?
+  expanded: muscle cramps weakness
+  expect: [['furosemide', 'precautions'], ['furosemide', 'general_precautions'], ['furosemide', 'adverse_reactions']]  evidence: {'furosemide': 'muscle cramp|muscle spasm|weakness'}
+    1. furosemide/general_precautions <== correct
+    2. furosemide/precautions <== correct
+    3. furosemide/adverse_reactions <== correct
+    4. lisinopril/warnings_and_cautions 
+    5. furosemide/precautions 
+    6. furosemide/information_for_patients 
+    7. lisinopril/drug_interactions 
+    8. furosemide/warnings 
+    9. furosemide/general_precautions 
+   10. lisinopril/pharmacodynamics 
+
+q40 [b RANKING] gate=-9.051 best-correct-rank=17 evidence-only-rank=17
+  Q: Why does the water pill make her dizzy in the morning?
+  expanded: dizziness orthostatic hypotension
+  expect: [['furosemide', 'adverse_reactions']]  evidence: {'furosemide': 'dizz|orthostatic|lighthead'}
+    1. metoprolol_succinate/adverse_reactions 
+    2. lisinopril/adverse_reactions 
+    3. lisinopril/adverse_reactions 
+    4. lisinopril/warnings_and_cautions 
+    5. furosemide/warnings 
+    6. furosemide/precautions 
+    7. lisinopril/pregnancy 
+    8. furosemide/general_precautions 
+    9. lisinopril/pharmacodynamics 
+   10. lisinopril/warnings_and_cautions 
+
+q43 [b RANKING] gate=-9.303 best-correct-rank=5 evidence-only-rank=5
+  Q: Is it safe for her to take Motrin every day for her knees?
+  expanded: -
+  expect: [['ibuprofen', 'warnings'], ['ibuprofen', 'ask_doctor'], ['ibuprofen', 'ask_doctor_or_pharmacist'], ['ibuprofen', 'stop_use']]  evidence: {'ibuprofen': 'stomach bleed|heart attack|stroke|longer than'}
+    1. ibuprofen/dosage_and_administration 
+    2. lisinopril/information_for_patients 
+    3. lisinopril/nonclinical_toxicology 
+    4. lisinopril/carcinogenesis_and_mutagenesis_and_impairment_of_fertility 
+    5. ibuprofen/warnings <== correct
+    6. ibuprofen/pregnancy_or_breast_feeding 
+    7. lisinopril/dosage_and_administration 
+    8. metoprolol_succinate/information_for_patients 
+    9. ibuprofen/warnings <== correct
+   10. furosemide/dosage_and_administration 
+
+q44 [c GATE] gate=-8.206 best-correct-rank=3 evidence-only-rank=3
+  Q: Could Aleve make her swelling worse?
+  expanded: edema swelling angioedema
+  expect: [['naproxen', 'warnings'], ['naproxen', 'stop_use']]  evidence: {'naproxen': 'swelling|edema|fluid|heart failure'}
+    1. lisinopril/information_for_patients 
+    2. lisinopril/warnings_and_cautions 
+    3. naproxen/warnings <== correct
+    4. lisinopril/drug_interactions 
+    5. lisinopril/warnings_and_cautions 
+    6. naproxen/warnings <== correct
+    7. lisinopril/contraindications 
+    8. lisinopril/drug_interactions 
+    9. naproxen/stop_use <== correct
+   10. furosemide/indications_and_usage 
+
+SELECTION (dev..heldout3, 37): 16/37 hit@3 and not gated
+
+######## HELDOUT4 (8)
+
+q50 [b RANKING] gate=-9.702 best-correct-rank=5 evidence-only-rank=5
+  Q: Can the heart rate pill give her bad dreams?
+  expanded: sleep disturbances nightmares insomnia
+  expect: [['metoprolol_succinate', 'adverse_reactions']]  evidence: {'metoprolol_succinate': 'nightmare|dream|insomnia|sleep disturb'}
+    1. metoprolol_succinate/overdosage 
+    2. lisinopril/adverse_reactions 
+    3. metoprolol_succinate/clinical_pharmacology 
+    4. metoprolol_succinate/warnings_and_cautions 
+    5. metoprolol_succinate/adverse_reactions <== correct
+    6. metoprolol_succinate/warnings_and_cautions 
+    7. furosemide/general_precautions 
+    8. furosemide/precautions 
+    9. metoprolol_succinate/use_in_specific_populations 
+   10. metoprolol_succinate/pregnancy 
+
+q51 [b RANKING] gate=-7.357 best-correct-rank=19 evidence-only-rank=19
+  Q: Can Advil push her blood pressure up?
+  expanded: hypertension blood pressure increase
+  expect: [['ibuprofen', 'warnings'], ['ibuprofen', 'ask_doctor']]  evidence: {'ibuprofen': 'blood pressure'}
+    1. lisinopril/pharmacodynamics 
+    2. lisinopril/clinical_pharmacology 
+    3. lisinopril/indications_and_usage 
+    4. lisinopril/drug_interactions 
+    5. metoprolol_succinate/indications_and_usage 
+    6. lisinopril/clinical_pharmacology 
+    7. lisinopril/mechanism_of_action 
+    8. metoprolol_succinate/indications_and_usage 
+    9. furosemide/dosage_and_administration 
+   10. lisinopril/indications_and_usage 
+
+q52 [c GATE] gate=-8.264 best-correct-rank=1 evidence-only-rank=1
+  Q: Her skin is itchy. Could it be the blood pressure pill?
+  expanded: rash pruritus skin reactions
+  expect: [['lisinopril', 'adverse_reactions']]  evidence: {'lisinopril': 'rash|pruritus'}
+    1. lisinopril/adverse_reactions <== correct
+    2. metoprolol_succinate/adverse_reactions 
+    3. metoprolol_succinate/adverse_reactions 
+    4. lisinopril/adverse_reactions 
+    5. furosemide/information_for_patients 
+    6. furosemide/precautions 
+    7. furosemide/adverse_reactions 
+    8. lisinopril/warnings_and_cautions 
+    9. lisinopril/adverse_reactions 
+   10. lisinopril/pharmacodynamics 
+
+q54 [c GATE] gate=-9.475 best-correct-rank=1 evidence-only-rank=1
+  Q: Could the heart rate pill be making her feel down?
+  expanded: depression mental
+  expect: [['metoprolol_succinate', 'adverse_reactions'], ['metoprolol_succinate', 'use_in_specific_populations'], ['metoprolol_succinate', 'pregnancy']]  evidence: {'metoprolol_succinate': 'depress'}
+    1. metoprolol_succinate/adverse_reactions <== correct
+    2. metoprolol_succinate/clinical_pharmacology 
+    3. metoprolol_succinate/adverse_reactions <== correct
+    4. metoprolol_succinate/pharmacodynamics 
+    5. metoprolol_succinate/mechanism_of_action 
+    6. metoprolol_succinate/pregnancy <== correct
+    7. lisinopril/adverse_reactions 
+    8. lisinopril/adverse_reactions 
+    9. metoprolol_succinate/use_in_specific_populations 
+   10. lisinopril/adverse_reactions 
+
+q55 [b RANKING] gate=-7.249 best-correct-rank=4 evidence-only-rank=4
+  Q: Could the water pill cause a skin rash?
+  expanded: rash pruritus skin reactions
+  expect: [['furosemide', 'adverse_reactions']]  evidence: {'furosemide': 'rash|dermatitis|pruritus'}
+    1. metoprolol_succinate/adverse_reactions 
+    2. lisinopril/adverse_reactions 
+    3. lisinopril/adverse_reactions 
+    4. furosemide/adverse_reactions <== correct
+    5. metoprolol_succinate/adverse_reactions 
+    6. furosemide/general_precautions 
+    7. lisinopril/adverse_reactions 
+    8. lisinopril/warnings_and_cautions 
+    9. furosemide/precautions 
+   10. furosemide/information_for_patients 
+
+HELDOUT4 (8): 3/8 hit@3 and not gated
+
+######## DARSHAN (10), strict = his sections + evidence
+
+D-q01 [b RANKING] gate=-9.534 best-correct-rank=5 evidence-only-rank=5
+  Q: Can she take Advil with her water pill?
+  expanded: -
+  expect: [['ibuprofen', 'drug_interactions'], ['ibuprofen', 'ask_doctor_or_pharmacist'], ['ibuprofen', 'warnings'], ['furosemide', 'drug_interactions'], ['furosemide', 'precautions']]  evidence: {'ibuprofen': 'diuretic', 'furosemide': 'indomethacin|non-?steroidal|NSAID'}
+    1. ibuprofen/warnings 
+    2. ibuprofen/dosage_and_administration 
+    3. ibuprofen/when_using 
+    4. lisinopril/information_for_patients 
+    5. ibuprofen/warnings <== correct
+    6. metoprolol_succinate/information_for_patients 
+    7. furosemide/warnings 
+    8. lisinopril/drug_interactions 
+    9. furosemide/dosage_and_administration 
+   10. furosemide/dosage_and_administration 
+
+D-q02 [a COVERAGE] gate=-8.881 best-correct-rank=None evidence-only-rank=1
+  Q: Why is she peeing so much?
+  expanded: urination diuresis nocturia
+  expect: [['furosemide', 'adverse_reactions'], ['furosemide', 'information_for_patients']]  evidence: {'furosemide': 'diuresis|diuretic effect|urinat|polyuria'}
+  evidence text found in (any section): [('furosemide', 'clinical_pharmacology'), ('furosemide', 'dosage_and_administration'), ('furosemide', 'drug_interactions'), ('furosemide', 'general_precautions'), ('furosemide', 'geriatric_use'), ('furosemide', 'precautions'), ('furosemide', 'warnings')]
+    1. furosemide/general_precautions (evidence, other section)
+    2. furosemide/warnings (evidence, other section)
+    3. furosemide/precautions (evidence, other section)
+    4. furosemide/dosage_and_administration (evidence, other section)
+    5. furosemide/dosage_and_administration (evidence, other section)
+    6. furosemide/dosage_and_administration (evidence, other section)
+    7. furosemide/geriatric_use (evidence, other section)
+    8. furosemide/overdosage 
+    9. furosemide/clinical_pharmacology (evidence, other section)
+   10. furosemide/pediatric_use 
+
+D-q03 [b RANKING] gate=-3.692 best-correct-rank=8 evidence-only-rank=2
+  Q: She gets dizzy when she stands up. Could that be from the metoprolol?
+  expanded: dizziness orthostatic hypotension
+  expect: [['metoprolol_succinate', 'adverse_reactions'], ['metoprolol_succinate', 'warnings_and_cautions'], ['metoprolol_succinate', 'warnings']]  evidence: {'metoprolol_succinate': 'dizz|hypotension'}
+    1. metoprolol_succinate/information_for_patients 
+    2. metoprolol_succinate/drug_interactions (evidence, other section)
+    3. metoprolol_succinate/overdosage (evidence, other section)
+    4. metoprolol_succinate/clinical_pharmacology 
+    5. metoprolol_succinate/pharmacodynamics 
+    6. metoprolol_succinate/pregnancy (evidence, other section)
+    7. lisinopril/adverse_reactions 
+    8. metoprolol_succinate/warnings_and_cautions <== correct
+    9. metoprolol_succinate/adverse_reactions <== correct
+   10. metoprolol_succinate/use_in_specific_populations (evidence, other section)
+
+D-q07 [c GATE] gate=-9.659 best-correct-rank=1 evidence-only-rank=1
+  Q: Can she take Aleve for her knee pain?
+  expanded: -
+  expect: [['naproxen', 'drug_interactions'], ['naproxen', 'ask_doctor_or_pharmacist'], ['naproxen', 'warnings'], ['lisinopril', 'drug_interactions'], ['furosemide', 'drug_interactions']]  evidence: {'naproxen': 'diuretic|ACE|angiotensin', 'lisinopril': 'non-?steroidal|NSAID', 'furosemide': 'indomethacin|non-?steroidal|NSAID'}
+    1. naproxen/warnings <== correct
+    2. naproxen/warnings 
+    3. naproxen/do_not_use 
+    4. metoprolol_succinate/information_for_patients 
+    5. lisinopril/warnings_and_cautions 
+    6. lisinopril/information_for_patients 
+    7. naproxen/indications_and_usage 
+    8. naproxen/dosage_and_administration 
+    9. lisinopril/drug_interactions <== correct
+   10. naproxen/ask_doctor_or_pharmacist 
+
+D-q08 [b RANKING] gate=3.699 best-correct-rank=7 evidence-only-rank=1
+  Q: What is the difference between metoprolol succinate and metoprolol tartrate?
+  expanded: -
+  expect: [['metoprolol_succinate', 'description'], ['metoprolol_succinate', 'dosage_and_administration'], ['metoprolol_succinate', 'clinical_pharmacology'], ['metoprolol_tartrate', 'description'], ['metoprolol_tartrate', 'dosage_and_administration'], ['metoprolol_tartrate', 'clinical_pharmacology']]  evidence: {'metoprolol_succinate': 'extended[- ]release', 'metoprolol_tartrate': 'succinate|extended'}
+    1. metoprolol_tartrate/nonclinical_toxicology (evidence, other section)
+    2. metoprolol_succinate/nonclinical_toxicology 
+    3. metoprolol_tartrate/carcinogenesis_and_mutagenesis_and_impairment_of_fertility (evidence, other section)
+    4. metoprolol_tartrate/dosage_forms_and_strengths 
+    5. metoprolol_tartrate/dosage_and_administration 
+    6. metoprolol_tartrate/indications_and_usage 
+    7. metoprolol_succinate/clinical_pharmacology <== correct
+    8. metoprolol_succinate/clinical_pharmacology <== correct
+    9. metoprolol_tartrate/indications_and_usage 
+   10. metoprolol_tartrate/dosage_and_administration 
+
+D-q10 [b RANKING] gate=-10.192 best-correct-rank=30 evidence-only-rank=30
+  Q: What happens if she accidentally takes two of her water pills?
+  expanded: -
+  expect: [['furosemide', 'overdosage'], ['furosemide', 'warnings']]  evidence: {'furosemide': 'overdos'}
+    1. furosemide/drug_interactions 
+    2. metoprolol_succinate/information_for_patients 
+    3. furosemide/precautions 
+    4. furosemide/warnings 
+    5. lisinopril/warnings_and_cautions 
+    6. lisinopril/pharmacodynamics 
+    7. lisinopril/drug_interactions 
+    8. lisinopril/adverse_reactions 
+    9. furosemide/precautions 
+   10. lisinopril/information_for_patients 
+
+DARSHAN (10), strict = his sections + evidence: 4/10 hit@3 and not gated
+
+BUCKETS: {
+ "SELECTION (dev..heldout3, 37)": {
+  "b RANKING": [
+   "q01",
+   "q06",
+   "q19",
+   "q26",
+   "q31",
+   "q40",
+   "q43"
+  ],
+  "c GATE": [
+   "q02",
+   "q03",
+   "q04",
+   "q07",
+   "q09",
+   "q15",
+   "q20",
+   "q23",
+   "q29",
+   "q30",
+   "q33",
+   "q34",
+   "q37",
+   "q44"
+  ]
+ },
+ "HELDOUT4 (8)": {
+  "b RANKING": [
+   "q50",
+   "q51",
+   "q55"
+  ],
+  "c GATE": [
+   "q52",
+   "q54"
+  ]
+ },
+ "DARSHAN (10), strict = his sections + evidence": {
+  "b RANKING": [
+   "D-q01",
+   "D-q03",
+   "D-q08",
+   "D-q10"
+  ],
+  "a COVERAGE": [
+   "D-q02"
+  ],
+  "c GATE": [
+   "D-q07"
+  ]
+ }
+}
