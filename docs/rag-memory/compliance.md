@@ -59,10 +59,31 @@ Notification Rule cover (sources in their sections). HomeStretch treats it as PH
 
 ## FTC Health Breach Notification Rule
 
-- Does it cover us? Why?
-- What counts as a breach; what we would have to do:
-- 2024 update (date):
-- Source:
+- **Does it cover us? Likely yes, for the consumer app.** The Rule applies to vendors of personal health records
+  that HIPAA does not cover [F1][F3]. A personal health record is an electronic record of identifiable health
+  information that "has the technical capacity to draw information from multiple sources" and is managed by or for
+  the individual [F2]. The FTC's own example is "a diet app that allows users to enter daily weights and an API for
+  pulling calorie counts from restaurant menus" [F2]. HomeStretch is built the same way: the caregiver enters the
+  care plan and bottle photos for the patient, and the app pulls drug information from openFDA and RxNorm. The
+  2024 update states the Rule applies to "health apps and similar technologies not covered by HIPAA" [F1]. The Rule
+  "does not apply to HIPAA-covered entities, or to any other entity to the extent that it engages in activities as a
+  business associate" (16 CFR 318.1) [F4]. So in a hospital deployment, that data falls under HIPAA instead, while a
+  direct-to-consumer version stays under the FTC Rule.
+- **What counts as a breach; what we would have to do.** A breach is the acquisition of unsecured identifiable
+  health information without the person's authorization, and "is not limited to cybersecurity intrusions" [F2]:
+  the 2024 update says it includes "an unauthorized disclosure" [F1], such as sharing health data with an
+  advertiser or analytics company without consent. After a breach we must notify: (1) each affected person, without
+  unreasonable delay and within 60 calendar days of discovery; (2) the FTC, at the same time as the people if 500 or
+  more are affected, or within 60 days after the end of the year if fewer; (3) prominent local media if at least
+  500 residents of one state are affected [F2]. Notice may go by email [F1]. Penalties: up to $51,744 per violation
+  per the FTC's July 2024 page [F3] `[VERIFY: amount is adjusted for inflation each year]`. **What HomeStretch does:**
+  no advertising or analytics SDKs that receive health data; no sharing without the patient's opt-in; a written
+  breach-response plan with the 60-day clock.
+- **2024 update (date):** announced April 26, 2024 [F1]; published in the Federal Register May 30, 2024
+  (89 FR 47028); effective **July 29, 2024** [F4]. Main changes: clearer coverage of health apps, "breach" includes
+  unauthorized disclosure, a clearer "multiple sources" test, more required content in the notice, email notice, and
+  FTC notice at the same time as consumers for 500+ people [F1].
+- **Source:** [F1]–[F4] in References (all read directly, checked 2026-11-01).
 
 ## State consumer health privacy laws
 
@@ -223,6 +244,19 @@ https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-cons
 who are involved in the patient's care?,
 https://www.hhs.gov/hipaa/for-professionals/faq/2087/does-hipaa-allow-a-health-care-provider-to-communicate-with-a-patients-family-friends-or-other-persons-who-are-involved-in-the-patient-care.html
 (checked 2026-11-01)
+
+[F1] FTC, FTC Finalizes Changes to the Health Breach Notification Rule (press release, April 26, 2024),
+https://www.ftc.gov/news-events/news/press-releases/2024/04/ftc-finalizes-changes-health-breach-notification-rule
+(checked 2026-11-01)
+
+[F2] FTC, Complying with FTC's Health Breach Notification Rule (July 2024, edited January 2025),
+https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0 (checked 2026-11-01)
+
+[F3] FTC, Health Breach Notification Rule: The Basics for Business (July 2024),
+https://www.ftc.gov/business-guidance/resources/health-breach-notification-rule-basics-business (checked 2026-11-01)
+
+[F4] FTC, Health Breach Notification Rule, final rule, 89 Fed. Reg. 47028 (May 30, 2024), 16 CFR Part 318, GovInfo,
+https://www.govinfo.gov/content/pkg/FR-2024-05-30/pdf/2024-10855.pdf (checked 2026-11-01)
 
 ## Condensed version (150 words or fewer)
 
