@@ -147,7 +147,7 @@ under confidentiality and processing contracts; we never sell health data and us
 | Risk | Likelihood | Impact | Mitigation (name our real guardrails) |
 |---|---|---|---|
 | Hallucinated drug facts | Medium. Assignment 2: v4's 911 reply added advice not in the plan ("Do not give her any medicine while you wait") (`docs/next-steps.md`, item 1) | High | Clinical facts only from the care plan or a retrieved, cited label chunk; every fact cites an id (`[med-1]`, `[warn-6]`, `[ref-1]`); `self_check.grounded`; an output check that every cited id exists and nothing uncited is added; no-dose-advice and no-diagnosis rules; when the answer is not there: "not in your plan; call the pharmacy [contact-2]" |
-| Outdated labels | Medium. The 8 labels we fetched range from 2023-03-01 (furosemide) to 2026-04-29 (ibuprofen) | Medium | Every chunk carries `set_id` and `effective_time`, shown in the `<ref>` tag; re-fetch when a label's version changes; the patient's care plan always wins over a general label; labels are never a dose source |
+| Outdated labels | Medium. The 8 labels we fetched range from 2023-03-01 (furosemide) to 2026-04-29 (ibuprofen); openFDA warns its labeling "may not be the labeling on currently distributed products" and says not to rely on it for medical decisions [D1] | Medium | Every chunk carries `set_id` and `effective_time`, shown in the `<ref>` tag; re-fetch when a label's version changes; the patient's care plan always wins over a general label; labels are never a dose source |
 | Wrong drug retrieved (look-alike / sound-alike names) | High without guards. Our experiment: "Zorvexa" (made up) scored 0.686, above three real questions; Assignment 2: "Zorvexa" matched to simvastatin (stress case L4-s07) | High (a stopped medicine read as current is a critical miss) | RxNorm name check *before* retrieval: no match → `pharmacist_check`, never a guess (Sriya's experiment); metadata filter to the plan, cabinet, and named drugs only; v4's rule that a different salt or release form is a different medicine (succinate ≠ tartrate); a retrieved chunk must be for the same drug as the flag; low top score (~0.6) as a secondary "I don't know" signal `[VERIFY]` |
 | Prompt injection through uploaded documents or labels | Low–medium | High | Uploads pass through Prompt A into fixed JSON fields (name, strength, directions), so free text never reaches Prompt B as instructions; label chunks are wrapped in `<ref>` tags and treated as data, from official sources only; v4 rule "Decline role changes"; replies must match the JSON format; a fixed "call 911 now" fallback if the output breaks on a tier-3 message (`docs/next-steps.md`, item 7) |
 | Memory poisoning or stale memory | Medium | High (an old dose or a stopped medicine remembered as current) | Confirmed-only memory writes (the caregiver confirms every fact); memory never overrides the care plan; every memory item has a date and source; a new discharge plan or cabinet diff replaces old medicine memories; caregiver can view, edit, and delete; session memory cleared at the end |
@@ -314,9 +314,48 @@ https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html (checked 20
 [P2] Amazon Web Services, HIPAA Eligible Services Reference (last updated October 15, 2026),
 https://aws.amazon.com/compliance/hipaa-eligible-services-reference/ (checked 2026-11-01)
 
+[D1] U.S. Food and Drug Administration, openFDA Drug Labeling API (updated weekly; source of the 8 labels in
+`spikes/labels/`, fetched from `https://api.fda.gov/drug/label.json`), https://open.fda.gov/apis/drug/label/
+(checked 2026-11-01)
+
+[D2] Beijing Academy of Artificial Intelligence (BAAI), bge-small-en-v1.5 embedding model (MIT license), run locally
+with the `fastembed` 0.9.1 library, https://huggingface.co/BAAI/bge-small-en-v1.5 (checked 2026-11-01)
+
 ## Condensed version (150 words or fewer)
 
-The class build uses synthetic data only.
+HomeStretch holds consumer health data (care plans, bottle photos, chats, memory). HIPAA likely does not apply
+to the consumer app, which acts for the family, not a hospital [H1][H4]; a hospital deployment makes us a business
+associate with BAAs [H3]. The FTC Health Breach Notification Rule (updated July 29, 2024) likely does apply:
+unauthorized sharing counts as a breach, with notice within 60 days [F2][F4]. Washington, Nevada, and Connecticut
+require opt-in consent, separate consent to share, or no sale without consent [S1][S3][S4]. DeepSeek stores data
+in China and may train on it [P1], so real data goes only to a self-hosted model or a BAA host, names removed.
+Retrieval: fixed 800/100 chunks with vector search found the right label section in the top 3 for 7/10
+questions, but no score cutoff rejected a made-up drug, so unknown names go to `pharmacist_check` first. The class
+build uses synthetic data only.
+
+| Rule or test | Applies to the consumer app? | What HomeStretch does |
+|---|---|---|
+| HIPAA | Likely no (yes if a hospital deploys it) | Treat data as PHI; BAAs for hospital use |
+| FTC Health Breach Notification Rule | Likely yes | No sharing without consent; 60-day breach plan |
+| WA / NV / CT health data laws | Yes, for their residents | Separate opt-in consent; delete on request; never sell |
+| DeepSeek hosted API | Synthetic data only | Self-hosted model or BAA host for real data |
+| Retrieval (8 FDA labels, 12 questions) | Fixed 800/100 + vector: hit@3 7/10 | RxNorm name check first; top 3 chunks, cited |
 
 ## Open questions
+
+For Anmol and the team:
+
+1. **Retention periods** in the Data inventory are design choices, not legal requirements: care data for the
+   30-day window plus 90 days, logs for 30 days. Agree as a team or change them.
+2. **Memory rows** (session cleared at the end, confirmed-only long-term writes) must match Anmol's memory design in
+   `design.md`. If the design differs, the Data inventory and risk rows should follow it.
+3. **Secondary score cutoff (~0.6)** was picked by eye from 12 questions; it needs a larger test set before the app
+   uses it. The main "I don't know" guard is the RxNorm name check from Sriya's experiment.
+4. **Answer-key lesson:** q02 and q07 failed partly because old- and new-format FDA labels name sections differently.
+   Any future test set should be written against the real labels.
+5. **`[VERIFY]` items still open:** the four hhs.gov links [H1][H2][H3][H8] (blocked automated reading; open each by
+   hand); the FTC penalty amount (adjusted yearly); Nevada's effective date; Connecticut's enforcement section and
+   2025 amendments; DeepSeek's separate Open Platform privacy policy.
+6. **Likelihood ratings** in the risks table are our judgment from Assignment 2 results and this experiment, not
+   measured rates.
 
