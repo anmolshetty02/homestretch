@@ -89,9 +89,14 @@ Notification Rule cover (sources in their sections). HomeStretch treats it as PH
 
 | State / law | What it requires | Source | Checked |
 |---|---|---|---|
-| Washington, My Health My Data Act | | | |
-| Nevada | | | |
-| Connecticut | | | |
+| Washington, My Health My Data Act (RCW 19.373) | Covers HomeStretch's data: "consumer health data" lists "individual health conditions, treatment, diseases, or diagnosis" and "use or purchase of prescribed medication". **Opt-in consent** before collecting, for a specified purpose; **separate** consent before sharing; a general terms-of-use click does not count. Right to **delete** (including backups, within 6 months) and to a response within 45 days. Selling needs a signed authorization. No size threshold; small businesses had until June 30, 2024 (others March 31, 2024). Enforced through the Consumer Protection Act, by the Attorney General **and by private lawsuits** | [S1] [S2] | 2026-11-01 |
+| Nevada (SB 370, 2023; NRS 603A.400–.550) | Similar to Washington: consumer health data may be collected only with "affirmative, voluntary consent" (or to provide the requested service); sharing needs separate consent. Consumers can confirm, get the list of third parties, stop, and **delete** (deletion within 30 days; responses within 45). Selling needs written, signed authorization that expires after 1 year. A violation is a deceptive trade practice; **no private right of action**. Effective March 31, 2024 `[VERIFY: effective date not found on the NRS page]` | [S3] | 2026-11-01 |
+| Connecticut (Public Act 23-56, 2023, amending the Connecticut Data Privacy Act) | Consumer health data = data used to identify a physical or mental health condition or diagnosis. No person may give employees or contractors access without a duty of confidentiality, give processors access without a data-processing contract, **sell it without consent**, or geofence health facilities. These rules apply to anyone doing business in or targeting Connecticut, regardless of the Act's usual size thresholds. Effective July 1, 2023. Enforced by the Attorney General `[VERIFY: AG enforcement and the Act's 2025 amendments not read in full]` | [S4] | 2026-11-01 |
+
+**What HomeStretch does to meet all three:** a separate, plain-language consent screen before any health data is
+collected (not buried in the terms of use); a second, separate consent before anything is shared (we share nothing
+by default); in-app view and delete for every item, with deletion reaching backups; staff and vendor access only
+under confidentiality and processing contracts; we never sell health data and use no location tracking.
 
 ## Access and security
 
@@ -257,6 +262,18 @@ https://www.ftc.gov/business-guidance/resources/health-breach-notification-rule-
 
 [F4] FTC, Health Breach Notification Rule, final rule, 89 Fed. Reg. 47028 (May 30, 2024), 16 CFR Part 318, GovInfo,
 https://www.govinfo.gov/content/pkg/FR-2024-05-30/pdf/2024-10855.pdf (checked 2026-11-01)
+
+[S1] Washington State Legislature, Chapter 19.373 RCW, Washington My Health My Data Act,
+https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true (checked 2026-11-01)
+
+[S2] Washington State Office of the Attorney General, Protecting Washingtonians' Personal Health Data and Privacy
+(FAQ), https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy (checked 2026-11-01)
+
+[S3] Nevada Legislature, NRS Chapter 603A, Security and Privacy of Personal Information (NRS 603A.400–603A.550,
+consumer health data, from SB 370 of 2023), https://www.leg.state.nv.us/nrs/nrs-603a.html (checked 2026-11-01)
+
+[S4] Connecticut General Assembly, Public Act No. 23-56 (Substitute Senate Bill No. 3), section 2,
+https://www.cga.ct.gov/2023/act/Pa/pdf/2023PA-00056-R00SB-00003-PA.PDF (checked 2026-11-01)
 
 ## Condensed version (150 words or fewer)
 
