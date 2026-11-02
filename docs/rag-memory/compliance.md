@@ -23,10 +23,39 @@ Notification Rule cover (sources in their sections). HomeStretch treats it as PH
 
 ## HIPAA
 
-- Consumer app (caregiver downloads it): covered entity, business associate, or neither? Why?
-- Hospital deploys it: what changes?
-- Caregiver access to the patient's information:
-- Sources (URL, checked date):
+- **Consumer app (caregiver downloads it): HIPAA likely does not apply; neither a covered entity nor a business
+  associate.** A covered entity is a health plan, a health care clearinghouse, or a health care provider that sends
+  health information electronically in a standard transaction [H4]. HomeStretch is none of these. A business
+  associate creates, receives, maintains, or transmits PHI *on behalf of* a covered entity [H4]. When the caregiver
+  downloads the app and types or photographs the information themselves, HomeStretch acts for the family, not for a
+  hospital. HHS's guidance for app developers says that a developer offering services directly to consumers, and not
+  on behalf of a provider or health plan, is not likely to be subject to HIPAA [H1][H2]. Not being under HIPAA does
+  not make the data less sensitive: the FTC Act, the FTC Health Breach Notification Rule, and state consumer health
+  laws still apply [H7] (next sections). We must not claim "HIPAA compliant" in marketing [H7].
+- **Hospital deploys it: HomeStretch becomes a business associate.** If a hospital (a covered entity) contracts with
+  us to give the app to its discharged patients, we would create, receive, and maintain PHI on the hospital's behalf,
+  which is the business associate definition [H4]. HHS lists exactly this case, an app developer contracting with a
+  covered entity to provide the app to its patients, as a business associate [H3]. Then we need a **business
+  associate agreement (BAA)** with the hospital, and we may use or disclose PHI only as the BAA permits [H7]. The
+  vendors we use that handle the PHI (cloud host, LLM provider) become our subcontractors, which HIPAA also counts as
+  business associates; we may share PHI with them only after getting written assurances that they will protect it,
+  in practice a BAA with each one [H4][H6] (see "LLM provider" below). HHS's guidance allows a developer to run a hospital version and a
+  direct-to-consumer version side by side, with HIPAA protections on the hospital version's data, as long as the data
+  is kept separate [H2] `[VERIFY: open the HHS scenarios PDF; hhs.gov blocked automated reading]`.
+- **Caregiver access to the patient's information.** HIPAA lets a hospital or clinic share with a family member or
+  close friend "the protected health information directly relevant to such person's involvement" in the patient's
+  care [H5]. If the patient is present and able to decide, the provider may share when the patient agrees, does not
+  object, or the provider reasonably infers no objection; if the patient is absent or incapacitated, the provider may
+  share what is directly relevant if, in their professional judgment, it is in the patient's best interest [H5][H8].
+  A person with legal authority to make health decisions for an adult (for example, a health care power of attorney)
+  is treated as the patient's **personal representative** [H6]. These rules govern what the *hospital* may tell
+  Maria; they do not govern our app. **What HomeStretch does regardless:** the patient consents in the app to each
+  caregiver; only people on the patient's `approved_caregivers` list (in `fixtures/p001.json`: Maria, daughter) can
+  see the care plan, cabinet, chat, and memory; the patient can remove a caregiver at any time; and the app shares
+  only what the caregiver needs for the medicines and the warning signs in the plan.
+- **Sources (checked 2026-11-01):** [H1]–[H8] in References. The CFR text [H4]–[H6] and the FTC page [H7] were read
+  directly. The hhs.gov pages [H1]–[H3], [H8] block automated reading; their content was confirmed from search
+  results of those exact pages `[VERIFY: open each hhs.gov link once by hand]`.
 
 ## FTC Health Breach Notification Rule
 
@@ -165,7 +194,35 @@ Decision and why:
 
 ## References
 
-[1]
+[H1] U.S. Department of Health and Human Services (HHS), Office for Civil Rights, Resources for Mobile Health Apps
+Developers, https://www.hhs.gov/hipaa/for-professionals/special-topics/health-apps/index.html (checked 2026-11-01)
+
+[H2] HHS Office for Civil Rights, Health App Use Scenarios & HIPAA (February 2016),
+https://www.hhs.gov/sites/default/files/ocr-health-app-developer-scenarios-2-2016.pdf (checked 2026-11-01)
+
+[H3] HHS, Business Associates Frequently Asked Questions,
+https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html (checked 2026-11-01)
+
+[H4] 45 CFR § 160.103, Definitions ("Business associate", "Covered entity"), Code of Federal Regulations,
+10-1-25 edition, GovInfo,
+https://www.govinfo.gov/content/pkg/CFR-2025-title45-vol2/pdf/CFR-2025-title45-vol2-sec160-103.pdf (checked 2026-11-01)
+
+[H5] 45 CFR § 164.510(b), Uses and disclosures for involvement in the individual's care, 10-1-25 edition, GovInfo,
+https://www.govinfo.gov/content/pkg/CFR-2025-title45-vol2/pdf/CFR-2025-title45-vol2-sec164-510.pdf (checked 2026-11-01)
+
+[H6] 45 CFR § 164.502(e)(1)(ii), Disclosures to subcontractors, and § 164.502(g)(2), Personal representatives:
+adults, 10-1-25 edition, GovInfo,
+https://www.govinfo.gov/content/pkg/CFR-2025-title45-vol2/pdf/CFR-2025-title45-vol2-sec164-502.pdf (checked 2026-11-01)
+
+[H7] Federal Trade Commission (FTC), Collecting, Using, or Sharing Consumer Health Information? Look to HIPAA, the
+FTC Act, and the Health Breach Notification Rule (August 2024),
+https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-consumer-health-information-look-hipaa-ftc-act-health-breach
+(checked 2026-11-01)
+
+[H8] HHS, Does HIPAA allow a health care provider to communicate with a patient's family, friends, or other persons
+who are involved in the patient's care?,
+https://www.hhs.gov/hipaa/for-professionals/faq/2087/does-hipaa-allow-a-health-care-provider-to-communicate-with-a-patients-family-friends-or-other-persons-who-are-involved-in-the-patient-care.html
+(checked 2026-11-01)
 
 ## Condensed version (150 words or fewer)
 
