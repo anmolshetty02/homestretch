@@ -61,3 +61,13 @@ chat, and v7 ignored saved long-term memory on day 4; both are now stated in the
    thresholds (the draft no longer claims it); whether DeepSeek trains on API inputs (the draft no longer claims it).
 3. `sources_backup.md`: DailyMed license; the unnamed RxNav license exception; MedlinePlus update rate.
 4. The Mermaid diagram in `design.md` has not been rendered; check it on GitHub or mermaid.live (it is not in the PDF).
+
+## Retrieval round 5 (2026-11-02)
+
+- A diagnosis of every miss found the reranker gate had never been rechecked on the chosen pipeline: it blocked 19 of 37
+  real questions (16 of 37 reached the model). The draft's "1 of 29" belonged to another setup. Fixed in the draft.
+- New setup chosen on the selection set by a rule written first (`design.md` §E): 34 of 37. A new frozen set written by
+  a fresh agent, run once: **9 of 12** (old 2 of 12), 0 wrong-drug passages, 3 of 3 no-answer stopped.
+- Disclosed deviation: the wrong-drug limit was redefined after the first selection run (before the held-out run).
+- Not yet done: Prompt B v8 has not been rerun with 5 references instead of 3 (prompt length; v8 ignored irrelevant
+  references in Section C, 3/3). Retrieval latency and cost with bge-base were not measured.

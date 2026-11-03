@@ -4,15 +4,16 @@ Every number links to a file in `docs/rag-memory/` (mostly `design.md`, `complia
 
 **Why not put the drug labels in the prompt too (CAG)?** They are thousands of pages and only one section matters per
 question. The care plan is ~1,500 tokens and nearly all of it matters, so it goes in whole; retrieval would risk missing a
-"call 911" line (search finds the answer for 5 of 8 new questions at best).
+"call 911" line (search gets the answer to the model for 9 of 12 new questions).
 
 **Why not just retrieve the discharge report?** Same reason in reverse: it is small and always relevant. A long report is
 *extracted* once (Prompt A → care plan), not searched.
 
 **How do you stop it inventing drug facts?** Three layers: (1) clinical facts only from the plan or a cited label `[ref-n]`;
-(2) a reranker gate drops weak matches; (3) a code check after the model (invented ids fail; 911 replies with extra
+(2) a name check stops made-up drugs before any search (the reranker "I don't know" gate was removed in
+round 5: rechecked on the final pipeline it blocked 19 of 37 real questions); (3) a code check after the model (invented ids fail; 911 replies with extra
 content are flagged). Evidence: when retrieval returned junk (ears ringing), v7 used none of it, 3/3; on the A2 suites
-911 replies with extra advice went from 5 (v4) to 0 (v7).
+911 replies with extra advice went from 5 (v4) to 0 (v8).
 
 **What happens with a drug you have never heard of ("Zorvexa")?** The RxNorm name check runs before any search: no match
 means `pharmacist_check` and no retrieval. 4 of 4 made-up drugs caught. Similarity scores alone caught 0, because
@@ -56,3 +57,9 @@ Stability held at t0.0 and t0.7. Replies got longer.
 
 **What would you build first?** Retrieval quality (100+ test questions, written by someone else), the one-source-of-truth
 fix for resolved flags, and the router on fresh messages.
+
+**Your retrieval got 2 of 12 and then 9 of 12. Didn't you tune on the test?** No. Round 5 (`design.md` §E) wrote its
+rule first and chose on the 37 selection questions only (34 of 37). A fresh agent that never saw the misses wrote 15 new
+questions, frozen before the run, and they were run once: 9 of 12, against 2 of 12 for the old pipeline. One rule limit
+(wrong drug) was redefined after the first selection run, before the held-out run, and the change is disclosed. It
+matches the earlier definition and does not favour any setup.

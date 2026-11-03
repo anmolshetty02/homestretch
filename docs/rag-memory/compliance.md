@@ -238,6 +238,8 @@ confirmation on 8 new ones (`heldout4`).
 | R3c + expansion | 26/37 | 4/8 |
 
 - **Adopted: hybrid search with query expansion** (best on selection; on new questions 5 of 8 vs 2 of 8 without).
+  **Superseded by round 5 (`design.md` §E):** reranked by the expanded question, top 5, bge-base, no gate; 9 of 12 on
+  a new frozen set (old pipeline 2 of 12).
   Wins came from vocabulary: "tastes" → dysgeusia, "itchy" → pruritus, "feel down" → depression.
 - Caveat: the same person wrote the map and the new questions; a set written by someone else is the stronger test.
 - Still missed: "Can Advil push her blood pressure up?" and "Could the water pill cause a skin rash?" (the right section,
@@ -319,7 +321,7 @@ BAA-covered host. Only `approved_caregivers` see the record; memory is archived 
 
 | Risk | Main guardrail |
 |---|---|
-| Hallucinated facts | Cited plan ids; name check before retrieval; threshold 0.582 (second line) |
+| Hallucinated facts | Cited plan ids; name check before retrieval; references used only when they answer (the threshold and the reranker gate were removed in round 5, `design.md` §E) |
 | Wrong or unknown drug | `pharmacist_check` |
 | Emergency | Tier-3 "Call 911 now" |
 | Memory poisoning | Confirmed-only writes |

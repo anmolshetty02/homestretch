@@ -14,6 +14,8 @@ document; the two small experiments below exist only to give that document real 
 > (`sources_backup.md`, `spikes/name_match_check.py`, `spikes/name_truth_anmol.csv`, names chosen so Sriya's files can be
 > run and compared without conflicts). Full design and every experiment's setup, rule, and result: `design.md`.
 > Scripts and raw outputs: `spikes/`. Prompt versions v6–v10 (v8 final) and the checker changes: `docs/prompt-iterations.md`.
+> **Retrieval round 5 (Nov 2):** gate removed, top 5 reranked; new frozen set 9 of 12 (was 2 of 12). Rule,
+> results and the disclosed deviation: `design.md` §E; scripts and outputs: `spikes/retrieval_round5*`.
 > **Teammates' branches compared (Nov 1):** Sriya (`rag-memory-sriya`) and Darshan (`darshan`) were checked against our
 > versions by an independent review. Ours stay the base; their sourced additions are merged and credited in
 > `sources_backup.md` and `compliance.md` ("Added from …" sections). Take only their own files when merging (see
