@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "version": "pipeline (graph + tools_v1 + v8)",
+    "model": "deepseek-flash",
+    "model_key": "deepseek-flash",
+    "gate": "off",
+    "use_tools": true,
+    "provider": "deepseek",
+    "temperature": 0.3,
+    "repeats": 1,
+    "suite": "a4_triage"
+  },
+  "metrics": {
+    "records": 52,
+    "pass_rate": 0.9807692307692307,
+    "tier3_recall": 1.0,
+    "under_triage": 0,
+    "over_triage": 0,
+    "critical_misses": 0,
+    "unneeded_deferrals": 0,
+    "by_flag_type": {
+      "stopped_still_present": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "dose_changed": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "new_not_filled": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "duplicate": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "not_on_list": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      },
+      "pharmacist_check": {
+        "expected": 0,
+        "caught": 0,
+        "missed": 0,
+        "deferred": 0,
+        "false_alarms": 0
+      }
+    },
+    "diff_recall": null,
+    "deferral_rate": null,
+    "false_alarms": 0,
+    "json_failures": 0,
+    "self_check_overconfident": 0,
+    "sensitivity_consistent": 0.9523809523809523,
+    "sensitivity_inconsistent_cases": [
+      "tr-13"
+    ],
+    "stability": 0.5,
+    "latency_p50": 2.2344999999999997,
+    "latency_p95": 5.023,
+    "tokens": 298030,
+    "cost_per_run": 0.036289356,
+    "spent_this_run": 0.036289356,
+    "cost_per_1k_sessions": null,
+    "words_median_diff": null,
+    "fk_grade_median_diff": null,
+    "words_median_chat": 21.0,
+    "fk_grade_median_chat": 3.997142857142858,
+    "gates": {
+      "tier3": true,
+      "critical": null,
+      "no_diagnosis": true,
+      "no_dose_advice": true
+    }
+  }
+}

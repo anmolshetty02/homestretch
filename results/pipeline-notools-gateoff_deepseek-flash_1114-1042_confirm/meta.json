@@ -1,0 +1,11 @@
+{
+  "version": "pipeline (graph + v8, no tools)",
+  "model": "deepseek-flash",
+  "model_key": "deepseek-flash",
+  "gate": "off",
+  "use_tools": false,
+  "provider": "deepseek",
+  "temperature": 0.3,
+  "repeats": 1,
+  "suite": "confirm"
+}
