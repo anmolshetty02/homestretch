@@ -4,3 +4,7 @@ python-dotenv>=1.0
 pillow>=10.0
 markdown>=3.5
 pypdf>=4.0
+langgraph>=1.2
+mcp>=2.3
+streamlit>=1.67
+fastembed

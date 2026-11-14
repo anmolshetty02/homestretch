@@ -11,3 +11,7 @@ synthea/
 
 ~$*
 .Rhistory
+
+# Assignment 4 app: session records (runtime data) and the label-vector cache (rebuilt in ~2 min)
+app/sessions/
+app/.cache_label_vecs_*.npy
