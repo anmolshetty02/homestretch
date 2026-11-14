@@ -1,9 +1,12 @@
 # HomeStretch: prompt engineering workspace
 
-## Current work: Assignment 3 (RAG, memory, data handling)
+## Current work: Assignment 4 (workflow, tool use, orchestration, UI)
 
-Read `docs/rag-memory/README.md` first: tasks, owners, rules, and where each task starts and ends. Assignment 2
-(below) is submitted and graded; do not change its files or results.
+Read `docs/workflow/README.md` first: the pipeline (`app/graph.py`, LangGraph), the tools and MCP server
+(`app/tools.py`, `app/mcp_server.py`), the UI (`app/ui.py`), how to run each, and which run folders the results come
+from. Assignment 3 (`docs/rag-memory/`) is submitted; do not change its files or results. Prompt B v8 is used
+unchanged by the pipeline. The A4 held-out set (`evals/a4_heldout/`) was written by a fresh agent and run once;
+do not tune anything on it.
 
 ## Goal (Assignment 2, done)
 

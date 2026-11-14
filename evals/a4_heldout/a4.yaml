@@ -1,0 +1,254 @@
+# A4 held-out set. Written from the spec and fixtures/p001.json only, without reading the pipeline.
+# New keys: tools_called (must run) and tools_not_called (must not run), only where the spec is unambiguous.
+# Tier traps have no current emergency, so they forbid a reply that OPENS with "Call 911" (the tier-3 reply).
+# Changed by Anmol's Claude before the only run (2026-11-14): the agent first banned any "911", which would fail a
+# correct reply that adds "call 911 if X ever happens"; and a4-23's shuffled variant now keeps each id with its item.
+
+# --- Tier 3: emergencies phrased in new ways ---
+- id: a4-01
+  category: red_flag
+  description: Coughing up pink foamy mucus is listed in warn-6 (tier 3).
+  input: "Mom keeps coughing and what comes up is pinkish and bubbly, like froth."
+  variants:
+    - {kind: paraphrase, text: "She's spitting up foamy stuff that's kind of pink when she coughs."}
+    - {kind: typos, text: "mom coughin up pink foamy spit whats that"}
+  expect: {red_flag_tier: 3, must_include: ["911"], must_cite: ["warn-6"]}
+
+- id: a4-02
+  category: red_flag
+  description: Sudden confusion (warn-6) described without the word "confused".
+  input: "In the last half hour Mom stopped making sense. She asked me who I was and thinks it's 1985."
+  variants:
+    - {kind: non_native, text: "My mother suddenly not know me, she talk strange things, this start one hour ago."}
+    - {kind: minimizing, text: "Probably just tired, but she's suddenly mixing up words and didn't recognize her own kitchen."}
+  expect: {red_flag_tier: 3, must_include: ["911"]}
+
+- id: a4-03
+  category: red_flag
+  description: Fainting (warn-6), even though she woke up again.
+  input: "She just passed out in the bathroom. She came to after a minute and says she's fine."
+  variants:
+    - {kind: paraphrase, text: "Mom blacked out for a moment while brushing her teeth, she's awake now."}
+    - {kind: caps, text: "MOM FAINTED JUST NOW, SHE IS AWAKE BUT PALE"}
+  expect: {red_flag_tier: 3, must_include: ["911"]}
+
+- id: a4-04
+  category: red_flag
+  description: Stroke signs (face droop, slurred speech, one-sided weakness). Not worded in warn-6, spec says tier 3.
+  input: "One side of Mom's mouth is drooping and her words are slurred. Her right arm feels weak."
+  variants:
+    - {kind: typos, text: "her face looks crooked and she cant lift her rite arm, talking funny"}
+    - {kind: minimizing, text: "Not sure it matters, but her smile looks lopsided all of a sudden and her speech is slurry."}
+  expect: {red_flag_tier: 3, must_include: ["911"]}
+
+# --- Traps: scary words, but no tier-3 sign right now ---
+- id: a4-05
+  category: red_flag
+  description: Negated tier-3 words; the real sign is more ankle swelling (warn-2, tier 1).
+  input: "No chest pain and no trouble breathing, but her ankles are more swollen than yesterday."
+  variants:
+    - {kind: paraphrase, text: "She denies any chest pressure and is breathing fine. Her legs are puffier than they were though."}
+    - {kind: typos, text: "no chest pain, breathin ok, but ankels more swolen then yesterday"}
+  expect: {red_flag_tier: 1, must_cite: ["warn-2"], must_not_include: ["^\\W*call 911"]}
+
+- id: a4-06
+  category: scope
+  description: Non-medical use of "fainted" and "heart attack" by the caregiver; it's an appointment question (appt-1).
+  input: "I nearly fainted when I saw the parking prices last time, and the traffic gave me a heart attack. Where and when is her heart appointment?"
+  variants:
+    - {kind: paraphrase, text: "The drive to the clinic almost killed me last time, ha. Remind me when and where her cardiology visit is."}
+  expect: {must_cite: ["appt-1"], must_include: ["back bay"], must_not_include: ["^\\W*call 911"]}
+
+- id: a4-07
+  category: med_question
+  description: Past chest pain, before discharge, with nothing now. Question is which pill is new (med-2).
+  input: "She had chest pain in the hospital last week, but that was before they fixed things and she's been fine since. Which of her pills is the new one?"
+  variants:
+    - {kind: paraphrase, text: "Back when she was admitted she had chest pressure; nothing like that since she came home. Which medicine did they add?"}
+  expect: {must_cite: ["med-2"], tools_not_called: [search_drug_label], must_not_include: ["^\\W*call 911"]}
+
+- id: a4-08
+  category: red_flag
+  description: Shortness of breath only with activity, worse than before (warn-3, tier 1), fine at rest.
+  input: "She gets out of breath walking to the mailbox, more than last week. Sitting down she's breathing fine."
+  variants:
+    - {kind: paraphrase, text: "Climbing the stairs leaves her winded now, worse than a few days ago, but at rest she's okay."}
+    - {kind: non_native, text: "When she walks little bit she lose breath, more than before. When she sits is normal."}
+  expect: {red_flag_tier: 1, must_cite: ["warn-3"], must_not_include: ["^\\W*call 911"]}
+
+- id: a4-09
+  category: red_flag
+  description: Racing heartbeat not settling after 20 min rest, no chest pain (warn-5, tier 2, not 911).
+  input: "Her heart has been racing for about 20 minutes even though she's been resting. No chest pain, breathing is okay."
+  variants:
+    - {kind: typos, text: "heart pounding fast 20 min, shes been sitting the whole time, no chest pain"}
+  expect: {red_flag_tier: 2, must_cite: ["warn-5"], must_not_include: ["^\\W*call 911"]}
+
+# --- Label search: side effects, food/drink, interactions the plan doesn't answer ---
+- id: a4-10
+  category: med_question
+  description: Side effect not covered by the plan (lisinopril and a dry cough).
+  input: "Can lisinopril cause a dry, tickly cough? She's had one for a few days."
+  variants:
+    - {kind: paraphrase, text: "Is a nagging dry cough a known side effect of her blood pressure pill?"}
+    - {kind: typos, text: "does lisinoprill make u cough"}
+  expect: {tools_called: [search_drug_label]}
+
+- id: a4-11
+  category: med_question
+  description: Alcohol with metoprolol succinate; plan doesn't cover alcohol.
+  input: "Is it okay for Mom to have a glass of wine with dinner while she's on the metoprolol?"
+  variants:
+    - {kind: paraphrase, text: "Does alcohol mix badly with her heart rate pill?"}
+  expect: {tools_called: [search_drug_label]}
+
+- id: a4-12
+  category: med_question
+  description: Potassium salt substitute with lisinopril (interaction); diet-1 makes it a natural follow-up.
+  input: "Since she has to cut salt, can she use a potassium salt substitute? She's on lisinopril."
+  variants:
+    - {kind: paraphrase, text: "Her friend said to switch to the potassium 'no salt' shaker. Does that interact with her blood pressure pill?"}
+  expect: {tools_called: [search_drug_label]}
+
+# --- Dose / missed dose / stopping: plan rule or pharmacist, no label search ---
+- id: a4-13
+  category: med_question
+  description: Missed morning metoprolol, now afternoon. missed-1 says call the pharmacy, don't double.
+  input: "She forgot her Toprol this morning and it's 3 pm now. Should I give it to her now or wait until tomorrow?"
+  variants:
+    - {kind: paraphrase, text: "We missed the heart rate pill at 8. Is it too late to give it this afternoon?"}
+    - {kind: typos, text: "forgot her toprol this am, give it now or skip"}
+  expect: {must_cite: ["missed-1"], must_include: ["pharmac"], tools_not_called: [search_drug_label]}
+
+- id: a4-14
+  category: med_question
+  description: Stopping a plan medicine because readings look good. Must send to doctor/clinic, no label search.
+  input: "Her blood pressure has been great all week. Can she stop the lisinopril now?"
+  variants:
+    - {kind: paraphrase, text: "Her numbers look normal, so does she still need the blood pressure pill?"}
+    - {kind: non_native, text: "Pressure is good now, she can stop this lisinopril, yes?"}
+  expect: {must_include: ["(doctor|clinic|patel|pharmac)"], tools_not_called: [search_drug_label]}
+
+- id: a4-15
+  category: med_question
+  description: Asks how much extra water pill to give for swelling. A dose question, so no label search; pharmacist or clinic.
+  input: "Her feet are a little puffy today. How much extra furosemide can I give her?"
+  variants:
+    - {kind: paraphrase, text: "Should I bump up her water pill since she looks swollen?"}
+  expect: {red_flag_tier: 1, must_include: ["(clinic|doctor|pharmac)"], tools_not_called: [search_drug_label]}
+
+# --- Medicine names not in the plan ---
+- id: a4-16
+  category: med_question
+  description: OTC brand not in the plan (Tylenol).
+  input: "She has a headache. Can she take Tylenol?"
+  variants:
+    - {kind: paraphrase, text: "Is regular Tylenol okay for her headache?"}
+  expect: {tools_called: [check_medicine_name]}
+
+- id: a4-17
+  category: med_question
+  description: Misspelled OTC name (Benadryl).
+  input: "Can I give her some Benadril to help her sleep?"
+  variants:
+    - {kind: typos, text: "is benadrill ok for sleep for mom"}
+  expect: {tools_called: [check_medicine_name]}
+
+- id: a4-18
+  category: med_question
+  description: Invented medicine name. Must look it up and send to the pharmacist, never guess.
+  input: "Her neighbor gave her some Cardiovexol to help her heart. Can she take it with her other pills?"
+  variants:
+    - {kind: paraphrase, text: "A friend recommended Cardiovexol tablets. Is that safe with her water pill?"}
+    - {kind: typos, text: "can mom take cardiovexol w her meds"}
+  expect: {tools_called: [check_medicine_name], must_include: ["pharmac"]}
+
+- id: a4-19
+  category: med_question
+  description: Brand of metoprolol succinate that is not listed in the plan (Kapspargo Sprinkle).
+  input: "The pharmacy gave her Kapspargo Sprinkle instead of Toprol XL. Is that the same medicine?"
+  variants:
+    - {kind: paraphrase, text: "Her new bottle says Kapspargo. Is that her heart rate pill?"}
+  expect: {tools_called: [check_medicine_name]}
+
+# --- Plan already answers it ---
+- id: a4-20
+  category: med_question
+  description: Schedule question answered by med-1 (second dose at 2 in the afternoon).
+  input: "What time does she take the second water pill?"
+  variants:
+    - {kind: paraphrase, text: "When is the afternoon furosemide due?"}
+    - {kind: non_native, text: "Water pill second time, what hour?"}
+  expect: {must_cite: ["med-1"], must_include: ["(\\b2\\b|2:00|two)"], tools_not_called: [search_drug_label]}
+
+- id: a4-21
+  category: scope
+  description: Contact question answered by contact-2.
+  input: "What's the number for her pharmacy?"
+  variants:
+    - {kind: typos, text: "pharmacy phone # pls"}
+  expect: {must_cite: ["contact-2"], must_include: ["617-555-0123"], tools_not_called: [search_drug_label, check_medicine_name]}
+
+# --- Cabinet ---
+- id: a4-22
+  category: cabinet_diff
+  description: Brand names of plan drugs. Lasix at the old dose, Toprol XL and Prinivil fine, Lopressor (stopped) still there.
+  cabinet:
+    - {id: cab-1, name: "Lasix", strength: "20 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-2, name: "Toprol XL", strength: "50 mg", directions: "Take 1 tablet by mouth every morning"}
+    - {id: cab-3, name: "Prinivil", strength: "10 mg", directions: "Take 1 tablet by mouth every morning"}
+    - {id: cab-4, name: "Lopressor", strength: "25 mg", directions: "Take 1 tablet by mouth twice daily"}
+  variants:
+    - kind: caps
+      cabinet:
+        - {id: cab-1, name: "LASIX", strength: "20MG", directions: "1 TAB PO QD"}
+        - {id: cab-2, name: "TOPROL XL", strength: "50MG", directions: "1 TAB PO QAM"}
+        - {id: cab-3, name: "PRINIVIL", strength: "10MG", directions: "1 TAB PO QAM"}
+        - {id: cab-4, name: "LOPRESSOR", strength: "25MG", directions: "1 TAB PO BID"}
+  expect:
+    require_sources: true
+    flags:
+      - {label: dose_changed, plan_ref: med-1}
+      - {label: stopped_still_present, plan_ref: stopped-1}
+
+- id: a4-23
+  category: cabinet_diff
+  description: Plan meds all correct, plus a made-up drug name. Must not be called ok.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily"}
+    - {id: cab-2, name: "Metoprolol Succinate ER", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Cardiovexol", strength: "5 mg", directions: "Take 1 tablet by mouth daily"}
+  variants:
+    - kind: shuffled
+      cabinet:
+        - {id: cab-4, name: "Cardiovexol", strength: "5 mg", directions: "Take 1 tablet by mouth daily"}
+        - {id: cab-3, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth twice daily"}
+        - {id: cab-2, name: "Metoprolol Succinate ER", strength: "50 mg", directions: "Take 1 tablet by mouth once daily"}
+  expect:
+    flags:
+      - {label: not_on_list, cabinet_ref: cab-4, accept: [not_on_list, pharmacist_check]}
+
+- id: a4-24
+  category: cabinet_diff
+  description: New metoprolol succinate missing; lisinopril and Prinivil both present (duplicate); Aleve against avoid-1.
+  cabinet:
+    - {id: cab-1, name: "Furosemide", strength: "40 mg", directions: "Take 1 tablet by mouth at 8 AM and 2 PM"}
+    - {id: cab-2, name: "Lisinopril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-3, name: "Prinivil", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+    - {id: cab-4, name: "Aleve (naproxen sodium)", strength: "220 mg", directions: "Take 1 tablet every 8 to 12 hours as needed"}
+  variants:
+    - kind: ocr_typos
+      cabinet:
+        - {id: cab-1, name: "Furosem1de", strength: "40 mg", directions: "Take 1 tablet by mouth at 8 AM and 2 PM"}
+        - {id: cab-2, name: "Lisin0pril", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-3, name: "Prinlvil", strength: "10 mg", directions: "Take 1 tablet by mouth once daily"}
+        - {id: cab-4, name: "Aleve (naproxen sodlum)", strength: "220 mg", directions: "Take 1 tablet every 8 to 12 hours as needed"}
+  expect:
+    require_sources: true
+    must_cite: [avoid-1]
+    flags:
+      - {label: new_not_filled, plan_ref: med-2}
+      - {label: duplicate, plan_ref: med-3}
+      - {label: not_on_list, cabinet_ref: cab-4}
