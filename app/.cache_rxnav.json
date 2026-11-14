@@ -1,0 +1,2349 @@
+{
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Advil%20%28ibuprofen%29&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "ibuprofen Oral Suspension [Advil]",
+     "rank": "1",
+     "rxaui": "12312967",
+     "rxcui": "365861",
+     "score": "14.656551267623902",
+     "source": "RXNORM"
+    },
+    {
+     "name": "ibuprofen Oral Tablet [Advil]",
+     "rank": "1",
+     "rxaui": "12319798",
+     "rxcui": "91703",
+     "score": "14.656551267623902",
+     "source": "RXNORM"
+    },
+    {
+     "name": "ibuprofen Chewable Tablet [Advil]",
+     "rank": "1",
+     "rxaui": "12320080",
+     "rxcui": "731528",
+     "score": "14.656551267623902",
+     "source": "RXNORM"
+    },
+    {
+     "name": "ibuprofen Oral Capsule [Advil]",
+     "rank": "1",
+     "rxaui": "12320081",
+     "rxcui": "731532",
+     "score": "14.656551267623902",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Advil&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1003945",
+     "rxcui": "153010",
+     "score": "13.116079330444336",
+     "source": "MMSL"
+    },
+    {
+     "name": "Advil",
+     "rank": "1",
+     "rxaui": "1003946",
+     "rxcui": "153010",
+     "score": "13.116079330444336",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Aleve%20%28naproxen%20sodium%29&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "naproxen sodium Oral Capsule [Aleve]",
+     "rank": "1",
+     "rxaui": "12837637",
+     "rxcui": "2654714",
+     "score": "16.920318603515625",
+     "source": "RXNORM"
+    },
+    {
+     "name": "naproxen sodium Oral Tablet [Aleve]",
+     "rank": "1",
+     "rxaui": "12841960",
+     "rxcui": "2659037",
+     "score": "16.920318603515625",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Aleve%20%28naproxen%20sodlum%29&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "naproxen Oral Capsule [Aleve]",
+     "rank": "1",
+     "rxaui": "12315224",
+     "rxcui": "1112232",
+     "score": "15.854839324951172",
+     "source": "RXNORM"
+    },
+    {
+     "name": "naproxen Oral Tablet [Aleve]",
+     "rank": "1",
+     "rxaui": "12318954",
+     "rxcui": "368447",
+     "score": "15.854839324951172",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Benadril&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1140651",
+     "rxcui": "203457",
+     "score": "9.252689361572266",
+     "source": "MMSL"
+    },
+    {
+     "name": "Benadryl",
+     "rank": "1",
+     "rxaui": "1140652",
+     "rxcui": "203457",
+     "score": "9.252689361572266",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Cardiovexol&maxEntries=1": {
+  "approximateGroup": {
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Furosem1de&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Furosemide",
+     "rank": "1",
+     "rxaui": "10282065",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10327014",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "GS"
+    },
+    {
+     "name": "furosemide",
+     "rank": "1",
+     "rxaui": "12250481",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "RXNORM"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140401",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140406",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "SNOMEDCT_US"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140412",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140414",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MMSL"
+    },
+    {
+     "name": "FUROSEMIDE",
+     "rank": "1",
+     "rxaui": "2071055",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "VANDF"
+    },
+    {
+     "name": "Furosemide",
+     "rank": "1",
+     "rxaui": "2597084",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "furosemide",
+     "rank": "1",
+     "rxaui": "2599292",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "FUROSEMIDE",
+     "rank": "1",
+     "rxaui": "2653058",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "MTHSPL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3637792",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "NDDF"
+    },
+    {
+     "name": "furosemide",
+     "rank": "1",
+     "rxaui": "5480303",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "ATC"
+    },
+    {
+     "name": "Furosemide",
+     "rank": "1",
+     "rxaui": "8322060",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "DRUGBANK"
+    },
+    {
+     "name": "Furosemid",
+     "rank": "1",
+     "rxaui": "8404847",
+     "rxcui": "4603",
+     "score": "5.992298603057861",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Furosemlde&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Furosemide",
+     "rank": "1",
+     "rxaui": "10282065",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10327014",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "GS"
+    },
+    {
+     "name": "furosemide",
+     "rank": "1",
+     "rxaui": "12250481",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "RXNORM"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140401",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "140412",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "MMSL"
+    },
+    {
+     "name": "FUROSEMIDE",
+     "rank": "1",
+     "rxaui": "2071055",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "VANDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3637792",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "NDDF"
+    },
+    {
+     "name": "furosemide",
+     "rank": "1",
+     "rxaui": "5480303",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "ATC"
+    },
+    {
+     "name": "Furosemide",
+     "rank": "1",
+     "rxaui": "8322060",
+     "rxcui": "4603",
+     "score": "7.992298603057861",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Kapspargo%20Sprinkle&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "10330984",
+     "rxcui": "2055386",
+     "score": "18.523826599121094",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Lasix&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1137370",
+     "rxcui": "202991",
+     "score": "13.944183349609375",
+     "source": "MMSL"
+    },
+    {
+     "name": "Lasix",
+     "rank": "1",
+     "rxaui": "1137371",
+     "rxcui": "202991",
+     "score": "13.944183349609375",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Lisin0pril&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "10282780",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10325409",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "GS"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "12250571",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "RXNORM"
+    },
+    {
+     "name": "LISINOPRIL",
+     "rank": "1",
+     "rxaui": "2072073",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "VANDF"
+    },
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "2597398",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "2599694",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "LISINOPRIL",
+     "rank": "1",
+     "rxaui": "2976971",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3619831",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "NDDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434508",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434512",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "SNOMEDCT_US"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434516",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434517",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "5480861",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "ATC"
+    },
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "8547386",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Lisinopri1&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "10282780",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10325409",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "GS"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "12250571",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "RXNORM"
+    },
+    {
+     "name": "LISINOPRIL",
+     "rank": "1",
+     "rxaui": "2072073",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "VANDF"
+    },
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "2597398",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "2599694",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "LISINOPRIL",
+     "rank": "1",
+     "rxaui": "2976971",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MTHSPL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3619831",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "NDDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434508",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434512",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "SNOMEDCT_US"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434516",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434517",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "MMSL"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "5480861",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "ATC"
+    },
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "8547386",
+     "rxcui": "29046",
+     "score": "6.5677876472473145",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Lopressor&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1140384",
+     "rxcui": "203344",
+     "score": "13.698824882507324",
+     "source": "MMSL"
+    },
+    {
+     "name": "Lopressor",
+     "rank": "1",
+     "rxaui": "1140385",
+     "rxcui": "203344",
+     "score": "13.698824882507324",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=METOPROLOL%20SUCC%20ER&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "13033365",
+     "rxcui": "688099",
+     "score": "17.71401596069336",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=METOPROLOL%20SUCCINATE%20ER&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "13033365",
+     "rxcui": "688099",
+     "score": "17.71401596069336",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=METOPROLOL%20TART&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "10325216",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "GS"
+    },
+    {
+     "name": "metoprolol",
+     "rank": "1",
+     "rxaui": "12253919",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "RXNORM"
+    },
+    {
+     "name": "METOPROLOL",
+     "rank": "1",
+     "rxaui": "2072351",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "VANDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3619840",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "NDDF"
+    },
+    {
+     "name": "metoprolol",
+     "rank": "1",
+     "rxaui": "5481187",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "ATC"
+    },
+    {
+     "name": "Metoprolol",
+     "rank": "1",
+     "rxaui": "8449842",
+     "rxcui": "6918",
+     "score": "11.790181159973145",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Metoprol0l%20Tartrate&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Metoprolol Tartrate",
+     "rank": "1",
+     "rxaui": "10283224",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10325738",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "GS"
+    },
+    {
+     "rank": "1",
+     "rxaui": "1139483",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "SNOMEDCT_US"
+    },
+    {
+     "rank": "1",
+     "rxaui": "1139484",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MMSL"
+    },
+    {
+     "name": "METOPROLOL TARTRATE",
+     "rank": "1",
+     "rxaui": "1139487",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "VANDF"
+    },
+    {
+     "name": "metoprolol tartrate",
+     "rank": "1",
+     "rxaui": "12255252",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "RXNORM"
+    },
+    {
+     "name": "Metoprolol Tartrate",
+     "rank": "1",
+     "rxaui": "12825116",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MTHSPL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "13033369",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MMSL"
+    },
+    {
+     "name": "Metoprolol tartrate",
+     "rank": "1",
+     "rxaui": "2597564",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "metoprolol tartrate",
+     "rank": "1",
+     "rxaui": "2599896",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MTHSPL"
+    },
+    {
+     "name": "METOPROLOL TARTRATE",
+     "rank": "1",
+     "rxaui": "2978589",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "MTHSPL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3619841",
+     "rxcui": "203191",
+     "score": "9.753153800964355",
+     "source": "NDDF"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Metoprolol%20%28rest%20of%20name%20unreadable%29&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Rest Simply",
+     "rank": "1",
+     "rxaui": "3641304",
+     "rxcui": "1101108",
+     "score": "12.785816001892089",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Mom&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "12811054",
+     "rxcui": "2639126",
+     "score": "5.700281972361031",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "12979322",
+     "rxcui": "2715891",
+     "score": "5.700281972361031",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Prinlvil&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1141106",
+     "rxcui": "203644",
+     "score": "8.450216293334961",
+     "source": "MMSL"
+    },
+    {
+     "name": "Prinivil",
+     "rank": "1",
+     "rxaui": "1141107",
+     "rxcui": "203644",
+     "score": "8.450216293334961",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Toprol%20XL&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "2375496",
+     "rxcui": "220348",
+     "score": "18.123536390304565",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Zestril&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1090373",
+     "rxcui": "196472",
+     "score": "13.985888481140137",
+     "source": "MMSL"
+    },
+    {
+     "name": "Zestril",
+     "rank": "1",
+     "rxaui": "1090374",
+     "rxcui": "196472",
+     "score": "13.985888481140137",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Zestrll&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1090373",
+     "rxcui": "196472",
+     "score": "8.379928588867188",
+     "source": "MMSL"
+    },
+    {
+     "name": "Zestril",
+     "rank": "1",
+     "rxaui": "1090374",
+     "rxcui": "196472",
+     "score": "8.379928588867188",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Zorvexa&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Orvexa KIT",
+     "rank": "1",
+     "rxaui": "13086532",
+     "rxcui": "2753703",
+     "score": "3.637344627261162",
+     "source": "MTHSPL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=benadrill&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1140651",
+     "rxcui": "203457",
+     "score": "8.086366653442383",
+     "source": "MMSL"
+    },
+    {
+     "name": "Benadryl",
+     "rank": "1",
+     "rxaui": "1140652",
+     "rxcui": "203457",
+     "score": "8.086366653442383",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=cardiovexol&maxEntries=1": {
+  "approximateGroup": {
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=cough%20drops&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1179640",
+     "rxcui": "1146108",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "1552386",
+     "rxcui": "353075",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2363605",
+     "rxcui": "607492",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2369758",
+     "rxcui": "607333",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2764761",
+     "rxcui": "607492",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2764763",
+     "rxcui": "753228",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2764769",
+     "rxcui": "607333",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2764771",
+     "rxcui": "753228",
+     "score": "12.063047719001771",
+     "source": "MMSL"
+    },
+    {
+     "name": "Counteract Cough Drops",
+     "rank": "1",
+     "rxaui": "3720111",
+     "rxcui": "1112206",
+     "score": "12.063047719001771",
+     "source": "RXNORM"
+    },
+    {
+     "name": "Koldets Cough Drop",
+     "rank": "1",
+     "rxaui": "3803035",
+     "rxcui": "1146108",
+     "score": "12.063047719001771",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=furosemide%2040%20mg&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "furosemide 40 MG",
+     "rank": "1",
+     "rxaui": "12279184",
+     "rxcui": "315971",
+     "score": "12.234319686889648",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=heartburn%20remedy&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "11820961",
+     "rxcui": "2276863",
+     "score": "7.289923810958862",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "2603519",
+     "rxcui": "669548",
+     "score": "7.289923810958862",
+     "source": "MMSL"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=lisinoprill&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "10282780",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "USP"
+    },
+    {
+     "rank": "1",
+     "rxaui": "10325409",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "GS"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "12250571",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "RXNORM"
+    },
+    {
+     "name": "LISINOPRIL",
+     "rank": "1",
+     "rxaui": "2072073",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "VANDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "3619831",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "NDDF"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434508",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "MMSL"
+    },
+    {
+     "rank": "1",
+     "rxaui": "434516",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "MMSL"
+    },
+    {
+     "name": "lisinopril",
+     "rank": "1",
+     "rxaui": "5480861",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "ATC"
+    },
+    {
+     "name": "Lisinopril",
+     "rank": "1",
+     "rxaui": "8547386",
+     "rxcui": "29046",
+     "score": "11.954983711242676",
+     "source": "DRUGBANK"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=toprol&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Toprol",
+     "rank": "1",
+     "rxaui": "2996134",
+     "rxcui": "865575",
+     "score": "13.83211898803711",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Advil": {
+  "idGroup": {
+   "rxnormId": [
+    "153010"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Advil%20%28ibuprofen%29": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Aleve": {
+  "idGroup": {
+   "rxnormId": [
+    "215101"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Aleve%20%28naproxen%20sodium%29": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Aleve%20%28naproxen%20sodlum%29": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Benadril": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Cardiovexol": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=FUROSEMIDE": {
+  "idGroup": {
+   "rxnormId": [
+    "4603"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Furosem1de": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Furosemide": {
+  "idGroup": {
+   "rxnormId": [
+    "4603"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Furosemlde": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Kapspargo": {
+  "idGroup": {
+   "rxnormId": [
+    "2047761"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Kapspargo%20Sprinkle": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=LASIX": {
+  "idGroup": {
+   "rxnormId": [
+    "202991"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=LISINOPRIL": {
+  "idGroup": {
+   "rxnormId": [
+    "29046"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=LOPRESSOR": {
+  "idGroup": {
+   "rxnormId": [
+    "203344"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lasix": {
+  "idGroup": {
+   "rxnormId": [
+    "202991"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lisin0pril": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lisinopri1": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lisinopril": {
+  "idGroup": {
+   "rxnormId": [
+    "29046"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lopressor": {
+  "idGroup": {
+   "rxnormId": [
+    "203344"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20SUCC": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20SUCC%20ER": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20SUCCINATE": {
+  "idGroup": {
+   "rxnormId": [
+    "221124"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20SUCCINATE%20ER": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20TART": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20TARTRATE": {
+  "idGroup": {
+   "rxnormId": [
+    "203191"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Metoprol0l%20Tartrate": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Metoprolol%20%28rest%20of%20name%20unreadable%29": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Metoprolol%20Succinate": {
+  "idGroup": {
+   "rxnormId": [
+    "221124"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Metoprolol%20Succinate%20ER": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Metoprolol%20Tartrate": {
+  "idGroup": {
+   "rxnormId": [
+    "203191"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Mom": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=PRINIVIL": {
+  "idGroup": {
+   "rxnormId": [
+    "203644"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Prilosec": {
+  "idGroup": {
+   "rxnormId": [
+    "203345"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Prinivil": {
+  "idGroup": {
+   "rxnormId": [
+    "203644"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Prinlvil": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Senna": {
+  "idGroup": {
+   "rxnormId": [
+    "36387"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=TOPROL": {
+  "idGroup": {
+   "rxnormId": [
+    "865575"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=TOPROL%20XL": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Toprol": {
+  "idGroup": {
+   "rxnormId": [
+    "865575"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Toprol%20XL": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Tums": {
+  "idGroup": {
+   "rxnormId": [
+    "220508"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Tylenol": {
+  "idGroup": {
+   "rxnormId": [
+    "202433"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ZESTRIL": {
+  "idGroup": {
+   "rxnormId": [
+    "196472"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zestoretic": {
+  "idGroup": {
+   "rxnormId": [
+    "85783"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zestril": {
+  "idGroup": {
+   "rxnormId": [
+    "196472"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zestrll": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zorvexa": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=aspirin": {
+  "idGroup": {
+   "rxnormId": [
+    "1191"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=benadrill": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=cardiovexol": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=cough%20drops": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=furosemide%2040%20mg": {
+  "idGroup": {
+   "rxnormId": [
+    "315971"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=heartburn%20remedy": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ibuprofen": {
+  "idGroup": {
+   "rxnormId": [
+    "5640"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=lisinoprill": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=toprol": {
+  "idGroup": {
+   "rxnormId": [
+    "865575"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1101108/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Rest Simply",
+   "rxcui": "1101108",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1101108/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "diphenhydramine",
+       "rxcui": "3498",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1112232/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "naproxen Oral Capsule [Aleve]",
+   "rxcui": "1112232",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "SBDF",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1112232/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "naproxen",
+       "rxcui": "7258",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1146108/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Koldets Cough Drop",
+   "rxcui": "1146108",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1146108/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "menthol",
+       "rxcui": "6750",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1191/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "aspirin",
+   "rxcui": "1191",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/153010/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Advil",
+   "rxcui": "153010",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/153010/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "ibuprofen",
+       "rxcui": "5640",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/196472/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Zestril",
+   "rxcui": "196472",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/196472/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "lisinopril",
+       "rxcui": "29046",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202433/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Tylenol",
+   "rxcui": "202433",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202433/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "acetaminophen",
+       "rxcui": "161",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202991/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Lasix",
+   "rxcui": "202991",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202991/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "furosemide",
+       "rxcui": "4603",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203191/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "metoprolol tartrate",
+   "rxcui": "203191",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203191/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metoprolol",
+       "rxcui": "6918",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203344/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Lopressor",
+   "rxcui": "203344",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203344/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metoprolol",
+       "rxcui": "6918",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203345/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Prilosec",
+   "rxcui": "203345",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203345/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "omeprazole",
+       "rxcui": "7646",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203457/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Benadryl",
+   "rxcui": "203457",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203457/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "diphenhydramine",
+       "rxcui": "3498",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203644/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Prinivil",
+   "rxcui": "203644",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203644/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "lisinopril",
+       "rxcui": "29046",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2047761/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Kapspargo",
+   "rxcui": "2047761",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2047761/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metoprolol",
+       "rxcui": "6918",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2055386/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "PROPRIETARY",
+    "rxcui": "2055386",
+    "tty": ""
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "102018",
+    "remappedDate": "",
+    "source": "MMSL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2055386/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/215101/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Aleve",
+   "rxcui": "215101",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/215101/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "naproxen",
+       "rxcui": "7258",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/220348/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "PROPRIETARY",
+    "rxcui": "220348",
+    "tty": "BN"
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "042005",
+    "remappedDate": "",
+    "source": "MMSL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/220348/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/220508/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Tums",
+   "rxcui": "220508",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/220508/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "calcium carbonate",
+       "rxcui": "1897",
+       "suppress": "N",
+       "synonym": "calcite",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/221124/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "metoprolol succinate",
+   "rxcui": "221124",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/221124/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metoprolol",
+       "rxcui": "6918",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2276863/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "PROPRIETARY",
+    "rxcui": "2276863",
+    "tty": ""
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "032020",
+    "remappedDate": "",
+    "source": "MMSL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2276863/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2639126/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "PROPRIETARY",
+    "rxcui": "2639126",
+    "tty": ""
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "072023",
+    "remappedDate": "",
+    "source": "MMSL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2639126/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2654714/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "naproxen sodium Oral Capsule [Aleve]",
+   "rxcui": "2654714",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "SBDFP",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2654714/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "naproxen",
+       "rxcui": "7258",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2753703/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "Orvexa KIT",
+    "rxcui": "2753703",
+    "tty": ""
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "112026",
+    "remappedDate": "",
+    "source": "MTHSPL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/2753703/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/29046/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "lisinopril",
+   "rxcui": "29046",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/315971/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "furosemide 40 MG",
+   "rxcui": "315971",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "SCDC",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/315971/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "furosemide",
+       "rxcui": "4603",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/36387/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "sennosides, USP",
+   "rxcui": "36387",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/365861/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "ibuprofen Oral Suspension [Advil]",
+   "rxcui": "365861",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "SBDF",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/365861/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "ibuprofen",
+       "rxcui": "5640",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/4603/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "furosemide",
+   "rxcui": "4603",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/5640/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "ibuprofen",
+   "rxcui": "5640",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/688099/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "",
+    "isMultipleIngredient": "",
+    "name": "PROPRIETARY",
+    "rxcui": "688099",
+    "tty": ""
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {},
+   "metaData": {
+    "activeEndDate": "",
+    "activeStartDate": "",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "032007",
+    "remappedDate": "",
+    "source": "MMSL",
+    "status": "NotCurrent"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/688099/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/6918/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "metoprolol",
+   "rxcui": "6918",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/85783/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Zestoretic",
+   "rxcui": "85783",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/85783/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "lisinopril",
+       "rxcui": "29046",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      },
+      {
+       "language": "ENG",
+       "name": "hydrochlorothiazide",
+       "rxcui": "5487",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/865575/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Toprol",
+   "rxcui": "865575",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/865575/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metoprolol",
+       "rxcui": "6918",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ }
+}
