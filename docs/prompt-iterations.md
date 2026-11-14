@@ -480,3 +480,26 @@ The eval harness now targets the MVP, so these prompts no longer render or score
 |---|---|---|
 | Critic pass | `--critic stretch/critic_v1` (needs a voice harness) | Does a second self-critique call fix failures the in-prompt self-check missed, and what does it cost in latency? |
 | Tone and detail | 40 to 30 words; teach-back phrasing | Can replies get shorter without losing grounding? |
+
+## Assignment 4: tool-selection prompt (`prompts/tools_v1.md`)
+
+### tools v1: which lookups to run before Prompt B answers
+- **Changed:** n/a (new prompt). Used by the question branch of the A4 pipeline (`app/graph.py`) in a tool-calling
+  loop (ReAct: choose tools → run them → see results → choose again or "done", up to 3 choices, so at most 2 rounds of tools). It never answers the
+  caregiver; Prompt B v8 (unchanged) still writes every reply, with the tool results in `{{references}}`.
+- **Why:** A3's router decided retrieval with keyword rules (design.md §A). A4 asks for model-driven tool use, so the
+  model proposes lookups and the pipeline validates them with fixed rules, regardless of what the model asks for (the
+  lecture's hybrid invocation pattern): dose questions are blocked from label search, and a message with tier-3 words
+  skips lookups altogether (added after the A4 review found 32 of 69 emergencies ran lookups first).
+- **Hypothesis:** label search on side-effect, food, and interaction questions; a name check on every unknown name;
+  no lookups on dose, emergency, or scope questions.
+- **Results (final code after the A4 review, deepseek-flash, one run per set):** on the fresh-agent held-out set,
+  31/31 tool-choice expectations met (`pipeline-gateoff_deepseek-flash_1114-1100_a4_heldout`): label search on
+  every side-effect, food, and interaction question, never on dose questions, and a name check on every unfamiliar or
+  made-up name. The hypothesis "no lookups on emergencies" failed: the model ran lookups on 32 of 69 emergencies, so
+  the orchestrator now skips lookups on tier-3 words (23 of 69 still run one, phrased without the words). On dose or
+  stop questions the model asked for label search 4 times and the orchestrator blocked all 4 (main and confirm sets).
+  On 7 held-out label questions, 4 replies cite a label passage, 1 correctly says the label does not cover it, 1 defers
+  without using the search, and 1 misses a retrieved passage. Pass/fail change from tools: +1 (within noise).
+  Details: `docs/workflow/README.md` §4.
+- **Decision:** keep as the final tool-selection prompt.
