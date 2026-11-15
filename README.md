@@ -6,6 +6,22 @@ diff (discharge med list vs. the bottles at home) and answers follow-up question
 Prompt A (`prompts/extract_vN.md`, Phase 3) reads medicine bottle labels into cabinet JSON. Synthetic data only.
 Scope and its history: `docs/decisions.md`. Voice is a stretch goal, kept in `prompts/stretch/`.
 
+## Run the app (Assignment 4) with your own API key
+
+```bash
+brew install tesseract                     # label reading (OCR); Ubuntu: sudo apt install tesseract-ocr
+python3 -m venv .venv && source .venv/bin/activate   # Python 3.11 or newer
+pip install -r requirements.txt
+cp .env.example .env                       # put your own DEEPSEEK_API_KEY in .env (never commit it)
+python -m app.test_tools && python -m app.test_graph && python -m app.test_ui   # free self-checks, no API calls
+streamlit run app/ui.py                    # opens http://localhost:8501
+```
+
+In the app's sidebar ("Behind the scenes"), choose `deepseek-flash` for real replies or `mock` for free placeholder
+replies. Optional, tools over MCP: run `python -m app.mcp_server --model deepseek-flash` in a second terminal, then
+switch Tools to `mcp`. The first label question builds a search index (about 2 minutes, once). Status, final results
+and next steps: `docs/workflow/HANDOFF.md`; the full write-up: `docs/workflow/README.md`.
+
 ## Start here
 
 | If you want… | Read |

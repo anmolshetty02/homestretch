@@ -96,3 +96,28 @@ assert "not run (round cap" in out["trace"][-4]["detail"] or any("not run (round
 assert sum(t["step"] == "tools" for t in out["trace"]) == graph.MAX_ROUNDS - 1
 assert not graph.DOSE.search("she needed extra pillows to breathe") and graph.DOSE.search("can she take an extra pill")
 print("review-fix self-check ok")
+
+# other patients: the patient's own plan reaches Prompt B and the tool prompt, and the orchestrator (not the model)
+# picks whose plan a lookup reads
+seen = {}
+def capture(msgs, model, purpose="", **k):
+    seen.setdefault(purpose, msgs)
+    return GOOD if purpose == "answer" else {}
+llm.complete_json = capture
+fake_tools([("get_care_plan", {"item_id": "med-1", "patient": "p001"})])
+calls, real_call = [], graph.tc.call_tool
+graph.tc.call_tool = lambda name, args, model="mock": (calls.append((name, args)), real_call(name, args, model))[1]
+out = graph.run_turn("t", "What is the blood thinner for?", save=False, patient="synthea/s02")
+graph.tc.call_tool = real_call
+assert ("get_care_plan", {"item_id": "med-1", "patient": "synthea/s02"}) in calls, calls  # model asked for p001
+assert "clopidogrel" in seen["answer"][0]["content"] and "Rosa" not in seen["answer"][0]["content"]
+assert "clopidogrel" in graph.patient_context("synthea/s02")["tools_prompt"]
+assert any(t["step"] == "tools" and "get_care_plan: ok" in t["detail"] for t in out["trace"]), out["trace"]
+from app import tools as _t
+assert _t.get_care_plan("med-1", "synthea/s02") != _t.get_care_plan("med-1")  # different plans, so the check means something
+try:
+    graph.run_turn("t", "hi", save=False, patient="../p001")
+    raise AssertionError("bad patient accepted")
+except ValueError:
+    pass
+print("multi-patient self-check ok")

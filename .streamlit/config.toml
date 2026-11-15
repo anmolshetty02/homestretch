@@ -1,0 +1,25 @@
+# HomeStretch UI theme. Colors match docs/workflow/diagram.dot (teal = questions, amber = bottles, red = 911).
+[client]
+toolbarMode = "minimal"   # hides the developer "Deploy" menu
+
+[theme]
+base = "light"
+primaryColor = "#0F5257"
+backgroundColor = "#EEF2F2"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1C2B2D"
+linkColor = "#0F5257"
+borderColor = "#D3DEDD"
+baseRadius = "10px"
+showWidgetBorder = true
+font = "Atkinson Hyperlegible:https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+headingFont = "Lexend:https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&display=swap"
+codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+baseFontSize = 17
+redColor = "#B3261E"
+orangeColor = "#C27A1A"
+greenColor = "#2F7D4F"
+blueColor = "#0F5257"
+headingFontSizes = ["1.9rem", "1.3rem", "1.1rem"]
+headingFontWeights = [600, 600, 600]
+paddingTop = "1.5rem"

@@ -14,6 +14,7 @@ added no recall over v8 (26/26 for every variant) and answered 9 non-emergencies
 Fixed rules still own the other safety-critical steps (blocked lookups, the output check, the fallback); the model
 decides which lookups an open question needs. Tools are reached through app/tool_client.py (MCP or in-process).
 """
+import functools
 import json
 import re
 from typing import TypedDict
@@ -22,19 +23,29 @@ from langgraph.graph import END, START, StateGraph
 
 from app import llm
 from app import tool_client as tc
-from app.tools import FIXTURE, ROOT
+from app.tools import ROOT, load_patient
 from evals.checks import run_checks
 from evals.run import NO_DIFF, build_messages, collect_ids, render
 
 AGENT_PROMPT = (ROOT / "prompts" / "agent_v8.md").read_text()
-TOOLS_PROMPT = (ROOT / "prompts" / "tools_v1.md").read_text().replace(
-    "{{plan_names}}", ", ".join(f"{m['name']} ({m.get('plain_name', '')}; {', '.join(m.get('brands', []))})"
-                                for m in FIXTURE["care_plan"]["medications"]))
+TOOLS_TEMPLATE = (ROOT / "prompts" / "tools_v1.md").read_text()
 QUESTION_TOOLS = ["check_medicine_name", "search_drug_label", "get_care_plan"]
 MAX_ROUNDS = 3       # tool-choice calls per turn, so at most 2 rounds of tools run (circuit breaker)
 MAX_ATTEMPTS = 2     # Prompt B attempts before the fallback reply
-FIXTURE_IDS = collect_ids(FIXTURE)
-CONTACTS = {c["id"]: c for c in FIXTURE["care_plan"]["contacts"]}
+
+
+@functools.lru_cache(maxsize=None)
+def patient_context(patient="p001"):
+    """What the graph derives from one patient: the fixture, the tool prompt's plan names, the ids a reply may cite,
+    and the contacts for the fallback reply. p001 (Rosa) is the app; synthea/sNN are the A2 held-out patients."""
+    fx = load_patient(patient)
+    names = ", ".join(f"{m['name']} ({m.get('plain_name', '')}; {', '.join(m.get('brands', []))})"
+                      for m in fx["care_plan"]["medications"])
+    return {"fixture": fx, "tools_prompt": TOOLS_TEMPLATE.replace("{{plan_names}}", names), "ids": collect_ids(fx),
+            "contacts": {c["id"]: c for c in fx["care_plan"]["contacts"]}}
+
+
+FIXTURE_IDS = patient_context()["ids"]  # Rosa's; kept for older imports
 
 # Fixed before looking at any test case; mirrors the plan's tier-3 sign (warn-6) and Prompt B's tier-3 list.
 EMERGENCY = re.compile(
@@ -48,6 +59,7 @@ DOSE = re.compile(r"\bdose|missed|forgot|skip|double|catch up|how much|maximum|s
 
 class State(TypedDict, total=False):
     session_id: str
+    patient: str           # fixture name, default p001 (Rosa)
     message: str
     cabinet: list          # cabinet items given directly ({id, name, strength, directions})
     photos: list           # label image paths, read with Prompt A
@@ -126,7 +138,8 @@ def load_memory(s):
     mem = tc.call_tool("get_session_memory", {"session_id": s["session_id"]})
     if "error" in mem:
         mem = {"record": None, "cabinet_diff": None, "turns": []}
-    msgs = [{"role": "system", "content": TOOLS_PROMPT}, {"role": "user", "content": s["message"]}]
+    msgs = [{"role": "system", "content": patient_context(s["patient"])["tools_prompt"]},
+            {"role": "user", "content": s["message"]}]
     skip = "; lookups skipped: possible emergency" if s.get("tier3_phrase") and s.get("use_tools", True) else ""
     return {"memory": mem, "tool_msgs": msgs, "rounds": 0, "references": [],
             "trace": step(s, "load_memory", f"{len(mem['turns'])} saved turns; record "
@@ -174,6 +187,8 @@ def tools(s):
             out = {"error": "duplicate call: you already have this result"}
         else:
             done.add((name, json.dumps(args, sort_keys=True)))
+            if name == "get_care_plan":  # the orchestrator, never the model, says whose plan it is
+                args = {**args, "patient": s["patient"]}
             out = tc.call_tool(name, args)
             if name == "search_drug_label":
                 refs += [r for r in out.get("references", []) if r["text"] not in {x.get("text") for x in refs}]
@@ -211,7 +226,7 @@ def _prompt_and_messages(s):
     if s["mode"] == "chat" and mem.get("cabinet_diff"):
         template = template.replace("{{cabinet_diff}}", json.dumps(mem["cabinet_diff"]))
     case = {"cabinet": s["cabinet"]} if s["mode"] == "diff" else {}
-    system = render(template, FIXTURE, case)
+    system = render(template, patient_context(s["patient"])["fixture"], case)
     assert refs_xml in system, "references did not reach the prompt"  # A3 lesson: assert inputs reach the model
     history = s.get("history") or []  # eval cases bring their own history; app sessions use the memory slot
     user_text = json.dumps(s["cabinet"]) if s["mode"] == "diff" else s["message"]
@@ -237,7 +252,7 @@ def output_check(s):
     reply = s["reply"] if "error" not in s["reply"] else None
     diff = (s.get("memory") or {}).get("cabinet_diff") or [] if s["mode"] == "chat" else []
     session_ids = {f.get("id") for f in diff if isinstance(f, dict)}  # this session's cabinet-check flags
-    checks = run_checks(reply, case, FIXTURE_IDS | ref_ids | session_ids, user_text)
+    checks = run_checks(reply, case, patient_context(s["patient"])["ids"] | ref_ids | session_ids, user_text)
     failed = [f"{k}: {d}" for k, (st, d) in checks.items() if st == "fail"]
     return {"failed": failed, "trace": step(s, "output_check", "pass" if not failed else f"fail: {failed}")}
 
@@ -249,7 +264,8 @@ def fallback_reply(s):
         out["final"]["by"] = "fallback (possible emergency)"
         out["trace"][-1] = {"step": "fallback_reply", "detail": f"after {s['attempts']} failed attempts; fixed 911 reply"}
         return out
-    ph, cl = CONTACTS["contact-2"], CONTACTS["contact-1"]
+    contacts = patient_context(s["patient"])["contacts"]
+    ph, cl = contacts["contact-2"], contacts["contact-1"]
     reply = (f"I can't answer that safely right now. Please call {ph['name']} at {ph['phone']} or "
              f"{cl['name']} at {cl['phone']}. If this is an emergency, call 911.")
     final = {"reply": reply, "red_flag_tier": None, "sources": ["contact-1", "contact-2"], "flags": [], "mode": s["mode"],
@@ -274,7 +290,8 @@ def save_memory(s):
     final = {k: r.get(k) for k in ("reply", "red_flag_tier", "sources", "flags", "mode")} | {"by": "Prompt B v8"}
     if not s.get("save", True):
         return {"final": final, "trace": step(s, "save_memory", "skipped (eval run)")}
-    args = {"session_id": s["session_id"], "message": s["message"] or "(cabinet check)", "reply": r.get("reply") or ""}
+    args = {"session_id": s["session_id"], "message": s["message"] or "(cabinet check)", "reply": r.get("reply") or "",
+            "patient": s["patient"]}
     if s["mode"] == "diff":
         args["cabinet_diff"] = r.get("flags") or []
     out = tc.call_tool("update_session_memory", args, s["model"])
@@ -329,10 +346,12 @@ def build():
 GRAPH = build()
 
 
-def run_turn(session_id, message="", cabinet=None, photos=None, model="mock", history=None, save=True, use_tools=True, gate="off"):
+def run_turn(session_id, message="", cabinet=None, photos=None, model="mock", history=None, save=True, use_tools=True,
+             gate="off", patient="p001"):
     """The one entry point for the UI and the evals. Returns {final, trace, usage}."""
     start = len(llm.USAGE)
-    state = {"session_id": session_id, "message": message, "cabinet": cabinet, "photos": photos, "model": model,
+    patient_context(patient)  # unknown patient -> ValueError here, before any model call
+    state = {"session_id": session_id, "patient": patient, "message": message, "cabinet": cabinet, "photos": photos, "model": model,
              "save": save, "use_tools": use_tools, "gate": gate, "trace": []}
     if history is not None:
         state["history"] = history

@@ -2,7 +2,7 @@
 
 ## Current work: Assignment 4 (workflow, tool use, orchestration, UI)
 
-Read `docs/workflow/README.md` first: the pipeline (`app/graph.py`, LangGraph), the tools and MCP server
+Start with `docs/workflow/HANDOFF.md` (status, final run folders, next steps), then `docs/workflow/README.md`: the pipeline (`app/graph.py`, LangGraph), the tools and MCP server
 (`app/tools.py`, `app/mcp_server.py`), the UI (`app/ui.py`), how to run each, and which run folders the results come
 from. Assignment 3 (`docs/rag-memory/`) is submitted; do not change its files or results. Prompt B v8 is used
 unchanged by the pipeline. The A4 held-out set (`evals/a4_heldout/`) was written by a fresh agent and run once;

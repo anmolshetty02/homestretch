@@ -1,0 +1,28 @@
+{
+  "judge_prompt": "judge_usefulness_v1.md",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "pairs_from": [
+    [
+      "v8_deepseek-flash_t0.3_1101-1727",
+      "pipeline-gateoff_deepseek-flash_1115-1321"
+    ],
+    [
+      "v8_deepseek-flash_t0.3_1101-1932_confirm_confirm",
+      "pipeline-gateoff_deepseek-flash_1115-1323_confirm"
+    ],
+    [
+      "v8_deepseek-flash_t0.3_1114-1023_a4_heldout",
+      "pipeline-gateoff_deepseek-flash_1115-1325_a4_heldout"
+    ],
+    [
+      "v8_deepseek-flash_t0.3_1114-1047_a4_triage",
+      "pipeline-gateoff_deepseek-flash_1115-1327_a4_triage"
+    ],
+    [
+      "v8_deepseek-flash_t0.3_1115-1319_heldout",
+      "pipeline-gateoff_deepseek-flash_1115-1319_heldout"
+    ]
+  ],
+  "rule": "win = wins both orders, else tie"
+}

@@ -128,6 +128,21 @@
    "inputTerm": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Brufen&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "name": "Brufen",
+     "rank": "1",
+     "rxaui": "1135932",
+     "rxcui": "202487",
+     "score": "9.547101974487305",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Cardiovexol&maxEntries=1": {
   "approximateGroup": {
    "inputTerm": null
@@ -807,6 +822,28 @@
    "inputTerm": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Microzide&maxEntries=1": {
+  "approximateGroup": {
+   "candidate": [
+    {
+     "rank": "1",
+     "rxaui": "1180499",
+     "rxcui": "218369",
+     "score": "9.955900192260742",
+     "source": "MMSL"
+    },
+    {
+     "name": "Microzide",
+     "rank": "1",
+     "rxaui": "1180500",
+     "rxcui": "218369",
+     "score": "9.955900192260742",
+     "source": "RXNORM"
+    }
+   ],
+   "inputTerm": null
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/approximateTerm.json?term=Mom&maxEntries=1": {
   "approximateGroup": {
    "candidate": [
@@ -1155,6 +1192,20 @@
    "inputTerm": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=AMLODIPINE": {
+  "idGroup": {
+   "rxnormId": [
+    "17767"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ATORVASTATIN": {
+  "idGroup": {
+   "rxnormId": [
+    "83367"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Advil": {
   "idGroup": {
    "rxnormId": [
@@ -1178,11 +1229,84 @@
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Aleve%20%28naproxen%20sodlum%29": {
   "idGroup": {}
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Amlodipine": {
+  "idGroup": {
+   "rxnormId": [
+    "17767"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Benadril": {
   "idGroup": {}
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Benadryl": {
+  "idGroup": {
+   "rxnormId": [
+    "203457"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Brufen": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=CARVEDILOL": {
+  "idGroup": {
+   "rxnormId": [
+    "20352"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=CLOPIDOGREL": {
+  "idGroup": {
+   "rxnormId": [
+    "32968"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Cardiovexol": {
   "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Carvedilol": {
+  "idGroup": {
+   "rxnormId": [
+    "20352"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Clopidogrel": {
+  "idGroup": {
+   "rxnormId": [
+    "32968"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Coreg": {
+  "idGroup": {
+   "rxnormId": [
+    "216221"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Cozaar": {
+  "idGroup": {
+   "rxnormId": [
+    "151558"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Digoxin": {
+  "idGroup": {
+   "rxnormId": [
+    "3407"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Entresto": {
+  "idGroup": {
+   "rxnormId": [
+    "1656341"
+   ]
+  }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=FUROSEMIDE": {
   "idGroup": {
@@ -1203,6 +1327,30 @@
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Furosemlde": {
   "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Glucophage": {
+  "idGroup": {
+   "rxnormId": [
+    "151827"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Glucophage%20XR": {
+  "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=HYDROCHLOROTHIAZIDE": {
+  "idGroup": {
+   "rxnormId": [
+    "5487"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Hydrochlorothiazide": {
+  "idGroup": {
+   "rxnormId": [
+    "5487"
+   ]
+  }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Kapspargo": {
   "idGroup": {
@@ -1242,6 +1390,13 @@
    ]
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lipitor": {
+  "idGroup": {
+   "rxnormId": [
+    "153165"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Lisin0pril": {
   "idGroup": {}
  },
@@ -1261,6 +1416,23 @@
     "203344"
    ]
   }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Losartan%20Potassium": {
+  "idGroup": {
+   "rxnormId": [
+    "203160"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METFORMIN%20HYDROCHLORIDE": {
+  "idGroup": {
+   "rxnormId": [
+    "235743"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METFORMIN%20HYDROCHLORIDE%20ER": {
+  "idGroup": {}
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=METOPROLOL%20SUCC": {
   "idGroup": {}
@@ -1311,13 +1483,30 @@
    ]
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Microzide": {
+  "idGroup": {}
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Mom": {
   "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Norvasc": {
+  "idGroup": {
+   "rxnormId": [
+    "58927"
+   ]
+  }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=PRINIVIL": {
   "idGroup": {
    "rxnormId": [
     "203644"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Plavix": {
+  "idGroup": {
+   "rxnormId": [
+    "174742"
    ]
   }
  },
@@ -1338,10 +1527,31 @@
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Prinlvil": {
   "idGroup": {}
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=SIMVASTATIN": {
+  "idGroup": {
+   "rxnormId": [
+    "36567"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Sacubitril/Valsartan": {
+  "idGroup": {
+   "rxnormId": [
+    "1656339"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Senna": {
   "idGroup": {
    "rxnormId": [
     "36387"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Simvastatin": {
+  "idGroup": {
+   "rxnormId": [
+    "36567"
    ]
   }
  },
@@ -1379,6 +1589,20 @@
    ]
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=VERAPAMIL%20HYDROCHLORIDE": {
+  "idGroup": {
+   "rxnormId": [
+    "203138"
+   ]
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Warfarin%20Sodium": {
+  "idGroup": {
+   "rxnormId": [
+    "114194"
+   ]
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ZESTRIL": {
   "idGroup": {
    "rxnormId": [
@@ -1402,6 +1626,13 @@
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zestrll": {
   "idGroup": {}
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zocor": {
+  "idGroup": {
+   "rxnormId": [
+    "196503"
+   ]
+  }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Zorvexa": {
   "idGroup": {}
@@ -1513,6 +1744,38 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/114194/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "warfarin sodium",
+   "rxcui": "114194",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/114194/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "warfarin",
+       "rxcui": "11289",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/1146108/properties.json": {
   "properties": {
    "language": "ENG",
@@ -1556,6 +1819,70 @@
    "umlscui": ""
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/151558/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Cozaar",
+   "rxcui": "151558",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/151558/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "losartan",
+       "rxcui": "52175",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/151827/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Glucophage",
+   "rxcui": "151827",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/151827/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metformin",
+       "rxcui": "6809",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/153010/properties.json": {
   "properties": {
    "language": "ENG",
@@ -1588,6 +1915,163 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/153165/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Lipitor",
+   "rxcui": "153165",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/153165/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "atorvastatin",
+       "rxcui": "83367",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1656339/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "sacubitril / valsartan",
+   "rxcui": "1656339",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "MIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1656339/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "sacubitril",
+       "rxcui": "1656328",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      },
+      {
+       "language": "ENG",
+       "name": "valsartan",
+       "rxcui": "69749",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1656341/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Entresto",
+   "rxcui": "1656341",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/1656341/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "sacubitril",
+       "rxcui": "1656328",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      },
+      {
+       "language": "ENG",
+       "name": "valsartan",
+       "rxcui": "69749",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/174742/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Plavix",
+   "rxcui": "174742",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/174742/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "clopidogrel",
+       "rxcui": "32968",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/17767/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "amlodipine",
+   "rxcui": "17767",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/196472/properties.json": {
   "properties": {
    "language": "ENG",
@@ -1608,6 +2092,38 @@
        "language": "ENG",
        "name": "lisinopril",
        "rxcui": "29046",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/196503/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Zocor",
+   "rxcui": "196503",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/196503/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "simvastatin",
+       "rxcui": "36567",
        "suppress": "N",
        "synonym": "",
        "tty": "IN",
@@ -1652,6 +2168,38 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202487/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "YES",
+    "isMultipleIngredient": "NO",
+    "name": "Brufen",
+    "rxcui": "202487",
+    "tty": "BN"
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {
+    "ingredientConcept": [
+     {
+      "ingredientName": "ibuprofen",
+      "ingredientRxcui": "5640"
+     }
+    ]
+   },
+   "metaData": {
+    "activeEndDate": "032013",
+    "activeStartDate": "062005",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "062005",
+    "remappedDate": "",
+    "source": "RXNORM",
+    "status": "Obsolete"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/202487/properties.json": {},
  "https://rxnav.nlm.nih.gov/REST/rxcui/202991/properties.json": {
   "properties": {
    "language": "ENG",
@@ -1672,6 +2220,70 @@
        "language": "ENG",
        "name": "furosemide",
        "rxcui": "4603",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203138/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "verapamil hydrochloride",
+   "rxcui": "203138",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203138/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "verapamil",
+       "rxcui": "11170",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203160/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "losartan potassium",
+   "rxcui": "203160",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/203160/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "losartan",
+       "rxcui": "52175",
        "suppress": "N",
        "synonym": "",
        "tty": "IN",
@@ -1812,6 +2424,17 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/20352/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "carvedilol",
+   "rxcui": "20352",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/203644/properties.json": {
   "properties": {
    "language": "ENG",
@@ -1933,6 +2556,70 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/216221/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Coreg",
+   "rxcui": "216221",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/216221/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "carvedilol",
+       "rxcui": "20352",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/218369/historystatus.json": {
+  "rxcuiStatusHistory": {
+   "attributes": {
+    "isBranded": "YES",
+    "isMultipleIngredient": "NO",
+    "name": "Microzide",
+    "rxcui": "218369",
+    "tty": "BN"
+   },
+   "definitionalFeatures": {},
+   "derivedConcepts": {
+    "ingredientConcept": [
+     {
+      "ingredientName": "hydrochlorothiazide",
+      "ingredientRxcui": "5487"
+     }
+    ]
+   },
+   "metaData": {
+    "activeEndDate": "122022",
+    "activeStartDate": "042005",
+    "isCurrent": "NO",
+    "releaseEndDate": "",
+    "releaseStartDate": "042005",
+    "remappedDate": "",
+    "source": "RXNORM",
+    "status": "Obsolete"
+   },
+   "pack": {}
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/218369/properties.json": {},
  "https://rxnav.nlm.nih.gov/REST/rxcui/220348/historystatus.json": {
   "rxcuiStatusHistory": {
    "attributes": {
@@ -2047,6 +2734,38 @@
   }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui/2276863/properties.json": {},
+ "https://rxnav.nlm.nih.gov/REST/rxcui/235743/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "metformin hydrochloride",
+   "rxcui": "235743",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "PIN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/235743/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "metformin",
+       "rxcui": "6809",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/2639126/historystatus.json": {
   "rxcuiStatusHistory": {
    "attributes": {
@@ -2172,11 +2891,44 @@
    "rxcui": null
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/32968/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "clopidogrel",
+   "rxcui": "32968",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/3407/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "digoxin",
+   "rxcui": "3407",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/36387/properties.json": {
   "properties": {
    "language": "ENG",
    "name": "sennosides, USP",
    "rxcui": "36387",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/36567/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "simvastatin",
+   "rxcui": "36567",
    "suppress": "N",
    "synonym": "",
    "tty": "IN",
@@ -2226,6 +2978,17 @@
    "umlscui": ""
   }
  },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/5487/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "hydrochlorothiazide",
+   "rxcui": "5487",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
  "https://rxnav.nlm.nih.gov/REST/rxcui/5640/properties.json": {
   "properties": {
    "language": "ENG",
@@ -2235,6 +2998,38 @@
    "synonym": "",
    "tty": "IN",
    "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/58927/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "Norvasc",
+   "rxcui": "58927",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "BN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/58927/related.json?tty=IN": {
+  "relatedGroup": {
+   "conceptGroup": [
+    {
+     "conceptProperties": [
+      {
+       "language": "ENG",
+       "name": "amlodipine",
+       "rxcui": "17767",
+       "suppress": "N",
+       "synonym": "",
+       "tty": "IN",
+       "umlscui": ""
+      }
+     ],
+     "tty": "IN"
+    }
+   ],
+   "rxcui": null
   }
  },
  "https://rxnav.nlm.nih.gov/REST/rxcui/688099/historystatus.json": {
@@ -2267,6 +3062,17 @@
    "language": "ENG",
    "name": "metoprolol",
    "rxcui": "6918",
+   "suppress": "N",
+   "synonym": "",
+   "tty": "IN",
+   "umlscui": ""
+  }
+ },
+ "https://rxnav.nlm.nih.gov/REST/rxcui/83367/properties.json": {
+  "properties": {
+   "language": "ENG",
+   "name": "atorvastatin",
+   "rxcui": "83367",
    "suppress": "N",
    "synonym": "",
    "tty": "IN",

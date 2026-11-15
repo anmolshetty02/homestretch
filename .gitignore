@@ -7,7 +7,7 @@ results/.cache/
 .claude/settings.local.json
 results/*_mock_*/
 .DS_Store
-synthea/
+/synthea/
 
 ~$*
 .Rhistory
@@ -15,3 +15,7 @@ synthea/
 # Assignment 4 app: session records (runtime data) and the label-vector cache (rebuilt in ~2 min)
 app/sessions/
 app/.cache_label_vecs_*.npy
+
+# Streamlit agent skills (environment-specific symlinks from `streamlit skills`)
+.agents/skills/developing-with-streamlit
+.claude/skills/developing-with-streamlit

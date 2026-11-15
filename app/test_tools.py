@@ -11,6 +11,11 @@ for bad in (t.check_medicine_name(""), t.get_care_plan("x; drop"), t.read_label_
             t.get_session_memory("../x"), c.call_tool("nope", {}), c.call_tool("get_care_plan", {"bad": 1})):
     assert "error" in bad, bad
 assert t.get_care_plan("stopped-1")["name"] == "metoprolol tartrate"
+# other patients (A2 Synthea held-out): their own plan; a bad name is refused, never a path
+s02 = [m["name"] for m in t.get_care_plan(patient="synthea/s02")["medications"]]
+assert "clopidogrel" in s02 and s02 != [m["name"] for m in t.get_care_plan()["medications"]], s02
+for bad in ("../p001", "synthea/../p001", "s02", 7):
+    assert "error" in t.get_care_plan(patient=bad), bad
 assert t.search_drug_label("Can she take Zorvexa with her pills?")["references"] == []
 refs = t.search_drug_label("Does the water pill make her lose potassium?")["references"]
 assert len(refs) == t.TOP_K and refs[0]["drug"] == "furosemide", refs[0]

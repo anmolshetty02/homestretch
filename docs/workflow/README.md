@@ -2,7 +2,10 @@
 
 Building AI Applications, Assignment 4 · Group 5. All three parts built by Anmol Shetty, with Claude Code (Opus 5.5).
 
-The deliverable is a 3–5 slide deck (content in `docs/workflow/slides.md`) backed by a working app in `app/`.
+The deliverable is a 3–5 slide deck (content in `docs/workflow/slides.md`) or a 3-page document
+(`docs/workflow/submission.md` → `submission.pdf`, built by `.venv/bin/python docs/workflow/build_a4.py`, which fails
+above 3 pages), backed by a working app in `app/`. Workflow diagram for both: `diagram.png` / `diagram.svg`, from
+`diagram.dot` (Graphviz).
 Everything below is evidence for the slides; every number comes from a run folder in `results/`.
 System dependency: Tesseract OCR (`brew install tesseract`) for label photos.
 
@@ -87,7 +90,9 @@ resource. In MCP mode (`HS_TOOLS=mcp`) every tool call, including the memory wri
 MCP: the agent lists tools at runtime and calls them by name (`app/test_mcp.py` runs a cabinet check and a follow-up
 question this way against a real server). The agent process still imports `app/tools.py` for the shared patient
 fixture and the local mode. `HS_TOOLS=local` (the default, used by the evals and the UI unless switched) calls the
-same functions in-process; all reported eval numbers use local mode.
+same functions in-process; all reported eval numbers use local mode. A second, independent MCP client (the official
+MCP Inspector 0.17.2) also lists all six tools and calls them, including another patient's plan and a refused bad
+patient name: `docs/workflow/mcp-inspector-check.txt`.
 
 ## 3. Platform comparison
 
@@ -140,7 +145,10 @@ fainted… dizzy when she stands", because the words sit inside a negation. The 
 
 ## 4. Results, challenges, limits
 
-Final code (after the independent review), `deepseek-flash`, thinking off, temperature 0.3, one run per set.
+Final code, `deepseek-flash`, thinking off, temperature 0.3, one run per set. "Final" = after the independent review
+and after making the patient a parameter (2026-11-15, so the pipeline can run other patients). That change left Rosa's
+inputs byte-identical (the hash of all 395 model inputs over the 222 mock turns is unchanged), and every set below was
+rerun on it anyway, so each number comes from the final code.
 "v8 alone" is the A3 single-prompt baseline. With tools off, the pipeline sends v8 a byte-identical prompt, so v8
 alone *is* the no-tools ablation (the `pipeline-notools-*` runs replayed the same cached samples); identical prompts
 share one model sample per input.
@@ -150,10 +158,10 @@ answers from cited FDA labels and RxNorm, label photos, and memory.
 
 | Set (inputs) | v8 alone | Full pipeline | Full-pipeline run |
 |---|---|---|---|
-| Main cases (57) | 56 | 56 | `pipeline-gateoff_deepseek-flash_1114-1056` |
-| Confirm (54) | 51 | 52 | `pipeline-gateoff_deepseek-flash_1114-1058_confirm` |
-| A4 held-out, fresh agent (59) | 59 | 59 | `pipeline-gateoff_deepseek-flash_1114-1100_a4_heldout` |
-| A4 triage, second fresh agent (52) | 51 | 51 | `pipeline-gateoff_deepseek-flash_1114-1102_a4_triage` |
+| Main cases (57) | 56 | 56 | `pipeline-gateoff_deepseek-flash_1115-1321` |
+| Confirm (54) | 51 | 52 | `pipeline-gateoff_deepseek-flash_1115-1323_confirm` |
+| A4 held-out, fresh agent (59) | 59 | 59 | `pipeline-gateoff_deepseek-flash_1115-1325_a4_heldout` |
+| A4 triage, second fresh agent (52) | 51 | 51 | `pipeline-gateoff_deepseek-flash_1115-1327_a4_triage` |
 
 v8 runs: `v8_deepseek-flash_t0.3_1101-1727`, `_1101-1932_confirm_confirm`, `_1114-1023_a4_heldout`, `_1114-1047_a4_triage`.
 
@@ -164,7 +172,7 @@ v8 runs: `v8_deepseek-flash_t0.3_1101-1727`, `_1101-1932_confirm_confirm`, `_111
 | Tool choices as the held-out set expected | 31 / 31 (the held-out inputs that set a tool expectation) |
 | Output-check retries / fallbacks | 0 / 0 |
 | Cost per turn | $0.0007 (v8 alone $0.0003, about 2.2×) |
-| Latency, median (95th percentile) | 2.6 s (5.7 s), uncached turns; v8 alone 1.7 s |
+| Latency, median (95th percentile) | 2.7 s (5.1 s), uncached turns; v8 alone 1.7 s |
 
 **What the tools add.** Pass/fail moves by +1 (confirm: 2 fixed, 1 broken), which is within the ±1 noise of one run,
 so we do not claim it. The difference shows in the replies instead:
@@ -180,14 +188,64 @@ so we do not claim it. The difference shows in the replies instead:
 - Off-topic risk: the "grumpy and bored" question (cf-18) retrieved a "low mood" passage and the reply dropped the
   tier-0 reminder.
 
+**Usefulness (do the tools make answers better?).** The checks above score safety, and v8 alone passes them by
+deferring, so they cannot see usefulness. A pairwise judge (`prompts/judge_usefulness_v1.md`, deepseek-flash,
+temperature 0, blind A/B, each pair judged in both orders, a win only if it wins both) compared the two replies on the
+115 of 272 turns where the pipeline ran a lookup (`results/usefulness_deepseek-flash_1115-1350`, $0.04):
+
+| Turns where the pipeline ran a lookup | Turns | Pipeline more useful | v8 alone more useful | Tie |
+|---|---|---|---|---|
+| Reply cites what the lookup found | 31 | 22 | 4 | 5 |
+| Lookup ran, reply cites nothing from it | 84 | 11 | 10 | 63 |
+| All | 115 | 33 | 14 | 68 |
+
+The gain is real and narrow: when a lookup finds something, the reply is more useful 22 times to 4. The other 84
+lookups (73%) are cost without benefit: 11 to 10 is noise. 77 of the 115 lookups were on red-flag messages (weight,
+dizziness, swelling) whose answer is in the plan; there the extra text sometimes crowded out the phone number, and one
+reply (cf-12) misstated the plan's 15-minute heartbeat threshold as 30 minutes. Judge limits: it sees the care plan but
+not the label passages, so it cannot check a label fact (once it called a real `[name-1]` nonexistent); 28 of 115
+pairs flipped with the order and count as ties; the judge is the same model family as the app.
+
+**Are these the right tools? (evidence for the next version)**
+1. *Label coverage is the biggest gap.* The label index has 9 labels, chosen for Rosa. Across the 21 patients, 10 of
+   15 medicines have none: simvastatin (11 patients), carvedilol (10), clopidogrel (8), losartan (8),
+   hydrochlorothiazide (5), metformin (3), sacubitril/valsartan (2), digoxin, verapamil, warfarin. openFDA serves
+   these (`api.fda.gov/drug/label.json`, e.g. 57 clopidogrel labels with interaction sections), so adding them to the
+   index (in an A4 folder; the A3 index is frozen) is the change most likely to make more answers better.
+2. *Run label search less.* A `tools_v2` rule "no label search when the message matches a plan warning sign" would
+   remove most of the 77 red-flag lookups (ties, cost, the cf-12 slip) and speed up those replies.
+3. *Not needed as separate tools:* drug interactions (NLM discontinued the RxNav interaction API on 2024-01-02; the
+   label `drug_interactions` sections cover it once labels are added). MedlinePlus Connect (NLM) returns consumer
+   pages by RxCUI and could add a "read more" link, but not passages to cite.
+4. *Not a tool problem:* replies that drop the phone number or the after-hours line come from Prompt B, not the tools.
+
 **Model proposes, orchestrator decides.** The model asked for label search on a dose or stop question 4 times; the
 orchestrator blocked all 4 (rf-05 ×3 "can she stop it?", cf-12 "forgot her pill"). Before the review, "extra" also
 blocked 2 non-dose questions ("extra pillows"); the rule is now `extra (dose|pill|tablet|one)`.
 
 **Emergencies and lookups.** The review found 32 of 69 emergencies ran a lookup before answering, against the tool
-prompt's own rule. Tier-3 words now skip lookups: 23 of 69 still run one, all phrased without the words ("an elephant
-parked on her"). Median time to "Call 911 now": 1.3 s without a lookup, 3.1 s with one. The word rule also skipped
-lookups on 17 non-emergencies; none of them needed one (all passed).
+prompt's own rule. Tier-3 words now skip lookups: 22 of 69 still run one, all phrased without the words ("an elephant
+parked on her"). Median time to "Call 911 now": 1.3 s without a lookup, 3.2 s with one. The word rule also skipped
+lookups on 17 non-emergencies; none of them needed one (16 passed; the 17th is the hypothetical in §3b).
+
+**Other patients (A2 Synthea held-out, 2026-11-15).** The A2 held-out set has 20 synthetic heart-failure patients
+from Synthea, aged 51 to 86 and taking 3 to 11 medicines, with 50 cases written in A2: a cabinet check for each of the
+20 patients, and 30 questions and red flags for 6 of them (aged 51 to 84). The pipeline now takes the patient per
+turn; the orchestrator, never the model, sets whose plan a lookup reads (`app/test_graph.py` checks this).
+
+| Synthea held-out (50 inputs, 20 patients) | v8 alone | Full pipeline |
+|---|---|---|
+| All checks pass | 50 / 50 | 50 / 50 |
+| Cabinet checks (20 patients), no critical miss | 20 / 20 | 20 / 20 |
+| Chest tightness answered "Call 911 now" (6 patients) | 6 / 6 | 6 / 6 |
+| "Can he take Advil?" answer cites the FDA label | 0 / 6 | 4 / 6 |
+
+Runs: `v8_deepseek-flash_t0.3_1115-1319_heldout` (all 50 replies came from the response cache of an earlier identical
+v8 call, so it cost $0) and `pipeline-gateoff_deepseek-flash_1115-1319_heldout`. On the Advil question the pipeline
+adds what the label says ("NSAIDs like ibuprofen can raise the risk of heart failure and stomach bleeding [ref-2]")
+where v8 alone says only that the plan forbids it. Missed-dose questions ran no lookups and matched v8 word for word.
+Weaker spots: the weight-gain question ran a label search 6 of 6 times although the plan answers it (extra cost, same
+reply), and each run had one reply with the wrong pronoun ("her plan" for a father): pipeline s01-purpose, v8 s04-purpose.
 
 **Challenges hit while building (each found by a test or the review, then fixed):**
 1. *Context did not reach the tools:* in-process tool calls dropped the model choice, so Prompt A and the memory
@@ -211,15 +269,19 @@ lookups on 17 non-emergencies; none of them needed one (all passed).
 - Retrieval can pull a reply off-topic (cf-18) or be ignored when right (a4-10).
 - A hypothetical ("if she gets chest pain at night, who do I call?") gets the live-emergency reply.
 - One follow-up gave the wrong date for the cabinet check (the discharge date).
-- One synthetic patient; 9 drug labels; the MCP server has no authentication (localhost only). All eval numbers use
-  in-process tools; MCP is tested end to end by `app/test_mcp.py` on the mock model.
+- One condition (heart failure): Rosa plus 20 Synthea patients, all synthetic; questions for only 6 of the 20; 9 drug
+  labels, so label questions about other medicines (clopidogrel, simvastatin) can only defer. The MCP server has no
+  authentication (localhost only). All eval numbers use in-process tools; MCP is tested end to end by
+  `app/test_mcp.py` on the mock model and by the MCP Inspector check.
 
-**Spend.** All A4 model calls cost about $0.40 (`results/spend.csv`). `app/eval_pipeline.py` logs one row per paid run
+**Spend.** All A4 model calls cost about $0.52 (`results/spend.csv`, 35 rows from 2026-11-14 on). `app/eval_pipeline.py` logs one row per paid run
 from 2026-11-14 16:43 UTC on; the 23 earlier A4 pipeline runs and the smoke tests were backfilled from each run's
 printed spend (uncached calls only) and its model-call count, with token columns left blank because they were not
 saved per run.
 
-**Superseded runs (kept for the record, not reported):** before the review fixes (911 rule off):
+**Superseded runs (kept for the record, not reported):** the same final sets on the code before the patient became a
+parameter (identical results): `pipeline-gateoff_deepseek-flash_1114-1056`, `_1114-1058_confirm`,
+`_1114-1100_a4_heldout`, `_1114-1102_a4_triage`. Before the review fixes (911 rule off):
 `pipeline-gateoff_deepseek-flash_1114-1037`, `_1114-1039_confirm`, `_1114-1042_a4_heldout`, `_1114-1044_a4_triage`;
 no-tools replays of v8: `pipeline-notools-gateoff_deepseek-flash_1114-1039`, `_1114-1042_confirm`,
 `_1114-1044_a4_heldout`, `_1114-1046_a4_triage`. Earlier: `pipeline_deepseek-flash_1114-0955`, `_1114-0958_confirm`

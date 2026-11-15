@@ -1,0 +1,35 @@
+# MCP Inspector 0.17.2 (an independent MCP client) against app/mcp_server.py, run 2026-11-15 18:21 UTC, server --model mock
+
+## tools/list -> tool names
+['check_medicine_name', 'search_drug_label', 'get_care_plan', 'read_label_photo', 'get_session_memory', 'update_session_memory']
+
+## tools/call check_medicine_name name=Lasix
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"name\": \"Lasix\", \"status\": \"matched\", \"how\": \"exact\", \"ingredients\": [\"furosemide\"]}"
+    }
+  ],
+  "isError": false
+}
+## tools/call get_care_plan item_id=med-1 patient=synthea/s02
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"id\": \"med-1\", \"name\": \"metoprolol succinate\", \"plain_name\": \"heart rate pill\", \"brands\": [\"Toprol XL\"], \"dose\": \"100 milligrams\", \"when\": \"once a day\", \"status\": \"unchanged\", \"purpose\": \"slows and steadies the heartbeat\"}"
+    }
+  ],
+  "isError": false
+}
+## tools/call get_care_plan patient=../p001 (must be refused)
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"error\": \"unknown patient '../p001': use p001 or synthea/s01..s20\"}"
+    }
+  ],
+  "isError": false
+}

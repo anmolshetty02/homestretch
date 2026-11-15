@@ -1,0 +1,310 @@
+<!doctype html><html><head><meta charset='utf-8'><title>HomeStretch Assignment 4</title><style>
+:root { --teal:#0F5257; --teal2:#1B7A80; --teal-bg:#EDF6F5; --line:#CFE3E1; --ink:#1E2B2F; --muted:#5C6C71;
+        --amber:#C9821E; --amber-bg:#FFF6E6; --gray-bg:#F2F4F5; --code-bg:#F6F8F8; --gap:7pt; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+@page { size: Letter; margin: 0.6in 0.7in 0.65in 0.7in;
+  @bottom-left { content: "HomeStretch · Assignment 4 · Group 5"; font: 7pt "Avenir Next", "Helvetica Neue", sans-serif; color: #5C6C71; }
+  @bottom-right { content: counter(page) " / " counter(pages); font: 7pt "Avenir Next", "Helvetica Neue", sans-serif; color: #5C6C71; } }
+body { font: 9.3pt/1.42 Palatino, Georgia, serif; color: var(--ink); margin: 0; }
+h1, h2, th, .eyebrow, .kpi, .panel-title, .pill, .cap, .card-title, .who, .refs-title { font-family: "Avenir Next", "Helvetica Neue", sans-serif; }
+p, li { margin: 0 0 calc(var(--gap) * 0.55); }
+ul { margin: 0 0 var(--gap); padding-left: 16pt; }
+a { color: var(--teal2); text-decoration: none; }
+code { font: 8pt Menlo, monospace; color: var(--teal); }
+.nw { white-space: nowrap; }
+
+/* title block */
+.title { margin-bottom: calc(var(--gap) * 1.2); }
+.eyebrow { font-size: 7.4pt; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal2); }
+h1 { font-size: 19.5pt; font-weight: 700; line-height: 1.2; color: #0B3B3F; margin: 3pt 0 6pt; }
+.bar { width: 56pt; height: 3pt; border-radius: 2pt; background: linear-gradient(90deg, var(--teal), var(--teal2)); margin-bottom: 6pt; }
+.meta { color: var(--muted); font-size: 8.8pt; }
+.repo { font-size: 8.8pt; }
+
+/* section headings */
+h2.sec { display: flex; align-items: center; gap: 7pt; font-size: 12pt; font-weight: 700; color: #0B3B3F;
+         border-bottom: 1px solid var(--line); padding-bottom: 3pt; margin: calc(var(--gap) * 2) 0 var(--gap); break-after: avoid; }
+h2.sec .num { flex: none; width: 17pt; height: 17pt; border-radius: 4pt; background: var(--teal); color: #fff;
+              font-size: 9pt; display: inline-flex; align-items: center; justify-content: center; }
+h2.appendix { break-before: page; }
+
+/* KPI tiles and results panel */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7pt; margin: var(--gap) 0; break-inside: avoid; }
+.kpi { background: var(--teal-bg); border-radius: 7pt; padding: 7pt 8pt; }
+.kpi .n { font-size: 16pt; font-weight: 700; color: var(--teal); line-height: 1.1; }
+.kpi .l { font-size: 7.6pt; color: var(--muted); line-height: 1.3; margin-top: 2pt; }
+.panel { background: var(--teal-bg); border-radius: 8pt; padding: 7pt 10pt 5pt; margin: var(--gap) 0; break-inside: avoid; }
+.panel-title { font-size: 8.6pt; font-weight: 700; color: var(--teal); margin-bottom: 3pt; }
+.panel-title code { font-size: 7.8pt; }
+.panel table { border: none; border-radius: 0; margin: 0; background: transparent; }
+.panel td { background: transparent !important; border-top: 1px solid var(--line); }
+.panel tr:first-child td { border-top: none; }
+
+/* tables */
+table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 6pt;
+        overflow: hidden; font-size: 8.3pt; line-height: 1.35; margin: calc(var(--gap) * 0.6) 0 var(--gap); }
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th { background: var(--teal); color: #fff; font-size: 7.6pt; font-weight: 600; text-align: left; padding: 4pt 5pt; }
+td { padding: 3.5pt 5pt; border-top: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #F6FAF9; }
+tr.hl td { background: var(--teal-bg) !important; }
+table.boldfirst td:first-child { font-weight: 700; }
+td code { font-size: 7.4pt; }
+.pill { display: inline-block; font-size: 7.4pt; font-weight: 600; padding: 0.5pt 6pt; border-radius: 8pt;
+        border: 1px solid var(--teal2); color: var(--teal); background: #fff; }
+.pill.solid { background: var(--teal); border-color: var(--teal); color: #fff; }
+.pill.gray { background: #E3E7E9; border-color: #C9D0D3; color: var(--muted); }
+
+/* code blocks */
+pre { background: var(--code-bg); border-left: 3px solid var(--teal); border-radius: 0 6pt 6pt 0;
+      font: 6.95pt/1.36 Menlo, monospace; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere;
+      padding: 0 9pt 7pt 9pt; margin: var(--gap) 0; orphans: 10; widows: 3; }
+pre code { font: inherit; color: inherit; }
+pre .cap { display: flex; justify-content: space-between; gap: 10pt; background: var(--teal); color: #fff;
+           font-size: 7.4pt; font-weight: 600; white-space: normal; margin: 0 -9pt 6pt -9pt; padding: 3pt 9pt;
+           border-radius: 0 6pt 0 0; }
+pre .cap a { color: #fff; font-weight: 500; text-decoration: underline; }
+pre .tag { color: var(--teal); font-weight: 700; }
+pre.two-col { column-count: 2; column-gap: 14pt; font-size: 6.6pt; }
+pre.two-col .cap { column-span: all; }
+pre.newpage { break-before: page; }
+
+/* example cards */
+.card { border: 1px solid var(--line); border-radius: 8pt; padding: 7pt 10pt 4pt; margin: var(--gap) 0; break-inside: avoid; }
+.card-title { font-size: 9pt; font-weight: 700; color: #0B3B3F; }
+.card .quote { font-style: italic; }
+.reply { background: var(--teal-bg); border-left: 3px solid var(--teal2); border-radius: 0 6pt 6pt 0; padding: 4pt 9pt 5pt; margin: 5pt 0 6pt; }
+.reply .who { font-size: 6.3pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal2); margin-bottom: 1pt; }
+.reply p { white-space: pre-line; margin: 0; }
+.idp { font: 6.7pt Menlo, monospace; background: #fff; border: 1px solid var(--line); border-radius: 3pt;
+       padding: 0 2pt; white-space: nowrap; color: var(--teal); }
+
+/* callouts */
+.callout { padding: 5pt 9pt; border-radius: 0 6pt 6pt 0; margin: calc(var(--gap) * 0.8) 0; break-inside: avoid; }
+.callout.amber { background: var(--amber-bg); border-left: 3px solid var(--amber); }
+.callout.gray { background: var(--gray-bg); border-left: 3px solid #AEB8BC; }
+.callout.teal { background: var(--teal-bg); border-left: 3px solid var(--teal); }
+.card .callout { margin: 4pt 0 5pt; }
+b.amb { color: #8A5510; }
+
+/* references */
+.refs { font-size: 8.2pt; line-height: 1.35; margin: var(--gap) 0; }
+.refs-title { font-weight: 700; color: #0B3B3F; margin-bottom: 2pt; }
+.ref { padding-left: 1.7em; text-indent: -1.7em; margin: 0 0 1.5pt; }
+.ref a { white-space: nowrap; }
+.refs { font-size: 7.4pt; line-height: 1.28; } h2.sec { margin-top: 10pt; }a { text-decoration: underline; text-decoration-color: var(--line); } table { break-inside: avoid; }.fig { margin: 4pt 0 8pt; break-inside: avoid; } .figcap { font-size: 7.6pt; color: var(--muted); margin-top: 2pt; }</style></head><body><header class="title"><div class="eyebrow">Building AI Applications · Assignment 4</div><h1>HomeStretch: Workflow, Tool Use, and Orchestration</h1><div class="bar"></div><div class="meta">Group 5 · A4 built by Anmol Shetty · November 2026</div><div class="repo">Code, tests, every run, and the full write-up: <a href="https://github.com/anmolshetty02/homestretch/tree/main/docs/workflow"><strong>github.com/anmolshetty02/homestretch</strong></a>, <code>docs/workflow/README.md</code>. Underlined results link to the exact file.</div></header>
+<h2 class="sec"><span class="num">1</span><span>The workflow</span></h2>
+<p>Maria cares for her mother Rosa after a heart-failure discharge. Every message she sends goes through one LangGraph
+pipeline (Figure 1). The model decides what to look up and how urgent the message is; fixed rules check everything it
+does. Prompt A (A2) reads label photos; Prompt B v8 (A3, unchanged) writes every reply.</p>
+<div class="fig"><img src="diagram.png" style="width:100%"><div class="figcap">Figure 1. One message through HomeStretch. Node names match <code>app/graph.py</code>. Colors mark the three use cases.</div></div>
+
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Path</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UC1 Cabinet check</td>
+<td>photos → Prompt A (OCR) → RxNorm name check per bottle → Prompt B compares bottles with the plan</td>
+<td>Plan-then-execute: the steps never change</td>
+</tr>
+<tr>
+<td>UC2 Question</td>
+<td>memory → the model chooses lookups ⇄ the orchestrator runs them (at most 2 rounds) → Prompt B answers</td>
+<td>ReAct: the steps depend on the question</td>
+</tr>
+<tr>
+<td>UC3 Red flag</td>
+<td>Prompt B sets the tier; tier 3 opens "Call 911 now" (red banner); emergency words skip lookups</td>
+<td>Model triage, with a fixed fallback</td>
+</tr>
+</tbody>
+</table>
+<p>Every path ends the same way: an output check (ids exist, no diagnosis, no dose advice) → one retry with the failures
+→ a safe fallback reply (the fixed 911 text if emergency words were seen) → save memory.</p>
+<h2 class="sec"><span class="num">2</span><span>Tool use, ReAct, and MCP</span></h2>
+<p><strong>Action vs response.</strong> A tool-choice prompt (<a href="https://github.com/anmolshetty02/homestretch/blob/main/prompts/tools_v1.md">tools v1</a>) lets the model propose lookups,
+and the orchestrator decides whether they run (Module 8's hybrid invocation). It allows only listed tools with valid
+JSON, refuses repeats, and never runs a label search on a dose question. The model asked for one on a dose or stop
+question 4 times, and all 4 were blocked. Errors go back to the model as observations, never as crashes.</p>
+<table>
+<thead>
+<tr>
+<th>Tool (served over MCP)</th>
+<th>What it does</th>
+<th>Guard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>check_medicine_name</code></td>
+<td>RxNorm lookup for any name not in the plan</td>
+<td>no match → "ask the pharmacist", never a guess</td>
+</tr>
+<tr>
+<td><code>search_drug_label</code></td>
+<td>FDA label passages (A3 retrieval: hybrid search, reranked, top 5)</td>
+<td>unknown names get no passages</td>
+</tr>
+<tr>
+<td><code>get_care_plan</code>, <code>read_label_photo</code></td>
+<td>plan items; Prompt A on a label photo</td>
+<td>id and path checks</td>
+</tr>
+<tr>
+<td><code>get_session_memory</code>, <code>update_session_memory</code></td>
+<td>the A3 session record; the write tool</td>
+<td>write is orchestrator-only</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCP.</strong> The six tools run on a real MCP server (<a href="https://github.com/anmolshetty02/homestretch/blob/main/app/mcp_server.py"><code>app/mcp_server.py</code></a>, MCP Python SDK 2.3,
+HTTP). The agent discovers them at runtime and calls them by name, so a tool can change without touching the agent.
+<a href="https://github.com/anmolshetty02/homestretch/blob/main/app/test_mcp.py"><code>app/test_mcp.py</code></a> runs a cabinet check and a follow-up over the server.</p>
+<p><strong>Context flow.</strong> Each source fills its own slot in Prompt B: the care plan → <code>{{care_plan}}</code>; the session record and
+last turns → <code>{{memory}}</code>; label passages and name checks from tools → <code>{{references}}</code> (cited as <code>[ref-n]</code>,
+<code>[name-n]</code>); this session's cabinet flags → <code>{{cabinet_diff}}</code>. The pipeline asserts the references reached the prompt.</p>
+<h2 class="sec"><span class="num">3</span><span>Choosing the platform</span></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LangGraph (chosen)</th>
+<th>n8n</th>
+<th>Plain Python loop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Branching and loops</td>
+<td>graph edges; the graph is the diagram</td>
+<td>visual nodes</td>
+<td>hand-written</td>
+</tr>
+<tr>
+<td>Reuse our Python checks and retrieval</td>
+<td>direct</td>
+<td>wrap each one</td>
+<td>direct</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>official SDK</td>
+<td>MCP Client Tool / Server Trigger nodes [6]</td>
+<td>official SDK</td>
+</tr>
+<tr>
+<td>Batch-test hundreds of inputs</td>
+<td>one function, <code>run_turn()</code></td>
+<td>its own runner</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>License</td>
+<td>MIT</td>
+<td>Sustainable Use License: free to self-host, not OSI open source [7]</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p>We chose LangGraph because our safety checks and retrieval already exist as Python and must be scored by the same
+tests as A2 and A3. n8n would be easier for non-programmers to edit, but every check would need rewriting.</p>
+<h2 class="sec"><span class="num">4</span><span>Results</span></h2>
+<p>Final code, <code>deepseek-flash</code>, one run per set; two of the four sets were written by fresh agents that never saw the
+code. "v8 alone" is the A3 single prompt, which is also the no-tools ablation: without tools the pipeline sends it the
+identical prompt.</p>
+<table>
+<thead>
+<tr>
+<th>Set (inputs)</th>
+<th>v8 alone</th>
+<th>Pipeline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main cases (57)</td>
+<td>56</td>
+<td><a href="https://github.com/anmolshetty02/homestretch/blob/main/results/pipeline-gateoff_deepseek-flash_1115-1321/summary.md">56</a></td>
+</tr>
+<tr>
+<td>Confirm (54)</td>
+<td>51</td>
+<td><a href="https://github.com/anmolshetty02/homestretch/blob/main/results/pipeline-gateoff_deepseek-flash_1115-1323_confirm/summary.md">52</a></td>
+</tr>
+<tr>
+<td>A4 held-out, fresh agent (59)</td>
+<td>59</td>
+<td><a href="https://github.com/anmolshetty02/homestretch/blob/main/results/pipeline-gateoff_deepseek-flash_1115-1325_a4_heldout/summary.md">59</a></td>
+</tr>
+<tr>
+<td>A4 triage, second fresh agent (52)</td>
+<td>51</td>
+<td><a href="https://github.com/anmolshetty02/homestretch/blob/main/results/pipeline-gateoff_deepseek-flash_1115-1327_a4_triage/summary.md">51</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Same safety, grounded answers.</strong> The pipeline answered all 69 emergencies "Call 911 now" and made the right tool
+choice 31 of 31 times. Pass rates match the single prompt; the +1 is within one run's noise, so we do not claim it.
+The gain is in what it can answer: on 7 drug-label questions, 4 replies cite an FDA label ("The label says cough is a
+common lisinopril reaction [ref-1]") where the single prompt deferred all 7; all 9 unfamiliar names get an RxNorm
+answer.
+Cost: $0.0007 per turn (about 2× the single prompt), 2.7 s median.</p>
+<p><strong>Other patients.</strong> On the A2 held-out set of 20 other synthetic patients (aged 51 to 86, 3 to 11 medicines, 50 inputs), both
+the single prompt and the pipeline pass <a href="https://github.com/anmolshetty02/homestretch/blob/main/results/pipeline-gateoff_deepseek-flash_1115-1319_heldout/summary.md">50 of 50</a>,
+and the pipeline cites the FDA label on 4 of 6 "can he take Advil?" questions where the single prompt cites none.</p>
+<p><strong>The 911 rule: decided by data.</strong> We started with a fixed word rule that sent "Call 911 now" before any model call.
+The first held-out set showed it fired on "<strong>no</strong> chest pain" and "nearly <strong>fainted</strong> finding parking". We built three
+variants, wrote the decision rule before testing (<a href="https://github.com/anmolshetty02/homestretch/blob/main/docs/workflow/README.md">README §3b</a>), and ran each once on a
+fresh triage set (26 real emergencies, many with no keyword, and 26 traps):</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Emergencies caught</th>
+<th>False "Call 911 now"</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Word rule answers first</td>
+<td>26 / 26</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Word rule adds a 911 line only if missing</td>
+<td>26 / 26</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Prompt B triages alone (chosen)</strong></td>
+<td>26 / 26</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The rule caught nothing the model missed, so triage moved to the model. The word rule now does only what a false
+match cannot hurt: skipping lookups and choosing the fallback text.</p>
+<h2 class="sec"><span class="num">5</span><span>Challenges and how we fixed them</span></h2>
+<p>Each was found by a test or an independent review, fixed, and re-tested on the final runs above.</p>
+<ul>
+<li><em>Context management:</em> tools called in-process silently used the mock model (the orchestrator now passes the model
+  through); the checker rejected this session's own flag ids (now valid); past turns in a short format were copied by
+  the model (they now go in the memory slot); Rosa was built into the code (the patient is now a parameter set by the
+  orchestrator, Rosa's inputs stayed byte-identical, and 20 more patients were tested).</li>
+<li><em>Tool integration:</em> MCP SDK v2 renamed its APIs (typed wrappers and readable errors; an independent client, the MCP
+  Inspector, now lists and calls all six tools); RxNorm keeps "Toprol XL" under a retired id (retry on the base name).</li>
+<li><em>Orchestration logic:</em> the 911 word rule (decided by the experiment above); 32 of 69 emergencies ran a lookup
+  before the 911 reply (emergency words now skip lookups); the dose block caught "extra pillows" (rule narrowed).</li>
+<li><em>Reliability:</em> the label index took 106 s to build (vectors cached, about 1 s); the output check's retry and
+  fallback paths are unit-tested, and no reply needed them in 222 test turns.</li>
+</ul>
+<p><strong>Next steps.</strong> Labels for every medicine across the 21 patients; label search only when the plan does not answer;
+an installable phone app with reminders.</p>
+<div class="refs"><div class="refs-title">References (all checked 2026-11-14)</div><div class="ref">[1] Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, https://arxiv.org/abs/2210.03629</div><div class="ref">[2] Model Context Protocol, https://modelcontextprotocol.io; MCP Python SDK, https://github.com/modelcontextprotocol/python-sdk</div><div class="ref">[3] LangGraph, https://docs.langchain.com/oss/python/langgraph/overview</div><div class="ref">[4] NIH RxNav (RxNorm), https://lhncbc.nlm.nih.gov/RxNav/; openFDA drug labels, https://open.fda.gov</div><div class="ref">[5] DeepSeek API, https://api-docs.deepseek.com; Streamlit, https://streamlit.io; Tesseract OCR, https://github.com/tesseract-ocr/tesseract; fastembed, https://github.com/qdrant/fastembed (BAAI bge-base-en-v1.5, ms-marco MiniLM cross-encoder)</div><div class="ref">[6] n8n MCP Client Tool, https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/; MCP Server Trigger, https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/</div><div class="ref">[7] n8n Sustainable Use License, https://github.com/n8n-io/n8n/blob/master/LICENSE.md</div><div class="ref">[8] INFO 7375 Module 8 (Tool Calling, MCP, ReAct, Agent Layer); ComplaintIQ Tool Use and Orchestration lab</div><div class="ref">[9] AI tools: Claude Code (Claude Opus 5.5) wrote most of the code and drafts, with Anmol reviewing each step; DeepSeek deepseek-flash is the app's model.</div></div></body></html>
