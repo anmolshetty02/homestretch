@@ -12,12 +12,11 @@ import json
 import time
 
 from app import llm
-from app.graph import FIXTURE_IDS, run_turn
+from app.graph import patient_context, run_turn
 from evals import report
 from evals.checks import overall, run_checks
 from evals.providers import get_entry
 from evals.run import ROOT, load_cases, log_spend, unstated_names
-from app.tools import FIXTURE
 
 PER_TURN_USD = 0.004  # upper bound per turn from a deepseek-flash smoke run: tool choice + Prompt B (+ a retry)
 
@@ -53,7 +52,7 @@ def as_reply(final):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="mock")
-    ap.add_argument("--suite", default="cases", choices=["cases", "confirm", "a4_heldout", "a4_triage"])
+    ap.add_argument("--suite", default="cases", choices=["cases", "confirm", "a4_heldout", "a4_triage", "heldout"])
     ap.add_argument("--max-cost", type=float, default=0.75)
     ap.add_argument("--no-tools", action="store_true", help="ablation: same pipeline without the ReAct lookups")
     ap.add_argument("--gate", default="off", choices=["keep", "backstop", "off"], help="911 rule variant")
@@ -79,14 +78,17 @@ def main():
             cabinet = x if isinstance(x, list) else None
             text = json.dumps(cabinet) if cabinet else x
             start = time.time()
+            patient = case.get("fixture", "p001")  # Synthea held-out cases name their own patient
+            ctx = patient_context(patient)
             res = run_turn(f"eval-{n}", "" if cabinet else x, cabinet=cabinet, model=args.model,
-                           history=case.get("history") or [], save=False, use_tools=not args.no_tools, gate=args.gate)
+                           history=case.get("history") or [], save=False, use_tools=not args.no_tools, gate=args.gate,
+                           patient=patient)
             reply = as_reply(res["final"])
             said = " ".join([text] + [h.get("content", "") for h in case.get("history") or [] if h.get("role") == "user"])
-            checks = run_checks(reply, case, FIXTURE_IDS | set(res["ref_ids"]), text, unstated_names(FIXTURE, said))
+            checks = run_checks(reply, case, ctx["ids"] | set(res["ref_ids"]), text, unstated_names(ctx["fixture"], said))
             checks["tools"] = ("skip", "ablation") if args.no_tools else tool_check(case, executed_tools(res["trace"]))
             usage = {"total_tokens": sum((u.get("usage") or {}).get("total_tokens", 0) for u in res["usage"])}
-            rec = {"case": case["id"], "category": case["category"], "variant": kind, "repeat": 0,
+            rec = {"case": case["id"], "patient": patient, "category": case["category"], "variant": kind, "repeat": 0,
                    "expect": case.get("expect", {}), "input": text, "parse_error": None, "reply": reply,
                    "checks": checks, "overall": overall(checks), "latency_s": round(time.time() - start, 3),
                    "usage": usage, "cached": all(u["cached"] for u in res["usage"]),

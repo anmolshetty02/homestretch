@@ -24,8 +24,8 @@ def search_drug_label(question: str) -> str:
     return json.dumps(tools.search_drug_label(question))
 
 
-def get_care_plan(item_id: str = "") -> str:
-    return json.dumps(tools.get_care_plan(item_id or None))
+def get_care_plan(item_id: str = "", patient: str = "p001") -> str:
+    return json.dumps(tools.get_care_plan(item_id or None, patient))
 
 
 def read_label_photo(path: str) -> str:
@@ -36,8 +36,10 @@ def get_session_memory(session_id: str) -> str:
     return json.dumps(tools.get_session_memory(session_id))
 
 
-def update_session_memory(session_id: str, message: str, reply: str = "", cabinet_diff: list[dict] | None = None) -> str:
-    return json.dumps(tools.update_session_memory(session_id, message, reply or None, cabinet_diff, model=MODEL))
+def update_session_memory(session_id: str, message: str, reply: str = "", cabinet_diff: list[dict] | None = None,
+                          patient: str = "p001") -> str:
+    return json.dumps(tools.update_session_memory(session_id, message, reply or None, cabinet_diff, model=MODEL,
+                                                  patient=patient))
 
 
 MODEL = "mock"  # tools that call a model (Prompt A, the memory update) use this; set with --model

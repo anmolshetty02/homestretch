@@ -18,7 +18,7 @@ from app.graph import run_turn  # noqa: E402
 server = subprocess.Popen([sys.executable, "-m", "app.mcp_server", "--port", str(PORT)],
                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 try:
-    for _ in range(120):  # the server warms the label index first
+    for _ in range(600):  # the server warms the label index first: ~2 min on a fresh clone (the vector cache is not committed)
         try:
             urllib.request.urlopen(f"http://127.0.0.1:{PORT}/mcp", timeout=1)
             break

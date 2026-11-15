@@ -4,6 +4,7 @@ Tools never raise to the model: bad input or a failed service returns {"error": 
 
 Reuses Assignment 3 code from docs/rag-memory/spikes/ (RxNorm lookup, retrieval round 5, session record).
 """
+import functools
 import json
 import re
 import subprocess
@@ -20,7 +21,18 @@ import retrieval_check as rc  # noqa: E402
 from query_expansion import expand  # noqa: E402
 from memory_check import EMPTY_RECORD, INSTRUCTIONS, RECORD_TASK  # noqa: E402
 
-FIXTURE = json.loads((ROOT / "fixtures" / "p001.json").read_text())
+PATIENT = re.compile(r"^(p\d{3}|synthea/s\d{2})$")  # p001 = Rosa (the app); synthea/s01..s20 = A2 held-out patients
+
+
+@functools.lru_cache(maxsize=None)
+def load_patient(patient="p001"):
+    """A synthetic patient's fixture (profile, care plan, known-correct cabinet diff) by name."""
+    if not isinstance(patient, str) or not PATIENT.match(patient):
+        raise ValueError(f"unknown patient {patient!r}: use p001 or synthea/s01..s20")
+    return json.loads((ROOT / "fixtures" / f"{patient}.json").read_text())
+
+
+FIXTURE = load_patient("p001")
 SESSIONS = ROOT / "app" / "sessions"
 RXNAV_CACHE = ROOT / "app" / ".cache_rxnav.json"
 TOP_K = 5  # design.md §E round 5: hybrid + expansion, reranked, top 5, bge-base, no gate
@@ -62,9 +74,12 @@ def check_medicine_name(name):
     return {"name": name, "status": "no_match", "action": "pharmacist_check: do not guess what this medicine is"}
 
 
-def get_care_plan(item_id=None):
+def get_care_plan(item_id=None, patient="p001"):
     """The discharge care plan, or one item of it (med-1, stopped-1, ...)."""
-    plan = FIXTURE["care_plan"]
+    try:
+        plan = load_patient(patient)["care_plan"]
+    except (ValueError, OSError) as e:
+        return _err(str(e))
     if item_id in (None, ""):
         return plan
     if not isinstance(item_id, str) or not MED_ID.match(item_id):
@@ -152,17 +167,21 @@ def get_session_memory(session_id):
 
 # ----------------------------------------------------------------------------------------------- write tools
 
-def update_session_memory(session_id, message, reply=None, cabinet_diff=None, model="mock"):
+def update_session_memory(session_id, message, reply=None, cabinet_diff=None, model="mock", patient="p001"):
     """WRITE. Folds the newest turn into the session record (A3 memory design: structured record, one call per turn)."""
     mem = get_session_memory(session_id)
     if "error" in mem:
         return mem
     if not isinstance(message, str) or len(message) > 4000:
         return _err("message must be a string of at most 4000 characters.")
+    try:
+        fx = load_patient(patient)
+    except (ValueError, OSError) as e:
+        return _err(str(e))
     if cabinet_diff is not None:
         mem["cabinet_diff"] = cabinet_diff
     from app.llm import complete_json
-    context = json.dumps({"care_plan": FIXTURE["care_plan"], "cabinet_diff": mem["cabinet_diff"] or FIXTURE["cabinet_diff"]})
+    context = json.dumps({"care_plan": fx["care_plan"], "cabinet_diff": mem["cabinet_diff"] or fx["cabinet_diff"]})
     record = complete_json([
         {"role": "system", "content": INSTRUCTIONS + RECORD_TASK},
         {"role": "user", "content": f"<context>{context}</context>\n<memory>{json.dumps(mem['record'])}</memory>\n"

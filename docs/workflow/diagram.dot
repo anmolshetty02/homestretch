@@ -1,0 +1,61 @@
+// HomeStretch A4 workflow. Node names match app/graph.py. Render:
+//   dot -Tsvg docs/workflow/diagram.dot -o docs/workflow/diagram.svg && dot -Tpng -Gdpi=200 docs/workflow/diagram.dot -o docs/workflow/diagram.png
+digraph homestretch {
+  graph [rankdir=TB, newrank=true, fontname="Helvetica", fontsize=12, nodesep=0.45, ranksep=0.38, pad=0.2, bgcolor="white"];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=13, color="#9DB8B6", fillcolor="#EDF6F5", margin="0.12,0.06"];
+  edge  [fontname="Helvetica", fontsize=11, color="#5E7A79", arrowsize=0.6];
+
+  input  [label=<<b>Caregiver input</b><br/><font point-size="10.5">chat text or label photos</font>>, shape=box, fillcolor="#FFFFFF"];
+  route  [label=<<b>route</b><br/><font point-size="10.5">input type; notes tier-3 words</font>>, shape=diamond, fillcolor="#FFFFFF", margin="0.02"];
+
+  // UC1 cabinet check (fixed sequence)
+  read   [label=<<b>read_photos</b><br/><font point-size="10.5">Prompt A via OCR</font>>, fillcolor="#FCEBD7", color="#D99A4E"];
+  names  [label=<<b>check_names</b><br/><font point-size="10.5">RxNorm per bottle;<br/>no match → pharmacist</font>>, fillcolor="#FCEBD7", color="#D99A4E"];
+
+  // UC2 question (ReAct)
+  mem    [label=<<b>load_memory</b><br/><font point-size="10.5">session record + last turns</font>>];
+  agent  [label=<<b>agent</b><br/><font point-size="10.5">model picks lookups<br/>(tools_v1)</font>>, shape=diamond, fillcolor="#DCEFEC", color="#1B7A80", margin="0.02"];
+  tools  [label=<<b>tools</b><br/><font point-size="10.5">orchestrator checks: allowed,<br/>valid, no dose search, no repeat</font>>, fillcolor="#DCEFEC", color="#1B7A80"];
+
+  subgraph cluster_mcp {
+    label=<<b>MCP server</b> <font point-size="10.5">(discovered at runtime)</font>>; fontsize=9; style="rounded,dashed"; color="#1B7A80"; fontcolor="#0F5257";
+    mcp [label=<<font point-size="10.5">check_medicine_name (RxNorm)<br/>search_drug_label (FDA labels)<br/>get_care_plan · read_label_photo<br/>get / update_session_memory</font>>, shape=note, fillcolor="#FFFFFF", color="#9DB8B6"];
+  }
+
+  // shared tail
+  answer [label=<<b>answer</b><br/><font point-size="10.5">Prompt B v8: reply + triage<br/>plan · memory · references</font>>, fillcolor="#0F5257", fontcolor="white", color="#0F5257"];
+  check  [label=<<b>output_check</b><br/><font point-size="10.5">ids exist, no diagnosis,<br/>no dose advice</font>>, shape=diamond, fillcolor="#FFFFFF", margin="0.02"];
+  fall   [label=<<b>fallback_reply</b><br/><font point-size="10.5">911 text if tier-3 words,<br/>else pharmacy + clinic</font>>, fillcolor="#FBE3E3", color="#C0504D"];
+  save   [label=<<b>save_memory</b><br/><font point-size="10.5">WRITE tool</font>>];
+  reply  [label=<<b>Reply</b><br/><font point-size="10.5">tier 3 → "Call 911 now" + red banner<br/>cites [med-n] [ref-n] [name-n]</font>>, fillcolor="#FFFFFF"];
+
+  input -> route;
+  route -> read  [label="photos /\ncabinet", color="#D99A4E", fontcolor="#9A6316"];
+  read -> names  [color="#D99A4E"];
+  names -> answer [color="#D99A4E"];
+  route -> mem   [label="question", color="#1B7A80", fontcolor="#0F5257"];
+  mem -> agent   [label="ordinary\nquestion", color="#1B7A80", fontcolor="#0F5257"];
+  mem -> answer  [label="  possible emergency:\n  no lookups", color="#C0504D", fontcolor="#C0504D", style=bold];
+  agent -> tools [label="tool calls\n(≤2 rounds)", color="#1B7A80", fontcolor="#0F5257"];
+  tools -> agent [label="observations", color="#1B7A80", fontcolor="#0F5257", style=dashed];
+  tools -> mcp   [dir=both, style=dashed, color="#1B7A80", arrowsize=0.5];
+  agent -> answer [label="done", color="#1B7A80", fontcolor="#0F5257"];
+  answer -> check;
+  check -> answer [label="fail: retry once", style=dashed];
+  check -> fall  [xlabel="fail again", color="#C0504D", fontcolor="#C0504D"];
+  check -> save  [label="pass"];
+  save -> reply;
+  fall -> reply;
+
+  legend [shape=plaintext, fillcolor="white", label=<
+    <table border="0" cellborder="0" cellspacing="2">
+      <tr><td align="left"><font color="#D99A4E">■</font> <font point-size="10.5">UC1 cabinet check (fixed sequence)</font></td></tr>
+      <tr><td align="left"><font color="#1B7A80">■</font> <font point-size="10.5">UC2 question (ReAct: model chooses lookups)</font></td></tr>
+      <tr><td align="left"><font color="#C0504D">■</font> <font point-size="10.5">UC3 red flag (Prompt B triages; no lookups; fallback says 911)</font></td></tr>
+    </table>>];
+  {rank=same; read; mem}
+  {rank=same; names; agent; tools; mcp}
+  {rank=same; answer}
+  {rank=same; check; save; fall}
+  {rank=same; input; legend}
+}

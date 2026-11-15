@@ -494,12 +494,28 @@ The eval harness now targets the MVP, so these prompts no longer render or score
 - **Hypothesis:** label search on side-effect, food, and interaction questions; a name check on every unknown name;
   no lookups on dose, emergency, or scope questions.
 - **Results (final code after the A4 review, deepseek-flash, one run per set):** on the fresh-agent held-out set,
-  31/31 tool-choice expectations met (`pipeline-gateoff_deepseek-flash_1114-1100_a4_heldout`): label search on
+  31/31 tool-choice expectations met (`pipeline-gateoff_deepseek-flash_1115-1325_a4_heldout`, rerun on the final code): label search on
   every side-effect, food, and interaction question, never on dose questions, and a name check on every unfamiliar or
   made-up name. The hypothesis "no lookups on emergencies" failed: the model ran lookups on 32 of 69 emergencies, so
-  the orchestrator now skips lookups on tier-3 words (23 of 69 still run one, phrased without the words). On dose or
+  the orchestrator now skips lookups on tier-3 words (22 of 69 still run one, phrased without the words). On dose or
   stop questions the model asked for label search 4 times and the orchestrator blocked all 4 (main and confirm sets).
   On 7 held-out label questions, 4 replies cite a label passage, 1 correctly says the label does not cover it, 1 defers
-  without using the search, and 1 misses a retrieved passage. Pass/fail change from tools: +1 (within noise).
-  Details: `docs/workflow/README.md` §4.
+  without using the search, and 1 misses a retrieved passage. Pass/fail change from tools: +1 (within noise). On 20 other
+  patients (A2 Synthea held-out) both v8 alone and the pipeline pass 50/50; the pipeline cites the label on 4 of 6 Advil
+  questions where v8 alone cites none. Details: `docs/workflow/README.md` §4.
 - **Decision:** keep as the final tool-selection prompt.
+
+## Assignment 4: usefulness judge (`prompts/judge_usefulness_v1.md`)
+
+### judge v1: is the pipeline's reply more useful than v8 alone's?
+- **Changed:** n/a (new prompt, an evaluation tool, never shown to a caregiver). Written 2026-11-15 before its first run.
+- **Why:** the A2/A3 checks score safety (tier, dose advice, grounding, critical misses). v8 alone passes them by
+  deferring safely, so they cannot see whether the tools make answers more useful. This judge compares the two replies
+  on the turns where the pipeline ran a lookup.
+- **Design:** pairwise, blind (labels A/B, no system names), each pair judged twice with the order swapped; a side wins
+  only if it wins both orders, otherwise tie (counters position bias). Temperature 0. The judge sees the message, the
+  patient's care plan and both replies; it does not see the label passages, so it cannot check that a label fact is
+  faithful (the grounding check only checks that cited ids exist). Same model family (deepseek-flash) as the app, so a
+  self-preference bias is possible; both replies come from the same model, so it should not favour either side.
+- **Hypothesis:** the pipeline wins on label and unfamiliar-name questions where it cites a source; ties elsewhere.
+- **Results:** see `docs/workflow/README.md` §4 (usefulness).
