@@ -137,3 +137,5 @@ utc_time,run,model_key,model,calls,cached_calls,input_hit,input_miss,output,reas
 2026-11-15 18:28,pipeline-gateoff_deepseek-flash_1115-1327_a4_triage,deepseek-flash,deepseek-flash,112,50,48761,14627,2491,0,0.2080,0.0077
 2026-11-15 18:55,usefulness_deepseek-flash_1115-1350,deepseek-flash,deepseek-flash,230,32,224000,81583,9416,0,0.1150,0.0371
 2026-11-15 19:40,"ui_screenshots_24_1115 (Playwright, MCP tools; 9 turns, cost from UI traces, excludes label reads and memory updates on the MCP server)",deepseek-flash,deepseek-flash,,,,,,,,0.0119
+2026-11-23 00:25,pipeline-gateoff_deepseek-flash_1122-1923,deepseek-flash,deepseek-flash,130,47,65024,51343,4359,0,0.2280,0.0210
+2026-11-23 00:27,injection_deepseek-flash_1122-1926,deepseek-flash,deepseek-flash,38,19,16626,20212,1442,0,,0.0079
